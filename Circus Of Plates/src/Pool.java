@@ -7,13 +7,11 @@ public class Pool {
 	public Pool() {
 		used = new ArrayList<Shape>();
 		available = new ArrayList<Shape>();
+		ShapeCreator x = ShapeCreator.getShapeCreator();
 		for (int i = 0; i < 1000; i++)
-			available.add(getRandomShape());
+			available.add(x.getRandomShape());
 	}
 
-	private Shape getRandomShape() {
-		return new Shape();
-	}
 
 	public Shape getShape() {
 		if(available.isEmpty())return null;
