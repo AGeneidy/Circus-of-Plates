@@ -4,9 +4,9 @@ public class FactoryProducer {
 	
 	public static AbstractFactory getFactory(String choise){
 		if(choise.equalsIgnoreCase("PLATE"))
-			return new PlateFactory();
+			return PlateFactory.getPlateFactory();
 		else if(choise.equalsIgnoreCase("PLAYER"))
-			return new PlayerFactory();
+			return PlayerFactory.getPlayerFactory();
 		else 
 			return null;
 	}

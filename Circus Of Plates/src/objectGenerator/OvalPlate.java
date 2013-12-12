@@ -1,7 +1,8 @@
 package objectGenerator;
 
-public class Plate {
-	public Plate() {
+public class OvalPlate extends Plate {
+	public OvalPlate() {
 		// TODO Auto-generated constructor stub
+		super();
 	}
 }

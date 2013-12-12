@@ -1,6 +1,10 @@
 package objectGenerator;
 
-public class PlayerFactory extends AbstractFactory{
+public class PlayerFactory extends AbstractFactory {
+	private static PlayerFactory playerFactory;
+
+	private PlayerFactory() {
+	}
 
 	@Override
 	Plate getPlate(String shapeType) {
@@ -10,6 +14,13 @@ public class PlayerFactory extends AbstractFactory{
 	@Override
 	Player getPlayer() {
 		return new Player();
+	}
+
+	protected static PlayerFactory getPlayerFactory() {
+		if (playerFactory == null)
+			return playerFactory = new PlayerFactory();
+		else
+			return playerFactory;
 	}
 
 }
