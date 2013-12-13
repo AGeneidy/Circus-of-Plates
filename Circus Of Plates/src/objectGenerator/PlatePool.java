@@ -2,8 +2,8 @@ package objectGenerator;
 
 import java.util.ArrayList;
 
-public class PlatePool {
-	private PlatePool pool;
+public class PlatePool implements Container {
+	private static PlatePool pool;
 	private ArrayList<Plate> inUse;
 	private ArrayList<Plate> available;
 	AbstractFactory plateFactory;
@@ -17,27 +17,27 @@ public class PlatePool {
 
 	private void genreate() {
 		// TODO Auto-generated method stub
-		Plate q ;
+		Plate q;
 		for (int i = 0; i < 1000; i++) {
 			q = plateFactory.getRandomPlate();
 			q.setID(i);
 			available.add(q);
-			
+
 		}
 	}
 
-	public Plate getPlate() {
+	public void getPlate() {
 		// TODO Auto-generated method stub
 		Plate tmpPlate;
 		if (available.isEmpty()) {
 			tmpPlate = plateFactory.getRandomPlate();
 			inUse.add(tmpPlate);
-			return tmpPlate;
+//			return tmpPlate;
 		} else {
 			tmpPlate = available.get(0);
 			inUse.add(tmpPlate);
 			available.remove(0);
-			return tmpPlate;
+//			return tmpPlate;
 		}
 	}
 
@@ -45,6 +45,21 @@ public class PlatePool {
 		// TODO Auto-generated method stub
 		inUse.remove(plate);
 		available.add(plate);
+	}
+
+	public static PlatePool getPlatePool() {
+		// TODO Auto-generated method stub
+		if (pool == null)
+			return (pool= new PlatePool() );
+		else
+			return pool ;
+	}
+
+	@Override
+	public ArrayList<Plate> getIterator() {
+		// TODO Auto-generated method stub
+		System.out.println(inUse.size());
+		return inUse;
 	}
 
 }

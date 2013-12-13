@@ -7,14 +7,18 @@ import java.awt.Point;
 
 public class Plate {
 	private int id;
-	private Color plateColor;
-	private Point position;
-	private int height, width;
+	protected Color plateColor;
+	protected Point position;
+	protected int height, width;
+
+	public Plate() {
+		// TODO Auto-generated constructor stub
+		position = new Point(0, 0);
+	}
 
 	public int getHeight() {
 		return height;
 	}
-
 	public int getWidth() {
 		return width;
 	}
@@ -35,16 +39,12 @@ public class Plate {
 		this.plateColor = plateColor;
 	}
 
-	public Plate() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public void setID(int i) {
 		// TODO Auto-generated method stub
 		id = i;
 	}
+
 	public void Paint(Graphics g) {
 		// TODO Auto-generated method stub
-
 	}
 }

@@ -16,13 +16,8 @@ public class PlateFactory extends AbstractFactory {
 
 	@Override
 	Plate getRandomPlate() {
-		// if (shapeType == null){
-		// return null;
-		// }else if(shapeType.equalsIgnoreCase("PLATE")){
-		// return new Plate();
-		// }s
 
-		return null;
+		return new OvalPlate();
 	}
 
 	@Override
