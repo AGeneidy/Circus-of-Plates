@@ -1,6 +1,8 @@
 package objectGenerator;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Paint;
 import java.awt.Point;
 
 public class Plate {
@@ -40,5 +42,9 @@ public class Plate {
 	public void setID(int i) {
 		// TODO Auto-generated method stub
 		id = i;
+	}
+	public void Paint(Graphics g) {
+		// TODO Auto-generated method stub
+
 	}
 }
