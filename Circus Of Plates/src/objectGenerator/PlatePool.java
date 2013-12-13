@@ -32,6 +32,7 @@ public class PlatePool implements Container {
 		if (available.isEmpty()) {
 			tmpPlate = plateFactory.getRandomPlate();
 			inUse.add(tmpPlate);
+			
 		} else {
 			tmpPlate = available.get(0);
 			inUse.add(tmpPlate);

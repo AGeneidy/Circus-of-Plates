@@ -10,6 +10,8 @@ import objectGenerator.*;
 
 public class Boda extends Applet implements Runnable {
 
+	
+	
 	int x = 0;
 	int y = 0;
 	double dx = 3;
