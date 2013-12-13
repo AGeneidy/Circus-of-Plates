@@ -15,12 +15,8 @@ public class PlateIterator implements Iterator {
 	private PlateIterator() {
 		// TODO Auto-generated constructor stub
 		iterate = PlatePool.getPlatePool().getIterator();
+		System.out.println("iterator size = "+ iterate.size());
 
-	}
-
-	public void getsize() {
-		// TODO Auto-generated method stub
-		System.out.println(iterate.size());
 	}
 
 	@Override
@@ -40,11 +36,15 @@ public class PlateIterator implements Iterator {
 	}
 
 	public static PlateIterator getPlateIterator() {
-
-		if (plateIterator == null)
+		if (plateIterator == null){
 			plateIterator = new PlateIterator();
-
+		}
 		plateIterator.setIndex();
 		return plateIterator;
+	}
+
+	public int index() {
+
+		return index;
 	}
 }

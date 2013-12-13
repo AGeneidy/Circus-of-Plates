@@ -12,26 +12,33 @@ public class Boda extends Applet implements Runnable {
 
 	int x = 0;
 	int y = 0;
-	double dx = 10;
+	double dx = 3;
 	PlatePool q;
 	double dy = 0;
 	int radius = 20;
 	// private Image i;
 	// private Graphics doubleG;
-	double gravity = 15;
+	double gravity = 10;
 	double energyloss = .80;
 	double dt = .2;
 	private PlateIterator a;
+	Plate f;
 
 	@Override
 	public void init() {
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		setSize(200, 200);
+		setSize(800, 600);
 	}
 
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
+		q = PlatePool.getPlatePool();
+		q.getPlate();
+		q.getPlate();
+		q.getPlate();
+		q.getPlate();
+		a = PlateIterator.getPlateIterator();
+
 		Thread thread = new Thread(this);
 		thread.start();
 
@@ -39,55 +46,52 @@ public class Boda extends Applet implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		System.out.println("a999a");
-		q = PlatePool.getPlatePool();
-		System.out.println("a88a");
-		Plate f;
+
 		while (true) {
-			System.out.println("lol");
-			q.getPlate();
-			System.out.println("lool");
-			q.getPlate();
-			System.out.println("loool");
-			a = PlateIterator.getPlateIterator();
-			a.getsize();
-			while (a.hasnext()) {
-				System.out.println("a77a");
-				f = a.next();
-//				f.getHeight();
-				if (x + dx > this.getWidth() - radius - 1) {
-					x = this.getWidth() - radius - 1;
-					dx *= -1;
-				} else if (x + dx < 0 + radius) {
-					x = 0 + radius;
-					dx *= -1;
-				} else {
-					x += dx;
-				}
-
-				if (y > this.getHeight() - radius - 1) {
-					y = this.getHeight() - radius - 1;
-					dy *= -energyloss;
-				} else {
-					// velocity formula
-					dy += gravity * dt;
-					// posistion formula
-					y += dy * dt + .5 * gravity * dt * dt;
-				}
-				f.setPosition(new Point(x, y));
-				repaint();
-				try {
-					Thread.sleep(17);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+			excuteFrame();
+			try {
+				Thread.sleep(17);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
 		}
 
+	}
+
+	private void excuteFrame() {
+		// TODO Auto-generated method stub
+
+		a = PlateIterator.getPlateIterator();
+		while(a.hasnext()){
+			f = a.next();
+			System.out.println(a.index());
+		if (x + dx > this.getWidth() - radius - 1) {
+			x = this.getWidth() - radius - 1;
+			dx *= -1;
+		} else if (x + dx < 0 + radius) {
+			x = 0 + radius;
+			dx *= -1;
+		} else {
+			x += dx;
+		}
+
+		if (y > this.getHeight() - radius - 1) {
+			y = this.getHeight() - radius - 1;
+			dy *= -energyloss;
+		} else {
+			// velocity formula
+			dy += gravity * dt;
+			// posistion formula
+			y += dy * dt + .5 * gravity * dt * dt;
+		}
+		f.setPosition(new Point(x, y));
+		}
+		
+		repaint();
+		q.getPlate();
+		
 	}
 
 	@Override

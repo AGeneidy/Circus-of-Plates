@@ -32,12 +32,11 @@ public class PlatePool implements Container {
 		if (available.isEmpty()) {
 			tmpPlate = plateFactory.getRandomPlate();
 			inUse.add(tmpPlate);
-//			return tmpPlate;
 		} else {
 			tmpPlate = available.get(0);
 			inUse.add(tmpPlate);
 			available.remove(0);
-//			return tmpPlate;
+			System.out.println("inUse Size = "+ inUse.size());
 		}
 	}
 
@@ -58,7 +57,6 @@ public class PlatePool implements Container {
 	@Override
 	public ArrayList<Plate> getIterator() {
 		// TODO Auto-generated method stub
-		System.out.println(inUse.size());
 		return inUse;
 	}
 
