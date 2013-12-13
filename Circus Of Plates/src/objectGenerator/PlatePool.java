@@ -26,7 +26,7 @@ public class PlatePool implements Container {
 		}
 	}
 
-	public void getPlate() {
+	public Plate getPlate() {
 		// TODO Auto-generated method stub
 		Plate tmpPlate;
 		if (available.isEmpty()) {
@@ -37,8 +37,8 @@ public class PlatePool implements Container {
 			tmpPlate = available.get(0);
 			inUse.add(tmpPlate);
 			available.remove(0);
-			System.out.println("inUse Size = "+ inUse.size());
 		}
+		return tmpPlate;
 	}
 
 	public void releasePlate(Plate plate) {
