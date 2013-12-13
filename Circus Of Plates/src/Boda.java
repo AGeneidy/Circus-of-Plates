@@ -5,26 +5,15 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.sql.Time;
 
 import objectGenerator.*;
 
 public class Boda extends Applet implements Runnable {
 
-	
-	
-	int x = 0;
-	int y = 0;
-	double dx = 3;
+	long time1;
 	PlatePool q;
-	double dy = 0;
-	int radius = 20;
-	// private Image i;
-	// private Graphics doubleG;
-	double gravity = 10;
-	double energyloss = .80;
-	double dt = .2;
 	private PlateIterator a;
-	Plate f;
 
 	@Override
 	public void init() {
@@ -48,11 +37,11 @@ public class Boda extends Applet implements Runnable {
 
 	@Override
 	public void run() {
-
+		time1 = System.currentTimeMillis();
 		while (true) {
 			excuteFrame();
 			try {
-				Thread.sleep(17);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -66,34 +55,30 @@ public class Boda extends Applet implements Runnable {
 		// TODO Auto-generated method stub
 
 		a = PlateIterator.getPlateIterator();
-		while(a.hasnext()){
+		Plate f;
+		while (a.hasnext()) {
 			f = a.next();
-			System.out.println(a.index());
-		if (x + dx > this.getWidth() - radius - 1) {
-			x = this.getWidth() - radius - 1;
-			dx *= -1;
-		} else if (x + dx < 0 + radius) {
-			x = 0 + radius;
-			dx *= -1;
-		} else {
-			x += dx;
+			int x = f.getPosition().x, y = f.getPosition().y, dx = 5, dy = 6;
+			// System.out.println(a.index());
+			if (x + dx < 2 * this.getWidth() / 3) {
+				x += dx;
+			} else {
+				y += dy;
+				x += 1;
+			}
+			if (y > this.getHeight() || x > this.getWidth()) {
+				q.releasePlate(f);
+				a.justifyIndex();
+			} else {
+				f.setPosition(new Point(x, y));
+			}
+		}
+		repaint();
+		if (Math.abs(time1 - System.currentTimeMillis()) > 200) {
+			q.getPlate();
+			time1 = System.currentTimeMillis();
 		}
 
-		if (y > this.getHeight() - radius - 1) {
-			y = this.getHeight() - radius - 1;
-			dy *= -energyloss;
-		} else {
-			// velocity formula
-			dy += gravity * dt;
-			// posistion formula
-			y += dy * dt + .5 * gravity * dt * dt;
-		}
-		f.setPosition(new Point(x, y));
-		}
-		
-		repaint();
-		q.getPlate();
-		
 	}
 
 	@Override

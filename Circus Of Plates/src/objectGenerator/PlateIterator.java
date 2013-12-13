@@ -15,11 +15,10 @@ public class PlateIterator implements Iterator {
 	private PlateIterator() {
 		// TODO Auto-generated constructor stub
 		iterate = PlatePool.getPlatePool().getIterator();
-		System.out.println("iterator size = "+ iterate.size());
+		System.out.println("iterator size = " + iterate.size());
 
 	}
 
-	
 	@Override
 	public boolean hasnext() {
 		// TODO Auto-generated method stub
@@ -37,15 +36,14 @@ public class PlateIterator implements Iterator {
 	}
 
 	public static PlateIterator getPlateIterator() {
-		if (plateIterator == null){
+		if (plateIterator == null) {
 			plateIterator = new PlateIterator();
 		}
 		plateIterator.setIndex();
 		return plateIterator;
 	}
 
-	public int index() {
-
-		return index;
+	public void justifyIndex() {
+		index--;
 	}
 }
