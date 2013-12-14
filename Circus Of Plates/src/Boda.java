@@ -57,7 +57,7 @@ public class Boda extends Applet implements Runnable {
 		platePool = PlatePool.getPlatePool();
 		initialDx = 2;
 		initialDy = 0;
-		rowsNo = 3;
+		rowsNo = 4;
 
 		Thread thread = new Thread(this);
 		thread.start();
@@ -169,8 +169,7 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	private void moveLeftSide() {
-		if (x + plate.getWidth() < (this.getWidth() / (rowsNo * 2 + 2))
-				* (rowsNo * 50 / (y + 50))) { // Still not fall
+		if (x + plate.getWidth() < (this.getWidth() / (rowsNo * 2 + 2)) * ( (rowsNo * 50-y)/ 50)) { // Still not fall
 			x += dx;
 		} else
 			// Fall now
@@ -180,7 +179,7 @@ public class Boda extends Applet implements Runnable {
 	private void moveRightSide() {
 
 		if (x > this.getWidth()
-				- (this.getWidth() / (rowsNo * 2 + 2) * (rowsNo * 50 / (y + 50))))
+				- ( (this.getWidth() / (rowsNo * 2 + 2)) * ( (rowsNo * 50 -y)/ 50)))
 			// still not fall
 			x += dx;
 		else
