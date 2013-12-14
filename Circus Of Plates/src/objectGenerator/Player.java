@@ -185,4 +185,9 @@ public class Player {
 		windowHeight = height - 60;
 
 	}
+
+	public void mouseMove(int x) {
+		// TODO Auto-generated method stub
+		move(x-center.x);
+	}
 }

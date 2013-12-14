@@ -35,6 +35,7 @@ public class Boda extends Applet implements Runnable {
 		player1.setWindowattri(this.getWidth(), this.getHeight());
 		player1.setattributes(this.getWidth() / 2, this.getHeight() - 60);
 		this.addKeyListener(new handleKeyBoard());
+		this.addMouseMotionListener(new mouseMotion());
 	}
 
 	@Override
