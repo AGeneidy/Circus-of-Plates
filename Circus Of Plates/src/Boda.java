@@ -1,19 +1,18 @@
 import java.applet.Applet;
-import java.awt.Cursor;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
+import java.net.URL;
 
-import objectGenerator.*;
+import objectGenerator.AbstractFactory;
+import objectGenerator.FactoryProducer;
+import objectGenerator.Plate;
+import objectGenerator.PlateIterator;
+import objectGenerator.PlatePool;
+import objectGenerator.Player;
 
 public class Boda extends Applet implements Runnable {
-
-	/**
-	 * @author Ayman Geneidy
-	 * 
-	 */
 
 	private long time1;
 	private PlatePool platePool;
@@ -31,6 +30,9 @@ public class Boda extends Applet implements Runnable {
 	private Plate plate;
 	private int Height = 1000, Width = 600;
 	private int rowsNo;
+	private double backX, backDx;
+	URL url;
+	Image back;
 
 	@Override
 	public void init() {
@@ -44,6 +46,14 @@ public class Boda extends Applet implements Runnable {
 
 		this.addKeyListener(new handleKeyBoard());
 		this.addMouseMotionListener(new mouseMotion());
+		
+		try{
+			url = getDocumentBase();
+		}catch (Exception e){
+			
+		}
+		
+		back = getImage(url,"images/background.png");
 
 		// setCursor (Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		// GraphicsEnvironment ge =
@@ -81,7 +91,6 @@ public class Boda extends Applet implements Runnable {
 
 		while (plateIterator.hasnext()) {
 
-			
 			plate = plateIterator.next();
 			x = plate.getPosition().x;
 			y = plate.getPosition().y;
@@ -98,14 +107,14 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	private void insertNewPlates(int rowsNo) {
-		for(int i=0; i<rowsNo; i++){
+		for (int i = 0; i < rowsNo; i++) {
 			plate = platePool.getPlate();
-			plate.setPosition(new Point(0, i*50));
+			plate.setPosition(new Point(0, i * 50));
 			plate.setDx(initialDx);
 			plate.setDy(0);
 
 			plate = platePool.getPlate();
-			plate.setPosition(new Point(this.getWidth(), i*50));
+			plate.setPosition(new Point(this.getWidth(), i * 50));
 			plate.setDx(-initialDx);
 			plate.setDy(0);
 		}
@@ -124,8 +133,7 @@ public class Boda extends Applet implements Runnable {
 				falling();
 			else if (dx > 0) // move from left to right
 				moveLeftSide();
-			else
-				// move from right to left
+			else // move from right to left
 				moveRightSide();
 			setPlate();
 		}
@@ -170,7 +178,8 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	private void moveLeftSide() {
-		if (x + plate.getWidth() < (this.getWidth() / (rowsNo * 2 + 3)) * ( (rowsNo * 50-y)/ 50)) { // Still not fall
+		if (x + plate.getWidth() < (this.getWidth() / (rowsNo * 2 + 3))
+				* ((rowsNo * 50 - y) / 50)) { // Still not fall
 			x += dx;
 		} else
 			// Fall now
@@ -180,7 +189,7 @@ public class Boda extends Applet implements Runnable {
 	private void moveRightSide() {
 
 		if (x > this.getWidth()
-				- ( (this.getWidth() / (rowsNo * 2 + 3)) * ( (rowsNo * 50 -y)/ 50)))
+				- ((this.getWidth() / (rowsNo * 2 + 3)) * ((rowsNo * 50 - y) / 50)))
 			// still not fall
 			x += dx;
 		else
@@ -220,6 +229,10 @@ public class Boda extends Applet implements Runnable {
 
 	@Override
 	public void paint(Graphics g) {
+//		g.setColor(new Color(15,77,147));
+//		g.fillRect(0, 0, getWidth(), getHeight());
+		g.drawImage(back, (int) backX, 0, this);
+		
 		plateIterator = PlateIterator.getPlateIterator();
 		while (plateIterator.hasnext()) {
 			plateIterator.next().Paint(g);
