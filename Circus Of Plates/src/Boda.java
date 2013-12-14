@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 import java.sql.Time;
 import java.awt.event.*;
 
+import javax.swing.JLabel;
+
 import objectGenerator.*;
 
 public class Boda extends Applet implements Runnable {
@@ -30,8 +32,7 @@ public class Boda extends Applet implements Runnable {
 	private AbstractFactory p;
 	protected Player player1;
 	private Plate f;
-	public static int Wheight = 1000, Width = 800;
-
+	private int  Wheight = 1000, Width = 800;
 	@Override
 	public void init() {
 		setSize(Wheight, Width);

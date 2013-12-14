@@ -8,12 +8,21 @@ public class handleKeyBoard implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println(e.getKeyCode());
 		switch (e.getKeyCode()) {
 		case 39:
 			Player.getPlayer().move(moveSpeed);
 			return;
 		case 37:
 			Player.getPlayer().move(-moveSpeed);
+			return;
+		case 32:
+			try {
+				wait(50000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return;
 		}
 	}
