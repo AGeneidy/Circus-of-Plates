@@ -20,7 +20,7 @@ public class Boda extends Applet implements Runnable {
 	private PlateIterator plateIterator;
 	private Image i;
 	private Graphics doubleG;
-	private double gravity = 3;
+	private double gravity = 1;
 	private double energyloss = .80;
 	private double dt = .2;
 	private int x, y, initialDx, initialDy;
@@ -55,9 +55,9 @@ public class Boda extends Applet implements Runnable {
 	@Override
 	public void start() {
 		platePool = PlatePool.getPlatePool();
-		initialDx = 2;
+		initialDx = 1;
 		initialDy = 0;
-		rowsNo = 4;
+		rowsNo = 3;
 
 		Thread thread = new Thread(this);
 		thread.start();
@@ -169,7 +169,7 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	private void moveLeftSide() {
-		if (x + plate.getWidth() < (this.getWidth() / (rowsNo * 2 + 2)) * ( (rowsNo * 50-y)/ 50)) { // Still not fall
+		if (x + plate.getWidth() < (this.getWidth() / (rowsNo * 2 + 3)) * ( (rowsNo * 50-y)/ 50)) { // Still not fall
 			x += dx;
 		} else
 			// Fall now
@@ -179,7 +179,7 @@ public class Boda extends Applet implements Runnable {
 	private void moveRightSide() {
 
 		if (x > this.getWidth()
-				- ( (this.getWidth() / (rowsNo * 2 + 2)) * ( (rowsNo * 50 -y)/ 50)))
+				- ( (this.getWidth() / (rowsNo * 2 + 3)) * ( (rowsNo * 50 -y)/ 50)))
 			// still not fall
 			x += dx;
 		else
