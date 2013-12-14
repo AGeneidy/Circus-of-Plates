@@ -29,22 +29,22 @@ public class Boda extends Applet implements Runnable {
 	private AbstractFactory abstractfactory;
 	private Player player1;
 	private Plate plate;
-	private int  Height = 1000, Width = 600;
+	private int Height = 1000, Width = 600;
 	private int rowsNo;
 
 	@Override
 	public void init() {
-		
+
 		setSize(Height, Width);
 		abstractfactory = FactoryProducer.getFactory("player");
-		
+
 		player1 = abstractfactory.getPlayer();
-		player1.setWindowattri(this.getWidth(),this.getHeight());
-		player1.setattributes(this.getWidth()/2, this.getHeight()-60);
-		
+		player1.setWindowattri(this.getWidth(), this.getHeight());
+		player1.setattributes(this.getWidth() / 2, this.getHeight() - 60);
+
 		this.addKeyListener(new handleKeyBoard());
 		this.addMouseMotionListener(new mouseMotion());
-		
+
 		// setCursor (Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		// GraphicsEnvironment ge =
 		// GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -58,7 +58,7 @@ public class Boda extends Applet implements Runnable {
 		initialDx = 2;
 		initialDy = 0;
 		rowsNo = 2;
-		
+
 		Thread thread = new Thread(this);
 		thread.start();
 	}
@@ -80,42 +80,20 @@ public class Boda extends Applet implements Runnable {
 		plateIterator = PlateIterator.getPlateIterator();
 
 		while (plateIterator.hasnext()) {
+
 			plate = plateIterator.next();
 			x = plate.getPosition().x;
 			y = plate.getPosition().y;
 			dx = plate.getDx();
 			dy = plate.getDy();
-			
-			
-			checkPlate();
-			
-			if (plate.isOnPlayer())
-				continue;
-			else if(dy > 0) // falling
-				falling();
-			else if (dx > 0) // move from left to right
-				moveLeftSide();
-			else // move from right to left
-				moveRightSide();
-				
-				plate.setDx(dx);
-				plate.setDy(dy);
 
-			if (y > this.getHeight() || x > this.getWidth()) {
-				plate.setDy(0);
-				platePool.releasePlate(plate);
-				plateIterator.justifyIndex();
-			} else {
-				plate.setPosition(new Point(x, y));
-				plate.setDy(dy);
-			}
+			dealWithPlate();
 		}
 		repaint();
 		if (Math.abs(time1 - System.currentTimeMillis()) > 1200) {
 			insertNewPlates(); // insert new 4 plates
 			time1 = System.currentTimeMillis();
 		}
-
 	}
 
 	private void insertNewPlates() {
@@ -123,24 +101,57 @@ public class Boda extends Applet implements Runnable {
 		plate.setPosition(new Point(0, 0));
 		plate.setDx(initialDx);
 		plate.setDy(0);
-		
+
 		plate = platePool.getPlate();
 		plate.setPosition(new Point(0, 50));
 		plate.setDx(initialDx);
 		plate.setDy(0);
-		
+
 		plate = platePool.getPlate();
 		plate.setPosition(new Point(this.getWidth(), 0));
 		plate.setDx(-initialDx);
 		plate.setDy(0);
-		
+
 		plate = platePool.getPlate();
 		plate.setPosition(new Point(this.getWidth(), 50));
 		plate.setDx(-initialDx);
 		plate.setDy(0);
 	}
 
-	private void checkPlate() {
+	// ////////////////////////////////////////////////////////////////////////
+	// ////////////Methods Handle the Movement of Plates///////////////////////
+	// ////////////////////////////////////////////////////////////////////////
+	private void dealWithPlate() {
+
+		// make player try to catch plates
+		catchPlate();
+
+		if (!plate.isOnPlayer()) { // move free plates
+			if (dy > 0) // falling
+				falling();
+			else if (dx > 0) // move from left to right
+				moveLeftSide();
+			else
+				// move from right to left
+				moveRightSide();
+			setPlate();
+		}
+	}
+
+	private void setPlate() {
+		if (y > this.getHeight() || x > this.getWidth()) { // plate gets out of
+															// screen
+			platePool.releasePlate(plate);
+			plateIterator.justifyIndex();
+		} else { // set plate
+			plate.setPosition(new Point(x, y));
+			plate.setDx(dx);
+			plate.setDy(dy);
+		}
+	}
+
+	private void catchPlate() {
+		// TODO Auto-generated method stub
 		Point RH = player1.getRightHand();
 		Point LH = player1.getLeftHand();
 		int widthL = player1.LeftHandWidth();
@@ -149,15 +160,15 @@ public class Boda extends Applet implements Runnable {
 			if (Math.abs(y + plate.getHeight() - RH.y) < 7) {
 				player1.addAtRight(plate);
 			}
-		}else if ((x < (LH.x + widthL - 2)) && x > (LH.x - plate.getWidth() + 2)) {
+		} else if ((x < (LH.x + widthL - 2))
+				&& x > (LH.x - plate.getWidth() + 2)) {
 			if (Math.abs(y + plate.getHeight() - LH.y) < 7) {
 				player1.addAtLeft(plate);
 			}
 		}
-
 	}
-	
-	private void falling(){
+
+	private void falling() {
 		// Velocity of falling formula
 		dy += gravity * dt;
 		// Position formula
@@ -166,20 +177,28 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	private void moveLeftSide() {
-		if (x+plate.getWidth() < (this.getWidth() / (rowsNo*2 + 2)) * (rowsNo*50 / (y+50)) ){ //Still not fall
+		if (x + plate.getWidth() < (this.getWidth() / (rowsNo * 2 + 2))
+				* (rowsNo * 50 / (y + 50))) { // Still not fall
 			x += dx;
-		}
-		else // Fall now
+		} else
+			// Fall now
 			falling();
 	}
 
 	private void moveRightSide() {
-		
-		if(x> this.getWidth() - ( this.getWidth() / (rowsNo*2 + 2) * (rowsNo*50 / (y+50)) ))
-			x +=dx;
+
+		if (x > this.getWidth()
+				- (this.getWidth() / (rowsNo * 2 + 2) * (rowsNo * 50 / (y + 50))))
+			// still not fall
+			x += dx;
 		else
+			// Fall Now
 			falling();
 	}
+
+	// ////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void stop() {
@@ -191,15 +210,6 @@ public class Boda extends Applet implements Runnable {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		plateIterator = PlateIterator.getPlateIterator();
-		while (plateIterator.hasnext()) {
-			plateIterator.next().Paint(g);
-		}
-		player1.paint(g);
-	}
-	
 	@Override
 	public void update(Graphics g) {
 		if (i == null) {
@@ -215,4 +225,14 @@ public class Boda extends Applet implements Runnable {
 
 		g.drawImage(i, 0, 0, this);
 	}
+
+	@Override
+	public void paint(Graphics g) {
+		plateIterator = PlateIterator.getPlateIterator();
+		while (plateIterator.hasnext()) {
+			plateIterator.next().Paint(g);
+		}
+		player1.paint(g);
+	}
+
 }
