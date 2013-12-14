@@ -11,14 +11,32 @@ public class Plate {
 	private Color[] chooseColor = { Color.RED, Color.GREEN, Color.BLUE };
 	protected Color plateColor;
 	protected Point position;
-	protected int height, width;
+	protected int height, width,type;
 	protected double dy;
+	protected boolean onPlayer;
+
+	public boolean isOnPlayer() {
+		return onPlayer;
+	}
+
+	public void setOnPlayer(boolean onPlayer) {
+		this.onPlayer = onPlayer;
+	}
 
 	public Plate() {
 		// TODO Auto-generated constructor stub
-		plateColor = chooseColor[new Random().nextInt(500) % 3];
+//		plateColor = chooseColor[new Random().nextInt(500) % 3];
+		plateColor = chooseColor[2];
 		position = new Point(0, 0);
 		dy = 0;
+	}
+
+	public Color[] getChooseColor() {
+		return chooseColor;
+	}
+
+	public void setChooseColor(Color[] chooseColor) {
+		this.chooseColor = chooseColor;
 	}
 
 	public int getHeight() {
