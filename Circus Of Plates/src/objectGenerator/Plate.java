@@ -12,6 +12,7 @@ public class Plate {
 	protected Color plateColor;
 	protected Point position;
 	protected int height, width,type;
+	protected double dx;
 	protected double dy;
 	protected boolean onPlayer;
 
@@ -29,6 +30,7 @@ public class Plate {
 //		plateColor = chooseColor[2];
 		position = new Point(0, 0);
 		dy = 0;
+		dx = 0;
 	}
 
 	public Color[] getChooseColor() {
@@ -71,7 +73,15 @@ public class Plate {
 	public void Paint(Graphics g) {
 		// TODO Auto-generated method stub
 	}
+	
+	public double getDx() {
+		return dx;
+	}
 
+	public void setDx(double dx) {
+		this.dx = dx;
+	}
+	
 	public double getDy() {
 		// TODO Auto-generated method stub
 		return dy;
