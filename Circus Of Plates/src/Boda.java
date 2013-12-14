@@ -81,6 +81,7 @@ public class Boda extends Applet implements Runnable {
 
 		while (plateIterator.hasnext()) {
 
+			
 			plate = plateIterator.next();
 			x = plate.getPosition().x;
 			y = plate.getPosition().y;
