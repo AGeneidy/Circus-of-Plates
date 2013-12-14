@@ -1,7 +1,10 @@
 import java.applet.Applet;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 
 import objectGenerator.*;
 
@@ -34,6 +37,11 @@ public class Boda extends Applet implements Runnable {
 		player1 = p.getPlayer();
 		player1.setWindowattri(this.getWidth(), this.getHeight());
 		player1.setattributes(this.getWidth() / 2, this.getHeight() - 60);
+		// setCursor (Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		// GraphicsEnvironment ge =
+		// GraphicsEnvironment.getLocalGraphicsEnvironment();
+		// GraphicsDevice[] devices = ge.getScreenDevices();
+		// devices[0].setFullScreenWindow(this.Boda);
 		this.addKeyListener(new handleKeyBoard());
 		this.addMouseMotionListener(new mouseMotion());
 	}
