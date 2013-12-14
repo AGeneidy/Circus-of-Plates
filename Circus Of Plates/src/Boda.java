@@ -1,14 +1,7 @@
 import java.applet.Applet;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Toolkit;
-import java.sql.Time;
-import java.awt.event.*;
-
-import javax.swing.JLabel;
 
 import objectGenerator.*;
 
@@ -32,14 +25,15 @@ public class Boda extends Applet implements Runnable {
 	private AbstractFactory p;
 	protected Player player1;
 	private Plate f;
-	private int  Wheight = 1000, Width = 800;
+	private int Wheight = 1000, Width = 800;
+
 	@Override
 	public void init() {
 		setSize(Wheight, Width);
 		p = FactoryProducer.getFactory("player");
 		player1 = p.getPlayer();
-		player1.setWindowattri(this.getWidth(),this.getHeight());
-		player1.setattributes(this.getWidth()/2, this.getHeight()-60);
+		player1.setWindowattri(this.getWidth(), this.getHeight());
+		player1.setattributes(this.getWidth() / 2, this.getHeight() - 60);
 		this.addKeyListener(new handleKeyBoard());
 	}
 
@@ -119,7 +113,7 @@ public class Boda extends Applet implements Runnable {
 			if (Math.abs(y + f.getHeight() - RH.y) < 7) {
 				player1.addAtRight(f);
 			}
-		}else if ((x < (LH.x + widthL - 2)) && x > (LH.x - f.getWidth() + 2)) {
+		} else if ((x < (LH.x + widthL - 2)) && x > (LH.x - f.getWidth() + 2)) {
 			if (Math.abs(y + f.getHeight() - LH.y) < 7) {
 				player1.addAtLeft(f);
 			}
@@ -182,8 +176,6 @@ public class Boda extends Applet implements Runnable {
 		// TODO Auto-generated method stub
 	}
 
-	
-	
 	@Override
 	public void paint(Graphics g) {
 		a = PlateIterator.getPlateIterator();
