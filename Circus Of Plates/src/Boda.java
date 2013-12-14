@@ -32,7 +32,7 @@ public class Boda extends Applet implements Runnable {
 	private int rowsNo;
 	private double backX, backDx;
 	URL url;
-	Image back;
+	Image back, plateImg;
 
 	@Override
 	public void init() {
@@ -52,6 +52,7 @@ public class Boda extends Applet implements Runnable {
 		}catch (Exception e){
 			
 		}
+		
 		back = getImage(url,"images/background.png");
 
 		// setCursor (Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -132,7 +133,8 @@ public class Boda extends Applet implements Runnable {
 				falling();
 			else if (dx > 0) // move from left to right
 				moveLeftSide();
-			else // move from right to left
+			else
+				// move from right to left
 				moveRightSide();
 			setPlate();
 		}
@@ -233,8 +235,14 @@ public class Boda extends Applet implements Runnable {
 		g.drawImage(back, (int) backX, 0, this);
 		
 		plateIterator = PlateIterator.getPlateIterator();
+		
+		String path = new String();
+		
 		while (plateIterator.hasnext()) {
-			plateIterator.next().Paint(g);
+			plate = plateIterator.next();
+			path = plate.getImagePath();
+			plateImg = getImage(url,path);
+			g.drawImage(plateImg, plate.getPosition().x, plate.getPosition().y, this);
 		}
 		player1.paint(g);
 	}

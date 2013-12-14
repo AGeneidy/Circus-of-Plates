@@ -11,8 +11,21 @@ public class OvalPlate extends Plate {
 	public OvalPlate() {
 		// TODO Auto-generated constructor stub
 		super();
-		height = 15;
-		width = 25;
+		height = 25;
+		width = 50;
+	}
+	
+	@Override
+	public String getImagePath(){
+		
+		if(plateColor==Color.RED)
+			return "images/platered50-25.png";
+		else if(plateColor==Color.BLUE)
+			return "images/plateblue50-25.png";
+		else if(plateColor==Color.GREEN)
+			return "images/plategreen50-25.png";
+		
+		return null;
 	}
 
 	@Override

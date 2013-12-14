@@ -91,4 +91,7 @@ public class Plate {
 		// TODO Auto-generated method stub
 		dy = i;
 	}
+	public String getImagePath(){
+		return null;
+	}
 }
