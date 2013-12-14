@@ -52,7 +52,6 @@ public class Boda extends Applet implements Runnable {
 		}catch (Exception e){
 			
 		}
-		
 		back = getImage(url,"images/background.png");
 
 		// setCursor (Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
