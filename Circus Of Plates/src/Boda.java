@@ -182,6 +182,8 @@ public class Boda extends Applet implements Runnable {
 		// TODO Auto-generated method stub
 	}
 
+	
+	
 	@Override
 	public void paint(Graphics g) {
 		a = PlateIterator.getPlateIterator();
