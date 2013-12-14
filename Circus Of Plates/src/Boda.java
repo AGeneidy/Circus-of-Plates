@@ -57,7 +57,7 @@ public class Boda extends Applet implements Runnable {
 		platePool = PlatePool.getPlatePool();
 		initialDx = 2;
 		initialDy = 0;
-		rowsNo = 2;
+		rowsNo = 3;
 
 		Thread thread = new Thread(this);
 		thread.start();
@@ -91,31 +91,23 @@ public class Boda extends Applet implements Runnable {
 		}
 		repaint();
 		if (Math.abs(time1 - System.currentTimeMillis()) > 1200) {
-			insertNewPlates(); // insert new 4 plates
+			insertNewPlates(rowsNo); // insert new 4 plates
 			time1 = System.currentTimeMillis();
 		}
 	}
 
-	private void insertNewPlates() {
-		plate = platePool.getPlate();
-		plate.setPosition(new Point(0, 0));
-		plate.setDx(initialDx);
-		plate.setDy(0);
+	private void insertNewPlates(int rowsNo) {
+		for(int i=0; i<rowsNo; i++){
+			plate = platePool.getPlate();
+			plate.setPosition(new Point(0, i*50));
+			plate.setDx(initialDx);
+			plate.setDy(0);
 
-		plate = platePool.getPlate();
-		plate.setPosition(new Point(0, 50));
-		plate.setDx(initialDx);
-		plate.setDy(0);
-
-		plate = platePool.getPlate();
-		plate.setPosition(new Point(this.getWidth(), 0));
-		plate.setDx(-initialDx);
-		plate.setDy(0);
-
-		plate = platePool.getPlate();
-		plate.setPosition(new Point(this.getWidth(), 50));
-		plate.setDx(-initialDx);
-		plate.setDy(0);
+			plate = platePool.getPlate();
+			plate.setPosition(new Point(this.getWidth(), i*50));
+			plate.setDx(-initialDx);
+			plate.setDy(0);
+		}
 	}
 
 	// ////////////////////////////////////////////////////////////////////////
