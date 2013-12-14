@@ -20,7 +20,7 @@ public class PlayerFactory extends AbstractFactory {
 
 	@Override
 	public Player getPlayer() {
-		return new Player();
+		return Player.getPlayer();
 	}
 
 }

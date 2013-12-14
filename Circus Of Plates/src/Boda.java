@@ -6,10 +6,16 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.sql.Time;
+import java.awt.event.*;
 
 import objectGenerator.*;
 
 public class Boda extends Applet implements Runnable {
+
+	/**
+	 * @author Ayman Geneidy
+	 * 
+	 */
 
 	long time1;
 	PlatePool q;
@@ -22,7 +28,7 @@ public class Boda extends Applet implements Runnable {
 	private int x, y, dx = 3;
 	private double dy;
 	private AbstractFactory p;
-	Player player1;
+	protected Player player1;
 	private Plate f;
 	public static int Wheight = 1000, Width = 800;
 
@@ -31,7 +37,9 @@ public class Boda extends Applet implements Runnable {
 		setSize(Wheight, Width);
 		p = FactoryProducer.getFactory("player");
 		player1 = p.getPlayer();
-		player1.setattributes(this.getWidth(), this.getHeight());
+		player1.setWindowattri(this.getWidth(),this.getHeight());
+		player1.setattributes(this.getWidth()/2, this.getHeight()-60);
+		this.addKeyListener(new handleKeyBoard());
 	}
 
 	@Override
@@ -106,22 +114,14 @@ public class Boda extends Applet implements Runnable {
 		Point LH = player1.getLeftHand();
 		int widthL = player1.LeftHandWidth();
 		int widthR = player1.RightHandWidth();
-		// System.out.println("RH Height : " + RH.y + "       RH Width  " + RH.x
-		// + "\t\t" + "Point x : " +x + "      Point y : " + y);
 		if ((x < (RH.x + widthR - 2)) && x > (RH.x - f.getWidth() + 2)) {
-			// System.out.println("RH Height : " + RH.y + "       RH Width  " +
-			// RH.x+ "      Point y : " + y + "\t\t" + "Point x : " +x );
-			System.out.println(y + f.getHeight() - RH.y);
 			if (Math.abs(y + f.getHeight() - RH.y) < 7) {
-				System.out.println(">>>>>>>>.RH Height : " + RH.y
-						+ "       RH Width  " + RH.x + "      Point y : " + y
-						+ "\t\t" + "Point x : " + x);
 				player1.addAtRight(f);
 			}
-		}
-		if ((x < (LH.x + widthL - 2)) && x > (LH.x - f.getWidth() + 2)) {
-			if (Math.abs(y + f.getHeight() - LH.y) < 7)
+		}else if ((x < (LH.x + widthL - 2)) && x > (LH.x - f.getWidth() + 2)) {
+			if (Math.abs(y + f.getHeight() - LH.y) < 7) {
 				player1.addAtLeft(f);
+			}
 		}
 
 	}

@@ -25,8 +25,8 @@ public class Plate {
 
 	public Plate() {
 		// TODO Auto-generated constructor stub
-//		plateColor = chooseColor[new Random().nextInt(500) % 3];
-		plateColor = chooseColor[2];
+		plateColor = chooseColor[new Random().nextInt(500) % 3];
+//		plateColor = chooseColor[2];
 		position = new Point(0, 0);
 		dy = 0;
 	}

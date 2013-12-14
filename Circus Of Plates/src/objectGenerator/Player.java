@@ -10,14 +10,25 @@ import java.util.ArrayList;
 
 import javax.sql.PooledConnection;
 import javax.swing.LayoutFocusTraversalPolicy;
+import javax.swing.text.Position;
 
 public class Player {
 	ArrayList<Plate> RightHandPlates, leftHandPlates;
 	private int height, rightHeight, leftHeight;
 	private Point center, rightCenter, leftCenter;
 	private Point LH, RH;
+	private int windowWidth;
+	private int windowHeight;
+	private static Player player1;
 
-	public Player() {
+	public static Player getPlayer() {
+		if (player1 == null)
+			return player1 = new Player();
+		else
+			return player1;
+	}
+
+	private Player() {
 		height = 200;
 		// TODO Auto-generated constructor stub
 		RightHandPlates = new ArrayList<Plate>();
@@ -32,11 +43,6 @@ public class Player {
 
 	}
 
-	private Point getCeneter() {
-		// TODO Auto-generated method stub
-		return center;
-	}
-
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -49,8 +55,8 @@ public class Player {
 
 	public void setattributes(int width, int height2) {
 		// TODO Auto-generated method stub
-		height = height2 - 60;
-		center.x = width / 2;
+		height = height2;
+		center.x = width;
 		rightHeight = leftHeight = height;
 		justify();
 	}
@@ -60,10 +66,16 @@ public class Player {
 		center.y = height;
 		rightCenter = new Point(center.x + 35, height);
 		leftCenter = new Point(center.x - 65, height);
-		if (RightHandPlates.isEmpty() && leftHandPlates.isEmpty()) {
+		if (RightHandPlates.isEmpty()) {
 			RH = rightCenter;
-			LH = leftCenter;
+
+		} else {
+			RH = RightHandPlates.get(RightHandPlates.size() - 1).getPosition();
 		}
+		if (leftHandPlates.isEmpty())
+			LH = leftCenter;
+		else
+			LH = leftHandPlates.get(leftHandPlates.size() - 1).getPosition();
 	}
 
 	public int LeftHandWidth() {
@@ -81,35 +93,70 @@ public class Player {
 	public void addAtRight(Plate t) {
 		// TODO Auto-generated method stub
 		RightHandPlates.add(t);
-		
+
 		RH = t.getPosition();
 		t.setOnPlayer(true);
-//		if(RightHandPlates.size()>=3)
-//			checkRight();
+
+		if (RightHandPlates.size() >= 3) {
+
+			Plate[] w = { RightHandPlates.get(RightHandPlates.size() - 1),
+					RightHandPlates.get(RightHandPlates.size() - 2),
+					RightHandPlates.get(RightHandPlates.size() - 3) };
+			check(w);
+		}
 	}
 
-	private void checkRight() {
+	private void check(Plate[] b) {
 		// TODO Auto-generated method stub
-		Plate a = RightHandPlates.get(RightHandPlates.size()-1);
-		Plate b = RightHandPlates.get(RightHandPlates.size()-2);
-		Plate n = RightHandPlates.get(RightHandPlates.size()-3);
-		if(a.getChooseColor()==b.getChooseColor()&&a.getChooseColor()==n.getChooseColor())
-		{
+		// System.out.println("a77a");
+
+		if (b[0].plateColor == b[1].plateColor
+				&& b[0].plateColor == b[2].plateColor) {
+
 			PlatePool q = PlatePool.getPlatePool();
-			RightHandPlates.remove(a);
-			RightHandPlates.remove(b);
-			RightHandPlates.remove(n);
-			q.releasePlate(a);
-			q.releasePlate(b);
-			q.releasePlate(n);
+			for (Plate a : b) {
+				a.setOnPlayer(false);
+				if (RightHandPlates.contains(a)) {
+					RightHandPlates.remove(a);
+				} else {
+					leftHandPlates.remove(a);
+
+				}
+				q.releasePlate(a);
+			}
+			if (!RightHandPlates.isEmpty())
+				RH = RightHandPlates.get(RightHandPlates.size() - 1)
+						.getPosition();
+			else
+				RH = rightCenter;
+
+			if (!leftHandPlates.isEmpty())
+				LH = leftHandPlates.get(leftHandPlates.size() - 1)
+						.getPosition();
+			else
+				LH = leftCenter;
+
 		}
-		}
+		playerOut();
+	}
+
+	private void playerOut() {
+		// TODO Auto-generated method stub
+		if (RH.y < 80 || LH.y < 80)
+			System.exit(0);
+	}
 
 	public void addAtLeft(Plate t) {
 		// TODO Auto-generated method stub
 		leftHandPlates.add(t);
-		RH = t.getPosition();
+		LH = t.getPosition();
 		t.setOnPlayer(true);
+		if (leftHandPlates.size() >= 3) {
+			Plate[] w = { leftHandPlates.get(leftHandPlates.size() - 1),
+					leftHandPlates.get(leftHandPlates.size() - 2),
+					leftHandPlates.get(leftHandPlates.size() - 3) };
+			check(w);
+		}
 	}
 
 	public Point getLeftHand() {
@@ -122,4 +169,20 @@ public class Player {
 		return RH;
 	}
 
+	public void move(int u) {
+		// TODO Auto-generated method stub
+		for (Plate b : RightHandPlates)
+			b.position.x = (b.position.x + u + windowWidth) % windowWidth;
+		for (Plate b : leftHandPlates)
+			b.position.x = (b.position.x + u + windowWidth) % windowWidth;
+		setattributes((center.x + u + windowWidth) % windowWidth, height);
+
+	}
+
+	public void setWindowattri(int width, int height) {
+		// TODO Auto-generated method stub
+		windowWidth = width;
+		windowHeight = height - 60;
+
+	}
 }
