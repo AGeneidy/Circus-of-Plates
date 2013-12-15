@@ -127,7 +127,7 @@ public class Boda extends Applet implements Runnable {
 		}
 		path = "images/clown.png";
 		plateImg = getImage(url, path);
-		g.drawImage(plateImg, player1.getLeftCenter().x+5, player1.getLeftCenter().y-5,
+		g.drawImage(plateImg, player1.getLeftCenter().x+5, player1.getLeftCenter().y+2,
 				this);
 		ArrayList<Plate> a = Control.getRightHandPlates();
 		for(Plate b : a){
