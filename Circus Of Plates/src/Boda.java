@@ -40,7 +40,7 @@ public class Boda extends Applet implements Runnable {
 
 		player1 = abstractfactory.getPlayer();
 		player1.setWindowattri(this.getWidth(), this.getHeight());
-		player1.setattributes(this.getWidth() / 2, this.getHeight() - 60);
+		player1.setattributes(this.getWidth() / 2, this.getHeight() - player1.getHight());
 
 		this.addKeyListener(new handleKeyBoard());
 		this.addMouseMotionListener(new mouseMotion());
@@ -144,7 +144,7 @@ public class Boda extends Applet implements Runnable {
 //		path = player1.getImagePath();
 		path = "images/clown.png";
 		plateImg = getImage(url, path);
-		g.drawImage(plateImg, player1.getLeftCenter().x-10, player1.getLeftCenter().y-100,
+		g.drawImage(plateImg, player1.getLeftCenter().x+5, player1.getLeftCenter().y-5,
 				this);
 		
 	}

@@ -33,13 +33,17 @@ public class Player {
 	}
 
 	private Player() {
-		height = 200;
+		height = 141;
 		// TODO Auto-generated constructor stub
 		RightHandPlates = new ArrayList<Plate>();
 		leftHandPlates = new ArrayList<Plate>();
 		center = new Point(60, height);
-		rightCenter = new Point(center.x + 50, height);
-		leftCenter = new Point(center.x - 50, height);
+		rightCenter = new Point(center.x + 40, height);
+		leftCenter = new Point(center.x - 40, height);
+	}
+	
+	public int getHight(){
+		return height;
 	}
 
 	public void setCenter(Point center) {
