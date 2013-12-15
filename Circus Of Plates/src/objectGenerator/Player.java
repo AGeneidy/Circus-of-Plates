@@ -16,6 +16,10 @@ public class Player {
 	ArrayList<Plate> RightHandPlates, leftHandPlates;
 	private int height, rightHeight, leftHeight;
 	private Point center, rightCenter, leftCenter;
+	public Point getLeftCenter() {
+		return leftCenter;
+	}
+
 	private Point LH, RH;
 	private int windowWidth;
 	private int windowHeight;
