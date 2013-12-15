@@ -90,8 +90,25 @@ public class Player {
 		return 30;
 	}
 
+	public void addAtLeft(Plate t) {
+		// TODO Auto-generated method stub
+		t.position.x = LH.x;
+		t.position.y = LH.y - 10;
+		leftHandPlates.add(t);
+		LH = t.getPosition();
+		t.setOnPlayer(true);
+		if (leftHandPlates.size() >= 3) {
+			Plate[] w = { leftHandPlates.get(leftHandPlates.size() - 1),
+					leftHandPlates.get(leftHandPlates.size() - 2),
+					leftHandPlates.get(leftHandPlates.size() - 3) };
+			check(w);
+		}
+	}
+
 	public void addAtRight(Plate t) {
 		// TODO Auto-generated method stub
+		t.position.x = RH.x;
+		t.position.y = RH.y - 10;
 		RightHandPlates.add(t);
 
 		RH = t.getPosition();
@@ -146,19 +163,6 @@ public class Player {
 			System.exit(0);
 	}
 
-	public void addAtLeft(Plate t) {
-		// TODO Auto-generated method stub
-		leftHandPlates.add(t);
-		LH = t.getPosition();
-		t.setOnPlayer(true);
-		if (leftHandPlates.size() >= 3) {
-			Plate[] w = { leftHandPlates.get(leftHandPlates.size() - 1),
-					leftHandPlates.get(leftHandPlates.size() - 2),
-					leftHandPlates.get(leftHandPlates.size() - 3) };
-			check(w);
-		}
-	}
-
 	public Point getLeftHand() {
 		// TODO Auto-generated method stub
 		return LH;
@@ -188,6 +192,16 @@ public class Player {
 
 	public void mouseMove(int x) {
 		// TODO Auto-generated method stub
-		move(x-center.x);
+		move(x - center.x);
+	}
+
+	public ArrayList<Plate> getRightHandPlates() {
+		// TODO Auto-generated method stub
+		return RightHandPlates;
+	}
+
+	public ArrayList<Plate> getLeftHandPlates() {
+		// TODO Auto-generated method stub
+		return leftHandPlates;
 	}
 }

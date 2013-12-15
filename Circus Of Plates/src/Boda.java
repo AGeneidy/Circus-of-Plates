@@ -3,7 +3,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 
 import objectGenerator.AbstractFactory;
 import objectGenerator.FactoryProducer;
@@ -14,25 +16,21 @@ import objectGenerator.Player;
 
 public class Boda extends Applet implements Runnable {
 
-	private long time1;
-	private PlatePool platePool;
+	protected long time1;
 	private PlateIterator plateIterator;
 	private Image i;
 	private Graphics doubleG;
-	private double gravity = 1;
-	private double energyloss = .80;
-	private double dt = .2;
-	private int x, y, initialDx, initialDy;
-	private double dy;
-	private double dx;
+	protected int x, y, initialDx, initialDy;
+	protected double dy;
+	protected double dx;
 	private AbstractFactory abstractfactory;
-	private Player player1;
+	protected Player player1;
 	private Plate plate;
 	private int Height = 1000, Width = 600;
-	private int rowsNo;
 	private double backX, backDx;
 	URL url;
 	Image back, plateImg;
+	private Controler Control;
 
 	@Override
 	public void init() {
@@ -46,14 +44,14 @@ public class Boda extends Applet implements Runnable {
 
 		this.addKeyListener(new handleKeyBoard());
 		this.addMouseMotionListener(new mouseMotion());
-		
-		try{
+
+		try {
 			url = getDocumentBase();
-		}catch (Exception e){
-			
+		} catch (Exception e) {
+
 		}
-		
-		back = getImage(url,"images/background.png");
+
+		back = getImage(url, "images/background.png");
 
 		// setCursor (Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		// GraphicsEnvironment ge =
@@ -64,11 +62,8 @@ public class Boda extends Applet implements Runnable {
 
 	@Override
 	public void start() {
-		platePool = PlatePool.getPlatePool();
-		initialDx = 1;
-		initialDy = 0;
-		rowsNo = 3;
 
+		Control = new Controler(this);
 		Thread thread = new Thread(this);
 		thread.start();
 	}
@@ -77,7 +72,7 @@ public class Boda extends Applet implements Runnable {
 	public void run() {
 		time1 = System.currentTimeMillis();
 		while (true) {
-			excuteFrame();
+			Control.excuteFrame();
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
@@ -85,122 +80,6 @@ public class Boda extends Applet implements Runnable {
 			}
 		}
 	}
-
-	private void excuteFrame() {
-		plateIterator = PlateIterator.getPlateIterator();
-
-		while (plateIterator.hasnext()) {
-
-			plate = plateIterator.next();
-			x = plate.getPosition().x;
-			y = plate.getPosition().y;
-			dx = plate.getDx();
-			dy = plate.getDy();
-
-			dealWithPlate();
-		}
-		repaint();
-		if (Math.abs(time1 - System.currentTimeMillis()) > 1200) {
-			insertNewPlates(rowsNo); // insert new 4 plates
-			time1 = System.currentTimeMillis();
-		}
-	}
-
-	private void insertNewPlates(int rowsNo) {
-		for (int i = 0; i < rowsNo; i++) {
-			plate = platePool.getPlate();
-			plate.setPosition(new Point(0, i * 50));
-			plate.setDx(initialDx);
-			plate.setDy(0);
-
-			plate = platePool.getPlate();
-			plate.setPosition(new Point(this.getWidth(), i * 50));
-			plate.setDx(-initialDx);
-			plate.setDy(0);
-		}
-	}
-
-	// ////////////////////////////////////////////////////////////////////////
-	// ////////////Methods Handle the Movement of Plates///////////////////////
-	// ////////////////////////////////////////////////////////////////////////
-	private void dealWithPlate() {
-
-		// make player try to catch plates
-		catchPlate();
-
-		if (!plate.isOnPlayer()) { // move free plates
-			if (dy > 0) // falling
-				falling();
-			else if (dx > 0) // move from left to right
-				moveLeftSide();
-			else
-				// move from right to left
-				moveRightSide();
-			setPlate();
-		}
-	}
-
-	private void setPlate() {
-		if (y > this.getHeight() || x > this.getWidth()) { // plate gets out of
-															// screen
-			platePool.releasePlate(plate);
-			plateIterator.justifyIndex();
-		} else { // set plate
-			plate.setPosition(new Point(x, y));
-			plate.setDx(dx);
-			plate.setDy(dy);
-		}
-	}
-
-	private void catchPlate() {
-		// TODO Auto-generated method stub
-		Point RH = player1.getRightHand();
-		Point LH = player1.getLeftHand();
-		int widthL = player1.LeftHandWidth();
-		int widthR = player1.RightHandWidth();
-		if ((x < (RH.x + widthR - 2)) && x > (RH.x - plate.getWidth() + 2)) {
-			if (Math.abs(y + plate.getHeight() - RH.y) < 7) {
-				player1.addAtRight(plate);
-			}
-		} else if ((x < (LH.x + widthL - 2))
-				&& x > (LH.x - plate.getWidth() + 2)) {
-			if (Math.abs(y + plate.getHeight() - LH.y) < 7) {
-				player1.addAtLeft(plate);
-			}
-		}
-	}
-
-	private void falling() {
-		// Velocity of falling formula
-		dy += gravity * dt;
-		// Position formula
-		y += dy * dt + .5 * gravity * dt * dt;
-		x += dx;
-	}
-
-	private void moveLeftSide() {
-		if (x + plate.getWidth() < (this.getWidth() / (rowsNo * 2 + 3))
-				* ((rowsNo * 50 - y) / 50)) { // Still not fall
-			x += dx;
-		} else
-			// Fall now
-			falling();
-	}
-
-	private void moveRightSide() {
-
-		if (x > this.getWidth()
-				- ((this.getWidth() / (rowsNo * 2 + 3)) * ((rowsNo * 50 - y) / 50)))
-			// still not fall
-			x += dx;
-		else
-			// Fall Now
-			falling();
-	}
-
-	// ////////////////////////////////////////////////////////////////////////
-	// ////////////////////////////////////////////////////////////////////////
-	// ////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void stop() {
@@ -230,19 +109,35 @@ public class Boda extends Applet implements Runnable {
 
 	@Override
 	public void paint(Graphics g) {
-//		g.setColor(new Color(15,77,147));
-//		g.fillRect(0, 0, getWidth(), getHeight());
+		// g.setColor(new Color(15,77,147));
+		// g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(back, (int) backX, 0, this);
-		
+
 		plateIterator = PlateIterator.getPlateIterator();
-		
+
 		String path = new String();
-		
+
 		while (plateIterator.hasnext()) {
 			plate = plateIterator.next();
+			if(plate.isOnPlayer())continue;
 			path = plate.getImagePath();
-			plateImg = getImage(url,path);
-			g.drawImage(plateImg, plate.getPosition().x, plate.getPosition().y, this);
+			plateImg = getImage(url, path);
+			g.drawImage(plateImg, plate.getPosition().x, plate.getPosition().y,
+					this);
+		}
+		ArrayList<Plate> a = Control.getRightHandPlates();
+		for(Plate b : a){
+			path = b.getImagePath();
+			plateImg = getImage(url, path);
+			g.drawImage(plateImg, b.getPosition().x, b.getPosition().y,
+					this);
+		}
+		a = Control.getLeftHandPlates();
+		for(Plate b : a){
+			path = b.getImagePath();
+			plateImg = getImage(url, path);
+			g.drawImage(plateImg, b.getPosition().x, b.getPosition().y,
+					this);
 		}
 		player1.paint(g);
 	}

@@ -28,6 +28,7 @@ public class Plate {
 		// TODO Auto-generated constructor stub
 		plateColor = chooseColor[new Random().nextInt(500) % 3];
 //		plateColor = chooseColor[2];
+		System.out.println("a77a");
 		position = new Point(0, 0);
 		dy = 0;
 		dx = 0;
