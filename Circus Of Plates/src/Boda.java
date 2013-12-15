@@ -125,6 +125,10 @@ public class Boda extends Applet implements Runnable {
 			g.drawImage(plateImg, plate.getPosition().x, plate.getPosition().y,
 					this);
 		}
+		path = "images/clown.png";
+		plateImg = getImage(url, path);
+		g.drawImage(plateImg, player1.getLeftCenter().x+5, player1.getLeftCenter().y-5,
+				this);
 		ArrayList<Plate> a = Control.getRightHandPlates();
 		for(Plate b : a){
 			path = b.getImagePath();
@@ -142,10 +146,7 @@ public class Boda extends Applet implements Runnable {
 //		player1.paint(g);
 		
 //		path = player1.getImagePath();
-		path = "images/clown.png";
-		plateImg = getImage(url, path);
-		g.drawImage(plateImg, player1.getLeftCenter().x+5, player1.getLeftCenter().y-5,
-				this);
+
 		
 	}
 

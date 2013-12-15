@@ -16,6 +16,7 @@ public class Player {
 	ArrayList<Plate> RightHandPlates, leftHandPlates;
 	private int height, rightHeight, leftHeight;
 	private Point center, rightCenter, leftCenter;
+
 	public Point getLeftCenter() {
 		return leftCenter;
 	}
@@ -41,8 +42,8 @@ public class Player {
 		rightCenter = new Point(center.x + 40, height);
 		leftCenter = new Point(center.x - 40, height);
 	}
-	
-	public int getHight(){
+
+	public int getHight() {
 		return height;
 	}
 
@@ -57,8 +58,6 @@ public class Player {
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setColor(Color.RED);
 		// g2.drawLine(center.x, center.y, center.x, center.y+50);
-		g2.fillRect(rightCenter.x, height, 30, 60);
-		g2.fillRect(leftCenter.x, height, 30, 60);
 	}
 
 	public void setattributes(int width, int height2) {
@@ -76,7 +75,7 @@ public class Player {
 		leftCenter = new Point(center.x - 65, height);
 		if (RightHandPlates.isEmpty()) {
 			RH = rightCenter;
-
+			RH.x-=15;
 		} else {
 			RH = RightHandPlates.get(RightHandPlates.size() - 1).getPosition();
 		}
@@ -152,8 +151,9 @@ public class Player {
 			if (!RightHandPlates.isEmpty())
 				RH = RightHandPlates.get(RightHandPlates.size() - 1)
 						.getPosition();
-			else
+			else {
 				RH = rightCenter;
+			}
 
 			if (!leftHandPlates.isEmpty())
 				LH = leftHandPlates.get(leftHandPlates.size() - 1)
