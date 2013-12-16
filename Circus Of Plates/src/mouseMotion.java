@@ -39,6 +39,16 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 			view.exitButton.setMouseOnButton(true);
 		}else
 			view.exitButton.setMouseOnButton(false);
+		
+		if(e.getX() > view.saveButton.getX() && e.getX() < view.saveButton.getX()+view.saveButton.getWidth() && e.getY() > view.saveButton.getY() && e.getY() < view.saveButton.getY()+view.saveButton.getHeight()){
+			view.saveButton.setMouseOnButton(true);
+		}else
+			view.saveButton.setMouseOnButton(false);
+		
+		if(e.getX() > view.loadButton.getX() && e.getX() < view.loadButton.getX()+view.loadButton.getWidth() && e.getY() > view.loadButton.getY() && e.getY() < view.loadButton.getY()+view.loadButton.getHeight()){
+			view.loadButton.setMouseOnButton(true);
+		}else
+			view.loadButton.setMouseOnButton(false);
 	}
 
 
@@ -64,6 +74,17 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 				view.exitButton.setClicked(true);
 		}else
 			view.exitButton.setClicked(false);		
+///////////////////////////////////////////////////////////////////////////////////////////	
+		if(view.saveButton.isMouseOnButton()){
+			view.saveButton.setClicked(true);
+		}else
+			view.saveButton.setClicked(false);
+		
+		if(view.loadButton.isMouseOnButton()){
+			view.loadButton.setClicked(true);
+		}else
+			view.loadButton.setClicked(false);
+///////////////////////////////////////////////////////////////////////////////////////////
 	}
 
 

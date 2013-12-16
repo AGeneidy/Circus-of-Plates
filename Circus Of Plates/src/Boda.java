@@ -31,7 +31,7 @@ public class Boda extends Applet implements Runnable {
 	Image back1, back;
 	private Controler Control;
 	boolean mainMenu = true;
-	Button onePlayerButton, twoPlayersButton, exitButton;
+	Button onePlayerButton, twoPlayersButton, exitButton, saveButton,loadButton;
 	ArrayList<Player> Players;
 
 	@Override
@@ -99,6 +99,16 @@ public class Boda extends Applet implements Runnable {
 		exitButton.setType(3);
 		exitButton.setWidth(200);
 		exitButton.setHight(86);
+		
+		saveButton = abstractfactory.getButton();
+		saveButton.setType(4);
+		saveButton.setPosition(gameWidth + 10, gameHeight - 200);
+		
+		loadButton = abstractfactory.getButton();;
+		loadButton.setType(5);
+		loadButton.setPosition(gameWidth + 10, gameHeight - 400);
+
+
 	}
 
 	// ////////////////////////////////////////////////////////////////////////////
@@ -233,6 +243,9 @@ public class Boda extends Applet implements Runnable {
 //		if (twoPlayers)
 //			player2.paint(g, this, url);
 		exitButton.paint(g, this, url);
+		saveButton.paint(g, this, url);
+		loadButton.paint(g, this, url);
+
 
 	}
 

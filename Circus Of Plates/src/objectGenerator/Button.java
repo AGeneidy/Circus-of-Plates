@@ -86,7 +86,10 @@ public class Button {
 
 	public void paint(Graphics g,Applet view,URL url) {		
 		Image buttonImg = view.getImage(url, getImagePath());
-		g.drawImage(buttonImg, x, y,view);
+		if(mouseOnButton)
+			g.drawImage(buttonImg, x-1, y-2,view);
+		else 
+			g.drawImage(buttonImg, x, y,view);
 	}
 
 	private String getImagePath() {
@@ -104,6 +107,16 @@ public class Button {
 			if(mouseOnButton)
 				return "images/exit2.png";
 			return "images/exit1.png";
+		
+		}else if(type == 4){ //saveButton
+			if(mouseOnButton)
+				return "images/button.png";
+			return "images/button.png";
+			
+		}else if(type == 5){ //loadButton
+			if(mouseOnButton)
+				return "images/button.png";
+			return "images/button.png";
 		}
 		return null;
 	}

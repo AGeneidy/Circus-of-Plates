@@ -1,13 +1,9 @@
 package objectGenerator;
 
 import java.applet.Applet;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Paint;
 import java.awt.Point;
-import java.awt.RenderingHints;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -47,8 +43,7 @@ public class Player {
 
 	public void paint(Graphics g, Applet view, URL url) {
 		Image playerImg = view.getImage(url, "images/clown.png");
-		g.drawImage(playerImg, leftCenter.x - 20, height + 2,
-				view);
+		g.drawImage(playerImg, leftCenter.x - 20, height + 2, view);
 		for (Plate p : RightHandPlates) {
 			p.Paint(g, view, url);
 		}
@@ -74,11 +69,12 @@ public class Player {
 			RH = rightCenter;
 		} else {
 			RH = rightCenter;
-			RH.y = RightHandPlates.get(RightHandPlates.size() - 1).getPosition().y;
+			RH.y = RightHandPlates.get(RightHandPlates.size() - 1)
+					.getPosition().y;
 		}
 		if (leftHandPlates.isEmpty())
 			LH = leftCenter;
-		else{
+		else {
 			LH = leftCenter;
 			LH.y = leftHandPlates.get(leftHandPlates.size() - 1).getPosition().y;
 		}
@@ -98,28 +94,31 @@ public class Player {
 
 	public void addAtLeft(Plate t) {
 		Plate lastPlate = null;
-		if(!leftHandPlates.isEmpty())
+		if (!leftHandPlates.isEmpty())
 			lastPlate = leftHandPlates.get(leftHandPlates.size() - 1);
-		
+
 		if (t.getState().equalsIgnoreCase("OnPLayer"))
 			return;
-		
-		t.position.x = LH.x	- t.getWidth()/2;
-		
-		if(!leftHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball") && lastPlate.getType().equalsIgnoreCase("ball")){
+
+		t.position.x = LH.x - t.getWidth() / 2;
+
+		if (!leftHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball")
+				&& lastPlate.getType().equalsIgnoreCase("ball")) {
 			t.position.y = LH.y - t.getHeight();
-		}else if(leftHandPlates.isEmpty() && t.getType().equalsIgnoreCase("OvalPlate")){
-			t.position.y = LH.y - t.getHeight()+10;
-		}else if(leftHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball")){
-			t.position.y = LH.y - t.getHeight()+5;
-		}else 
-			t.position.y = LH.y - t.getHeight() + 15;		
-		
+		} else if (leftHandPlates.isEmpty()
+				&& t.getType().equalsIgnoreCase("OvalPlate")) {
+			t.position.y = LH.y - t.getHeight() + 10;
+		} else if (leftHandPlates.isEmpty()
+				&& t.getType().equalsIgnoreCase("ball")) {
+			t.position.y = LH.y - t.getHeight() + 5;
+		} else
+			t.position.y = LH.y - t.getHeight() + 15;
+
 		leftHandPlates.add(t);
 		LH.y = t.getPosition().y;
-		
+
 		t.setState("OnPLayer");
-		
+
 		if (leftHandPlates.size() >= 3) {
 			Plate[] w = { leftHandPlates.get(leftHandPlates.size() - 1),
 					leftHandPlates.get(leftHandPlates.size() - 2),
@@ -130,23 +129,26 @@ public class Player {
 
 	public void addAtRight(Plate t) {
 		Plate lastPlate = null;
-		if(!RightHandPlates.isEmpty())
+		if (!RightHandPlates.isEmpty())
 			lastPlate = RightHandPlates.get(RightHandPlates.size() - 1);
-		
+
 		if (t.getState().equalsIgnoreCase("OnPLayer"))
 			return;
 
-		t.position.x = RH.x	- t.getWidth()/2;
-		
-		if(!RightHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball") && lastPlate.getType().equalsIgnoreCase("ball")){
+		t.position.x = RH.x - t.getWidth() / 2;
+
+		if (!RightHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball")
+				&& lastPlate.getType().equalsIgnoreCase("ball")) {
 			t.position.y = RH.y - t.getHeight();
-		}else if(RightHandPlates.isEmpty() && t.getType().equalsIgnoreCase("OvalPlate")){
-			t.position.y = RH.y - t.getHeight()+10;
-		}else if(RightHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball")){
-			t.position.y = RH.y - t.getHeight()+5;
-		}else 
+		} else if (RightHandPlates.isEmpty()
+				&& t.getType().equalsIgnoreCase("OvalPlate")) {
+			t.position.y = RH.y - t.getHeight() + 10;
+		} else if (RightHandPlates.isEmpty()
+				&& t.getType().equalsIgnoreCase("ball")) {
+			t.position.y = RH.y - t.getHeight() + 5;
+		} else
 			t.position.y = RH.y - t.getHeight() + 15;
-	
+
 		RightHandPlates.add(t);
 		RH.y = t.getPosition().y;
 
@@ -183,7 +185,8 @@ public class Player {
 			q.releasePlate(a);
 		}
 		if (!RightHandPlates.isEmpty())
-			RH.y = RightHandPlates.get(RightHandPlates.size() - 1).getPosition().y;
+			RH.y = RightHandPlates.get(RightHandPlates.size() - 1)
+					.getPosition().y;
 		else {
 			RH = rightCenter;
 		}
@@ -192,7 +195,7 @@ public class Player {
 			LH.y = leftHandPlates.get(leftHandPlates.size() - 1).getPosition().y;
 		else
 			LH = leftCenter;
-		
+
 		Score++;
 		System.out.println(Score);
 
@@ -219,10 +222,10 @@ public class Player {
 		// TODO Auto-generated method stub
 		for (Plate b : RightHandPlates)
 			b.position.x = (b.position.x + u + windowWidth) % windowWidth;
-		
+
 		for (Plate b : leftHandPlates)
 			b.position.x = (b.position.x + u + windowWidth) % windowWidth;
-		
+
 		setattributes((center.x + u + windowWidth) % windowWidth, height);
 
 	}
