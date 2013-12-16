@@ -29,6 +29,8 @@ public class BodaPlate extends Plate {
 //		g2.setColor(plateColor);
 //		g2.fillOval(position.x, position.y, width, height);
 		Image plateImg = view.getImage(url, getImagePath());
+//		Image img = plateImg.getScaledInstance(50, 50,
+//				 java.awt.Image.SCALE_SMOOTH);
 		g.drawImage(plateImg, getPosition().x, getPosition().y,view);
 	}
 }
