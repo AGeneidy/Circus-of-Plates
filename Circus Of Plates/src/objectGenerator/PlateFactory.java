@@ -1,5 +1,7 @@
 package objectGenerator;
 
+import java.util.Random;
+
 public class PlateFactory extends AbstractFactory {
 	private static PlateFactory plateFactory;
 
@@ -16,16 +18,29 @@ public class PlateFactory extends AbstractFactory {
 
 	@Override
 	public Plate getRandomPlate() {
+		switch(new Random().nextInt(500) % 2){
+		case 0 :
+			return new OvalPlate();
+		case 1 : 
+			return new BodaPlate();
+		}
 		return new OvalPlate();
 	}
 
 	@Override
-	public Player getPlayer() {
+	public Button getButton() {
 		return null;
 	}
 
 	@Override
-	public Button getButton() {
+	public Player getPlayerOne() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Player getPlayerTwo() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -18,14 +18,22 @@ public class ButtonFactory extends AbstractFactory {
 		return null;
 	}
 
-	@Override
-	public Player getPlayer() {
-		return null;
-	}
 
 	@Override
 	public Button getButton() {
 		return new Button();
+	}
+
+	@Override
+	public Player getPlayerOne() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Player getPlayerTwo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

@@ -10,6 +10,7 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 
 	public mouseMotion(Boda view){
 		this.view = view;
+		int k = 0;
 	}
 	
 	
@@ -32,7 +33,7 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 				view.twoPlayersButton.setMouseOnButton(false);		
 		
 		}else
-		view.player1.mouseMove(e.getX());
+		view.Players.get(0).mouseMove(e.getX());
 		
 		if(e.getX() > view.exitButton.getX() && e.getX() < view.exitButton.getX()+view.exitButton.getWidth() && e.getY() > view.exitButton.getY() && e.getY() < view.exitButton.getY()+view.exitButton.getHeight()){
 			view.exitButton.setMouseOnButton(true);
@@ -46,7 +47,7 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 		System.out.println(11);
 		if(view.onePlayerButton.isMouseOnButton()){
 			view.onePlayerButton.setClicked(true);
-			view.twoPlayers = false;
+			view.addOnePlayer();
 			view.mainMenu = false;
 			System.out.println(view.mainMenu);
 		}else
@@ -54,7 +55,7 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 	
 		if(e.getX() > view.twoPlayersButton.getX() && e.getX() < view.twoPlayersButton.getX()+view.twoPlayersButton.getWidth()&& e.getY() > view.twoPlayersButton.getY() && e.getY() < view.twoPlayersButton.getY()+view.twoPlayersButton.getHeight()){
 				view.twoPlayersButton.setClicked(true);
-				view.twoPlayers = true;
+				view.addTwoPlayers();
 				view.mainMenu = false;
 		}else
 			view.twoPlayersButton.setClicked(false);

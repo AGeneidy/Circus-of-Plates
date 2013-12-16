@@ -36,7 +36,7 @@ public class Controler {
 
 	void excuteFrame() {
 		timer = (int) System.currentTimeMillis();
-		
+
 		plateIterator = PlateIterator.getPlateIterator();
 
 		while (plateIterator.hasnext()) {
@@ -78,7 +78,8 @@ public class Controler {
 		// make player try to catch plates
 		catchPlate();
 
-		if (!plate.isOnPlayer()) { // move free plates
+		if (!plate.getState().equalsIgnoreCase("OnPlayer")) { // move free
+																// plates
 			if (dy > 0) // falling
 				falling();
 			else if (dx > 0) // move from left to right
@@ -104,18 +105,20 @@ public class Controler {
 
 	private void catchPlate() {
 		// TODO Auto-generated method stub
-		Point RH = view.player1.getRightHand();
-		Point LH = view.player1.getLeftHand();
-		int widthL = view.player1.LeftHandWidth();
-		int widthR = view.player1.RightHandWidth();
-		if ((x < (RH.x + widthR - 2)) && x > (RH.x - plate.getWidth() + 2)) {
-			if (Math.abs(y + plate.getHeight() - RH.y) < 7) {
-				view.player1.addAtRight(plate);
-			}
-		} else if ((x < (LH.x + widthL - 2))
-				&& x > (LH.x - plate.getWidth() + 2)) {
-			if (Math.abs(y + plate.getHeight() - LH.y) < 7) {
-				view.player1.addAtLeft(plate);
+		for (Player a : view.Players) {
+			Point RH = a.getRightHand();
+			Point LH = a.getLeftHand();
+			int widthL = a.LeftHandWidth();
+			int widthR = a.RightHandWidth();
+			if ((x < (RH.x + widthR - 2)) && x > (RH.x - plate.getWidth() + 2)) {
+				if (Math.abs(y + plate.getHeight() - RH.y) < 7) {
+					a.addAtRight(plate);
+				}
+			} else if ((x < (LH.x + widthL - 2))
+					&& x > (LH.x - plate.getWidth() + 2)) {
+				if (Math.abs(y + plate.getHeight() - LH.y) < 7) {
+					a.addAtLeft(plate);
+				}
 			}
 		}
 	}
@@ -148,26 +151,26 @@ public class Controler {
 			falling();
 	}
 
-	public ArrayList<Plate> getRightHandPlatesOne() {
-		// TODO Auto-generated method stub
-
-		return view.player1.getRightHandPlates();
-	}
-
-	public ArrayList<Plate> getLeftHandPlatesOne() {
-		// TODO Auto-generated method stub
-		return view.player1.getLeftHandPlates();
-	}
-	
-	public ArrayList<Plate> getRightHandPlatesTwo() {
-		// TODO Auto-generated method stub
-
-		return view.player2.getRightHandPlates();
-	}
-
-	public ArrayList<Plate> getLeftHandPlatesTwo() {
-		// TODO Auto-generated method stub
-		return view.player2.getLeftHandPlates();
-	}
+//	public ArrayList<Plate> getRightHandPlatesOne() {
+//		// TODO Auto-generated method stub
+//
+//		return view.Players.get(0).getRightHandPlates();
+//	}
+//
+//	public ArrayList<Plate> getLeftHandPlatesOne() {
+//		// TODO Auto-generated method stub
+//		return view.Players.get(0).getLeftHandPlates();
+//	}
+//
+//	public ArrayList<Plate> getRightHandPlatesTwo() {
+//		// TODO Auto-generated method stub
+//
+//		return view.Players.get(1).getRightHandPlates();
+//	}
+//
+//	public ArrayList<Plate> getLeftHandPlatesTwo() {
+//		// TODO Auto-generated method stub
+//		return view.Players.get(1).getLeftHandPlates();
+//	}
 
 }

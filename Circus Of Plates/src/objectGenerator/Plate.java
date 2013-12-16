@@ -9,28 +9,27 @@ import java.util.Random;
 
 public class Plate {
 	private int id;
-	private Color[] chooseColor = { Color.RED, Color.GREEN, Color.BLUE };
+	protected Color[] chooseColor = { Color.RED, Color.GREEN, Color.BLUE ,Color.BLACK};
 	protected Color plateColor;
 	protected Point position;
-	protected int height, width,type;
+	protected int height, width, type;
 	protected double dx;
 	protected double dy;
-	protected boolean onPlayer;
+	protected state State;
 
-	public boolean isOnPlayer() {
-		return onPlayer;
+	public String getState() {
+		return State.getState();
 	}
 
-	public void setOnPlayer(boolean onPlayer) {
-		this.onPlayer = onPlayer;
+	public void setState(String state) {
+		State.setState(state);
 	}
 
 	public Plate() {
 		// TODO Auto-generated constructor stub
-		plateColor = chooseColor[new Random().nextInt(500) % 3];
-//		plateColor = chooseColor[2];
-		System.out.println("a77a");
+		// plateColor = chooseColor[2];
 		position = new Point(0, 0);
+		State = new state();
 		dy = 0;
 		dx = 0;
 	}
@@ -72,10 +71,10 @@ public class Plate {
 		id = i;
 	}
 
-	public void Paint(Graphics g,Applet view,URL url) {
+	public void Paint(Graphics g, Applet view, URL url) {
 		// TODO Auto-generated method stub
 	}
-	
+
 	public double getDx() {
 		return dx;
 	}
@@ -83,7 +82,7 @@ public class Plate {
 	public void setDx(double dx) {
 		this.dx = dx;
 	}
-	
+
 	public double getDy() {
 		// TODO Auto-generated method stub
 		return dy;
@@ -93,7 +92,18 @@ public class Plate {
 		// TODO Auto-generated method stub
 		dy = i;
 	}
-	public String getImagePath(){
+
+	public String getImagePath() {
 		return null;
+	}
+
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return plateColor;
+	}
+
+	public String getType() {
+		// TODO Auto-generated method stub
+		return State.getType();
 	}
 }

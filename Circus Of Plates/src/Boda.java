@@ -23,7 +23,6 @@ public class Boda extends Applet implements Runnable {
 	protected double dy;
 	protected double dx;
 	private AbstractFactory abstractfactory;
-	protected Player player1, player2;
 	private Plate plate;
 	private int Height, Width;
 	int gameWidth, gameHeight;
@@ -31,9 +30,9 @@ public class Boda extends Applet implements Runnable {
 	URL url;
 	Image back1, back;
 	private Controler Control;
-	boolean twoPlayers = false;
 	boolean mainMenu = true;
 	Button onePlayerButton, twoPlayersButton, exitButton;
+	ArrayList<Player> Players;
 
 	@Override
 	public void init() {
@@ -42,9 +41,9 @@ public class Boda extends Applet implements Runnable {
 		Height = dim.height - 100;
 		Width = dim.width - 100;
 		setSize(Width, Height);
-		gameWidth = Width*930/1250;
+		gameWidth = Width * 930 / 1250;
 		gameHeight = Height;
-		
+		Players = new ArrayList<Player>();
 		this.addKeyListener(new handleKeyBoard(this));
 		this.addMouseMotionListener(new mouseMotion(this));
 		this.addMouseListener(new mouseMotion(this));
@@ -57,8 +56,7 @@ public class Boda extends Applet implements Runnable {
 		back = getImage(url, "images/background.png");
 		back1 = getImage(url, "images/back1.jpg");
 
-		abstractfactory = FactoryProducer.getFactory("PLAYER");
-		getPlayers();
+		// getPlayers();
 		abstractfactory = FactoryProducer.getFactory("BUTTON");
 		getButtons();
 
@@ -69,12 +67,25 @@ public class Boda extends Applet implements Runnable {
 		// devices[0].setFullScreenWindow(this.Boda);
 	}
 
-	private void getPlayers() {
-		player1 = abstractfactory.getPlayer();
-		player1.setWindowattri(gameWidth, gameHeight); //<<<<<<<<<<<<<<<<<<<<<<
-		
-		player2 = abstractfactory.getPlayer();
-		player2.setWindowattri(gameWidth, gameHeight); //<<<<<<<<<<<<<<<<<<<<<<
+	public void addOnePlayer() {
+		// TODO Auto-generated method stub
+		abstractfactory = FactoryProducer.getFactory("PLAYER");
+
+		Player player = abstractfactory.getPlayerOne();
+		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
+		Players.add(player);
+
+	}
+
+	public void addTwoPlayers() {
+		abstractfactory = FactoryProducer.getFactory("PLAYER");
+
+		Player player = abstractfactory.getPlayerOne();
+		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
+		Players.add(player);
+		player = abstractfactory.getPlayerTwo();
+		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
+		Players.add(player);
 	}
 
 	private void getButtons() {
@@ -93,7 +104,7 @@ public class Boda extends Applet implements Runnable {
 	// ////////////////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////////////////
-	
+
 	@Override
 	public void start() {
 		Control = new Controler(this);
@@ -116,15 +127,21 @@ public class Boda extends Applet implements Runnable {
 			}
 			repaint();
 		}
-
-		if (twoPlayers){
-			player1.setattributes(gameWidth / 4, gameHeight - player1.getHight());			
-			player2.setattributes(gameWidth*3 / 4, gameHeight - player2.getHight());
-
+		for (int i = 0; i < Players.size(); i++) {
+			Players.get(i).setattributes(
+					(1 + 2 * i) * gameWidth / (2 * Players.size()),
+					gameHeight - Players.get(i).getHight());
 		}
-		else{
-			player1.setattributes(gameWidth / 2, gameHeight - player1.getHight());
-		}
+		// if (twoPlayers) {
+		// player1.setattributes(gameWidth / 4,
+		// gameHeight - player1.getHight());
+		// player2.setattributes(gameWidth * 3 / 4,
+		// gameHeight - player2.getHight());
+		//
+		// } else {
+		// player1.setattributes(gameWidth / 2,
+		// gameHeight - player1.getHight());
+		// }
 
 		while (true) {
 			setSize(Width, Height);
@@ -189,11 +206,12 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	// ////////////////////////////////////////////////////////////////////////////
-	// ////////Painting Methods////////////////////////////////////////////////////
+	// ////////Painting
+	// Methods////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////////////////
 
 	private void paintMainMenu(Graphics g) {
-		g.drawImage(back1,(int)backX,0,Width,Height,this);
+		g.drawImage(back1, (int) backX, 0, Width, Height, this);
 
 		onePlayerButton.paint(g, this, url);
 		twoPlayersButton.paint(g, this, url);
@@ -201,42 +219,20 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	private void paintGame(Graphics g) {
-		g.drawImage(back,(int)backX,0,Width,Height,this);
+		g.drawImage(back, (int) backX, 0, Width, Height, this);
 
 		plateIterator = PlateIterator.getPlateIterator();
 		while (plateIterator.hasnext()) {
 			plate = plateIterator.next();
-			if (plate.isOnPlayer())
+			if (plate.getState().equalsIgnoreCase("OnPlayer"))
 				continue;
 			plate.Paint(g, this, url);
 		}
-
-		player1.paint(g, this, url);
-		if (twoPlayers)
-			player2.paint(g, this, url);
-
-		ArrayList<Plate> rightHandPlates = Control.getRightHandPlatesOne();
-		for (Plate p : rightHandPlates) {
-			p.Paint(g, this, url);
-		}
-		rightHandPlates = Control.getLeftHandPlatesOne();
-		for (Plate p : rightHandPlates) {
-			p.Paint(g, this, url);
-		}
-		
-		if (twoPlayers){
-			rightHandPlates = Control.getRightHandPlatesTwo();
-			for (Plate p : rightHandPlates) {
-				p.Paint(g, this, url);
-			}
-			rightHandPlates = Control.getLeftHandPlatesTwo();
-			for (Plate p : rightHandPlates) {
-				p.Paint(g, this, url);
-			}
-		}
-		
+		for(Player a : Players)
+			a.paint(g, this, url);
+//		if (twoPlayers)
+//			player2.paint(g, this, url);
 		exitButton.paint(g, this, url);
-
 
 	}
 
@@ -256,12 +252,12 @@ public class Boda extends Applet implements Runnable {
 	@Override
 	public void update(Graphics g) {
 		if (i == null) {
-			i = createImage(Width,Height);
+			i = createImage(Width, Height);
 			doubleG = i.getGraphics();
 		}
 
 		doubleG.setColor(getBackground());
-		doubleG.fillRect(0,0,Width,Height);
+		doubleG.fillRect(0, 0, Width, Height);
 
 		doubleG.setColor(getForeground());
 		paint(doubleG);
@@ -276,4 +272,5 @@ public class Boda extends Applet implements Runnable {
 	@Override
 	public void destroy() {
 	}
+
 }

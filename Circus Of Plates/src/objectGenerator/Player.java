@@ -11,10 +11,6 @@ import java.awt.RenderingHints;
 import java.net.URL;
 import java.util.ArrayList;
 
-import javax.sql.PooledConnection;
-import javax.swing.LayoutFocusTraversalPolicy;
-import javax.swing.text.Position;
-
 public class Player {
 	ArrayList<Plate> RightHandPlates, leftHandPlates;
 	private int height, rightHeight, leftHeight;
@@ -27,9 +23,9 @@ public class Player {
 	private Point LH, RH;
 	private int windowWidth;
 	private int windowHeight;
-	private static Player player1;
+	private int Score;
 
-	public Player() {
+	protected Player() {
 		height = 141;
 		// TODO Auto-generated constructor stub
 		RightHandPlates = new ArrayList<Plate>();
@@ -37,6 +33,7 @@ public class Player {
 		center = new Point(60, height);
 		rightCenter = new Point(center.x + 40, height);
 		leftCenter = new Point(center.x - 40, height);
+		Score = 0;
 	}
 
 	public int getHight() {
@@ -48,14 +45,17 @@ public class Player {
 
 	}
 
-	public void paint(Graphics g,Applet view,URL url) {
-//		Graphics2D g2 = (Graphics2D) g;
-//		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-//				RenderingHints.VALUE_ANTIALIAS_ON);
-//		g2.setColor(Color.RED);
-//		 g2.drawLine(center.x, center.y, center.x, center.y+50);
+	public void paint(Graphics g, Applet view, URL url) {
 		Image plateImg = view.getImage(url, "images/clown.png");
-		g.drawImage(plateImg,getLeftCenter().x+5,getLeftCenter().y+2,view);
+		g.drawImage(plateImg, getLeftCenter().x + 5, getLeftCenter().y + 2,
+				view);
+		for (Plate p : RightHandPlates) {
+			p.Paint(g, view, url);
+		}
+		for (Plate p : leftHandPlates) {
+			p.Paint(g, view, url);
+		}
+
 	}
 
 	public void setattributes(int width, int height2) {
@@ -73,7 +73,7 @@ public class Player {
 		leftCenter = new Point(center.x - 65, height);
 		if (RightHandPlates.isEmpty()) {
 			RH = rightCenter;
-			RH.x-=15;
+			RH.x -= 15;
 		} else {
 			RH = RightHandPlates.get(RightHandPlates.size() - 1).getPosition();
 		}
@@ -97,11 +97,13 @@ public class Player {
 
 	public void addAtLeft(Plate t) {
 		// TODO Auto-generated method stub
+		if (t.getState().equalsIgnoreCase("OnPLayer"))
+			return;
 		t.position.x = LH.x;
 		t.position.y = LH.y - 10;
 		leftHandPlates.add(t);
 		LH = t.getPosition();
-		t.setOnPlayer(true);
+		t.setState("OnPLayer");
 		if (leftHandPlates.size() >= 3) {
 			Plate[] w = { leftHandPlates.get(leftHandPlates.size() - 1),
 					leftHandPlates.get(leftHandPlates.size() - 2),
@@ -112,12 +114,15 @@ public class Player {
 
 	public void addAtRight(Plate t) {
 		// TODO Auto-generated method stub
+		if (t.getState().equalsIgnoreCase("OnPLayer"))
+			return;
+
 		t.position.x = RH.x;
 		t.position.y = RH.y - 10;
 		RightHandPlates.add(t);
 
 		RH = t.getPosition();
-		t.setOnPlayer(true);
+		t.setState("OnPLayer");
 
 		if (RightHandPlates.size() >= 3) {
 
@@ -132,34 +137,36 @@ public class Player {
 		// TODO Auto-generated method stub
 		// System.out.println("a77a");
 
-		if (b[0].plateColor == b[1].plateColor
-				&& b[0].plateColor == b[2].plateColor) {
+		if (b[0].getColor() != b[1].getColor()
+				|| b[0].getColor() != b[2].getColor())
+			return;
+		if (!(b[0].getType().equalsIgnoreCase(b[1].getType()) && b[0].getType()
+				.equalsIgnoreCase(b[2].getType())))
+			return;
 
-			PlatePool q = PlatePool.getPlatePool();
-			for (Plate a : b) {
-				a.setOnPlayer(false);
-				if (RightHandPlates.contains(a)) {
-					RightHandPlates.remove(a);
-				} else {
-					leftHandPlates.remove(a);
-
-				}
-				q.releasePlate(a);
+		PlatePool q = PlatePool.getPlatePool();
+		for (Plate a : b) {
+			a.setState("Free");
+			if (RightHandPlates.contains(a)) {
+				RightHandPlates.remove(a);
+			} else {
+				leftHandPlates.remove(a);
 			}
-			if (!RightHandPlates.isEmpty())
-				RH = RightHandPlates.get(RightHandPlates.size() - 1)
-						.getPosition();
-			else {
-				RH = rightCenter;
-			}
-
-			if (!leftHandPlates.isEmpty())
-				LH = leftHandPlates.get(leftHandPlates.size() - 1)
-						.getPosition();
-			else
-				LH = leftCenter;
-
+			q.releasePlate(a);
 		}
+		if (!RightHandPlates.isEmpty())
+			RH = RightHandPlates.get(RightHandPlates.size() - 1).getPosition();
+		else {
+			RH = rightCenter;
+		}
+
+		if (!leftHandPlates.isEmpty())
+			LH = leftHandPlates.get(leftHandPlates.size() - 1).getPosition();
+		else
+			LH = leftCenter;
+		Score++;
+		System.out.println(Score);
+
 		playerOut();
 	}
 

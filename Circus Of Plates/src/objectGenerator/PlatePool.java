@@ -31,8 +31,9 @@ public class PlatePool implements Container {
 		Plate tmpPlate;
 		if (available.isEmpty()) {
 			tmpPlate = plateFactory.getRandomPlate();
+			tmpPlate.setID(inUse.size());
 			inUse.add(tmpPlate);
-			
+
 		} else {
 			tmpPlate = available.get(0);
 			inUse.add(tmpPlate);
@@ -50,9 +51,9 @@ public class PlatePool implements Container {
 	public static PlatePool getPlatePool() {
 		// TODO Auto-generated method stub
 		if (pool == null)
-			return (pool= new PlatePool() );
+			return (pool = new PlatePool());
 		else
-			return pool ;
+			return pool;
 	}
 
 	@Override

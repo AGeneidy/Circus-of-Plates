@@ -2,6 +2,8 @@ package objectGenerator;
 
 public class PlayerFactory extends AbstractFactory {
 	private static PlayerFactory playerFactory;
+	private static Player playerOne;
+	private static Player playerTwo;
 
 	public static PlayerFactory getPlayerFactory() {
 		if (playerFactory == null)
@@ -11,6 +13,8 @@ public class PlayerFactory extends AbstractFactory {
 	}
 
 	private PlayerFactory() {
+		playerOne = new Player();
+		playerTwo = new Player();
 	}
 
 	@Override
@@ -19,8 +23,13 @@ public class PlayerFactory extends AbstractFactory {
 	}
 
 	@Override
-	public Player getPlayer() {
-		return new Player();
+	public Player getPlayerOne() {
+		return playerOne;
+	}
+
+	@Override
+	public Player getPlayerTwo() {
+		return playerTwo;
 	}
 
 	@Override
