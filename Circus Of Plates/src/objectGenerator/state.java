@@ -1,6 +1,6 @@
 package objectGenerator;
 
-public class state {
+public class state implements java.io.Serializable {
 	private String state;
 	private String type;
 	public String getType() {

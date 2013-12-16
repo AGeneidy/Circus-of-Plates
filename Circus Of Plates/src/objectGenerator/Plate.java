@@ -7,7 +7,7 @@ import java.awt.Point;
 import java.net.URL;
 import java.util.Random;
 
-public class Plate {
+public class Plate implements java.io.Serializable {
 	private int id;
 	protected Color[] chooseColor = { Color.RED, Color.GREEN, Color.BLUE ,Color.BLACK};
 	protected Color plateColor;

@@ -6,9 +6,19 @@ import java.awt.Image;
 import java.net.URL;
 
 public class Button {
-	
-	private boolean mouseOnButton,clicked,moving;
+
+	private boolean mouseOnButton, clicked, moving;
 	private int hight, width;
+	String Name;
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
 	public int getHight() {
 		return hight;
 	}
@@ -22,9 +32,9 @@ public class Button {
 	}
 
 	private int type;
-	private int x,y;
+	private int x, y;
 
-	public Button(){
+	public Button() {
 		x = 0;
 		y = 0;
 		mouseOnButton = false;
@@ -33,7 +43,7 @@ public class Button {
 		hight = 130;
 		width = 300;
 	}
-	
+
 	public boolean isMouseOnButton() {
 		return mouseOnButton;
 	}
@@ -53,7 +63,7 @@ public class Button {
 	public int getX() {
 		return x;
 	}
-	
+
 	public int getY() {
 		return y;
 	}
@@ -66,11 +76,11 @@ public class Button {
 	public int getHeight() {
 		return hight;
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}
-	
+
 	public boolean isMoving() {
 		return moving;
 	}
@@ -78,43 +88,40 @@ public class Button {
 	public void setMoving(boolean moving) {
 		this.moving = moving;
 	}
-		
+
 	public void setType(int type) {
 		this.type = type;
 	}
 
-
-	public void paint(Graphics g,Applet view,URL url) {		
+	public void paint(Graphics g, Applet view, URL url) {
 		Image buttonImg = view.getImage(url, getImagePath());
-		if(mouseOnButton)
-			g.drawImage(buttonImg, x-1, y-2,view);
-		else 
-			g.drawImage(buttonImg, x, y,view);
+		if (mouseOnButton)
+			g.drawImage(buttonImg, x - 1, y - 2, view);
+		else
+			g.drawImage(buttonImg, x, y, view);
 	}
 
 	private String getImagePath() {
-		if(type==1){ //onePlayerButton
-			if(mouseOnButton)
+		if (type == 1) { // onePlayerButton
+			if (mouseOnButton)
 				return "images/onePlayerButton2.png";
 			return "images/onePlayerButton1.png";
-		}
-		else if(type == 2){ //twoPlayersButton
-			if(mouseOnButton)
+		} else if (type == 2) { // twoPlayersButton
+			if (mouseOnButton)
 				return "images/twoPlayersButton2.png";
 			return "images/twoPlayersButton1.png";
-		}		
-		else if(type == 3){ //exitButton
-			if(mouseOnButton)
+		} else if (type == 3) { // exitButton
+			if (mouseOnButton)
 				return "images/exit2.png";
 			return "images/exit1.png";
-		
-		}else if(type == 4){ //saveButton
-			if(mouseOnButton)
+
+		} else if (type == 4) { // saveButton
+			if (mouseOnButton)
 				return "images/button.png";
 			return "images/button.png";
-			
-		}else if(type == 5){ //loadButton
-			if(mouseOnButton)
+
+		} else if (type == 5) { // loadButton
+			if (mouseOnButton)
 				return "images/button.png";
 			return "images/button.png";
 		}

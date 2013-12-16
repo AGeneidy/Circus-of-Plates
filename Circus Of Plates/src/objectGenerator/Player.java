@@ -7,7 +7,7 @@ import java.awt.Point;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements java.io.Serializable {
 	ArrayList<Plate> RightHandPlates, leftHandPlates;
 	private int height;
 	private Point center, rightCenter, leftCenter;
