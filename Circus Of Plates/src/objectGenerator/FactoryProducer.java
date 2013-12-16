@@ -7,6 +7,8 @@ public class FactoryProducer {
 			return PlateFactory.getPlateFactory();
 		else if(choise.equalsIgnoreCase("PLAYER"))
 			return PlayerFactory.getPlayerFactory();
+		else if(choise.equalsIgnoreCase("BUTTON"))
+			return ButtonFactory.getButtonFactory();
 		else 
 			return null;
 	}

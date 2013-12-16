@@ -1,11 +1,14 @@
 package objectGenerator;
 
+import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.sql.PooledConnection;
@@ -26,14 +29,7 @@ public class Player {
 	private int windowHeight;
 	private static Player player1;
 
-	public static Player getPlayer() {
-		if (player1 == null)
-			return player1 = new Player();
-		else
-			return player1;
-	}
-
-	private Player() {
+	public Player() {
 		height = 141;
 		// TODO Auto-generated constructor stub
 		RightHandPlates = new ArrayList<Plate>();
@@ -52,12 +48,14 @@ public class Player {
 
 	}
 
-	public void paint(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.setColor(Color.RED);
-		// g2.drawLine(center.x, center.y, center.x, center.y+50);
+	public void paint(Graphics g,Applet view,URL url) {
+//		Graphics2D g2 = (Graphics2D) g;
+//		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+//				RenderingHints.VALUE_ANTIALIAS_ON);
+//		g2.setColor(Color.RED);
+//		 g2.drawLine(center.x, center.y, center.x, center.y+50);
+		Image plateImg = view.getImage(url, "images/clown.png");
+		g.drawImage(plateImg,getLeftCenter().x+5,getLeftCenter().y+2,view);
 	}
 
 	public void setattributes(int width, int height2) {
@@ -195,7 +193,6 @@ public class Player {
 		// TODO Auto-generated method stub
 		windowWidth = width;
 		windowHeight = height - 60;
-
 	}
 
 	public void mouseMove(int x) {

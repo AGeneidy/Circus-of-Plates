@@ -1,6 +1,8 @@
 package objectGenerator;
 
 public abstract class AbstractFactory {
-	abstract Plate getRandomPlate();
+	public abstract Plate getRandomPlate();
 	public abstract Player getPlayer();
+	public abstract Button getButton();
+	
 }

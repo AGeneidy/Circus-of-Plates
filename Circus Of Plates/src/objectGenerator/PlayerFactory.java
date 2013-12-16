@@ -14,13 +14,18 @@ public class PlayerFactory extends AbstractFactory {
 	}
 
 	@Override
-	Plate getRandomPlate() {
+	public Plate getRandomPlate() {
 		return null;
 	}
 
 	@Override
 	public Player getPlayer() {
-		return Player.getPlayer();
+		return new Player();
+	}
+
+	@Override
+	public Button getButton() {
+		return null;
 	}
 
 }

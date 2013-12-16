@@ -15,12 +15,17 @@ public class PlateFactory extends AbstractFactory {
 	}
 
 	@Override
-	Plate getRandomPlate() {
+	public Plate getRandomPlate() {
 		return new OvalPlate();
 	}
 
 	@Override
 	public Player getPlayer() {
+		return null;
+	}
+
+	@Override
+	public Button getButton() {
 		return null;
 	}
 }

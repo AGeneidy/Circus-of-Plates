@@ -5,16 +5,22 @@ import objectGenerator.Player;
 
 public class handleKeyBoard implements KeyListener {
 	private int moveSpeed = 20;
+	private Boda view;
+	
+	public handleKeyBoard(Boda view){
+		this.view = view;
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println(e.getKeyCode());
 		switch (e.getKeyCode()) {
 		case 39:
-			Player.getPlayer().move(moveSpeed);
+			view.player1.move(moveSpeed);
 			return;
 		case 37:
-			Player.getPlayer().move(-moveSpeed);
+			view.player1.move(-moveSpeed);
 			return;
 		case 32:
 			try {
@@ -32,10 +38,10 @@ public class handleKeyBoard implements KeyListener {
 		// TODO Auto-generated method stub
 		switch (e.getKeyCode()) {
 		case 39:
-			Player.getPlayer().move(moveSpeed);
+			view.player1.move(moveSpeed);
 			return;
 		case 37:
-			Player.getPlayer().move(-moveSpeed);
+			view.player1.move(-moveSpeed);
 			return;
 		}
 	}
@@ -45,10 +51,10 @@ public class handleKeyBoard implements KeyListener {
 		// TODO Auto-generated method stub
 		switch (e.getKeyCode()) {
 		case 39:
-			Player.getPlayer().move(moveSpeed);
+			view.player1.move(moveSpeed);
 			return;
 		case 37:
-			Player.getPlayer().move(-moveSpeed);
+			view.player1.move(-moveSpeed);
 			return;
 		}
 	}

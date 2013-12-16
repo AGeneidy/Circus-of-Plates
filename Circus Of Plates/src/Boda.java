@@ -1,22 +1,21 @@
 import java.applet.Applet;
-import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
-import java.lang.reflect.Array;
+import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ArrayList;
 
 import objectGenerator.AbstractFactory;
+import objectGenerator.Button;
 import objectGenerator.FactoryProducer;
 import objectGenerator.Plate;
 import objectGenerator.PlateIterator;
-import objectGenerator.PlatePool;
 import objectGenerator.Player;
 
 public class Boda extends Applet implements Runnable {
 
-	protected long time1;
+	protected long time;
 	private PlateIterator plateIterator;
 	private Image i;
 	private Graphics doubleG;
@@ -24,34 +23,44 @@ public class Boda extends Applet implements Runnable {
 	protected double dy;
 	protected double dx;
 	private AbstractFactory abstractfactory;
-	protected Player player1;
+	protected Player player1, player2;
 	private Plate plate;
-	private int Height = 1000, Width = 600;
+	private int Height, Width;
+	int gameWidth, gameHeight;
 	private double backX, backDx;
 	URL url;
-	Image back, plateImg;
+	Image back1, back;
 	private Controler Control;
+	boolean twoPlayers = false;
+	boolean mainMenu = true;
+	Button onePlayerButton, twoPlayersButton, exitButton;
 
 	@Override
 	public void init() {
 
-		setSize(Height, Width);
-		abstractfactory = FactoryProducer.getFactory("player");
-
-		player1 = abstractfactory.getPlayer();
-		player1.setWindowattri(this.getWidth(), this.getHeight());
-		player1.setattributes(this.getWidth() / 2, this.getHeight() - player1.getHight());
-
-		this.addKeyListener(new handleKeyBoard());
-		this.addMouseMotionListener(new mouseMotion());
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		Height = dim.height - 100;
+		Width = dim.width - 100;
+		setSize(Width, Height);
+		gameWidth = Width*930/1250;
+		gameHeight = Height;
+		
+		this.addKeyListener(new handleKeyBoard(this));
+		this.addMouseMotionListener(new mouseMotion(this));
+		this.addMouseListener(new mouseMotion(this));
 
 		try {
 			url = getDocumentBase();
 		} catch (Exception e) {
-
 		}
 
 		back = getImage(url, "images/background.png");
+		back1 = getImage(url, "images/back1.jpg");
+
+		abstractfactory = FactoryProducer.getFactory("PLAYER");
+		getPlayers();
+		abstractfactory = FactoryProducer.getFactory("BUTTON");
+		getButtons();
 
 		// setCursor (Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		// GraphicsEnvironment ge =
@@ -60,46 +69,199 @@ public class Boda extends Applet implements Runnable {
 		// devices[0].setFullScreenWindow(this.Boda);
 	}
 
+	private void getPlayers() {
+		player1 = abstractfactory.getPlayer();
+		player1.setWindowattri(gameWidth, gameHeight); //<<<<<<<<<<<<<<<<<<<<<<
+		
+		player2 = abstractfactory.getPlayer();
+		player2.setWindowattri(gameWidth, gameHeight); //<<<<<<<<<<<<<<<<<<<<<<
+	}
+
+	private void getButtons() {
+		onePlayerButton = abstractfactory.getButton();
+		onePlayerButton.setType(1);
+
+		twoPlayersButton = abstractfactory.getButton();
+		twoPlayersButton.setType(2);
+
+		exitButton = abstractfactory.getButton();
+		exitButton.setType(3);
+		exitButton.setWidth(200);
+		exitButton.setHight(86);
+	}
+
+	// ////////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////////
+	
 	@Override
 	public void start() {
-
 		Control = new Controler(this);
+
 		Thread thread = new Thread(this);
 		thread.start();
 	}
 
 	@Override
 	public void run() {
-		time1 = System.currentTimeMillis();
+		time = System.currentTimeMillis();
+
+		while (mainMenu) {
+			setSize(Width, Height);
+			mainMenu();
+			try {
+				Thread.sleep(17);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			repaint();
+		}
+
+		if (twoPlayers){
+			player1.setattributes(gameWidth / 4, gameHeight - player1.getHight());			
+			player2.setattributes(gameWidth*3 / 4, gameHeight - player2.getHight());
+
+		}
+		else{
+			player1.setattributes(gameWidth / 2, gameHeight - player1.getHight());
+		}
+
 		while (true) {
+			setSize(Width, Height);
 			Control.excuteFrame();
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			repaint();
 		}
 	}
 
-	@Override
-	public void stop() {
-		// TODO Auto-generated method stub
+	private void mainMenu() {
+		if (exitButton.getY() == 0) // buttons position were not set
+			setButtons();
+		else if (onePlayerButton.isMoving() || twoPlayersButton.isMoving()
+				|| exitButton.isMoving()) { // move buttons
+			moveButtons();
+		} else {
+		}
+	}
+
+	private void moveButtons() {
+		int buttonsSpeed = 20;
+
+		if (onePlayerButton.isMoving()) {
+			onePlayerButton.setPosition(onePlayerButton.getX() + buttonsSpeed,
+					onePlayerButton.getY());
+			if (onePlayerButton.getX() >= Width / 2
+					- onePlayerButton.getWidth() / 2)
+				onePlayerButton.setMoving(false);
+		}
+		if (twoPlayersButton.isMoving()) {
+			twoPlayersButton.setPosition(
+					twoPlayersButton.getX() - buttonsSpeed,
+					twoPlayersButton.getY());
+			if (twoPlayersButton.getX() <= Width / 2
+					- twoPlayersButton.getWidth() / 2)
+				twoPlayersButton.setMoving(false);
+		}
+		if (exitButton.isMoving()) {
+			exitButton.setPosition(exitButton.getX() + buttonsSpeed * 2,
+					exitButton.getY());
+			if (exitButton.getX() >= Width - exitButton.getWidth() - 60)
+				exitButton.setMoving(false);
+		}
+	}
+
+	private void setButtons() {
+		onePlayerButton.setMoving(true);
+		onePlayerButton.setPosition(0,
+				Height / 2 - (onePlayerButton.getHeight() + 30));
+
+		twoPlayersButton.setMoving(true);
+		twoPlayersButton.setPosition(Width - twoPlayersButton.getWidth(),
+				Height / 2 + 30);
+
+		exitButton.setMoving(true);
+		exitButton.setPosition(0, Height - (exitButton.getHeight() + 30));
+
+	}
+
+	// ////////////////////////////////////////////////////////////////////////////
+	// ////////Painting Methods////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////////
+
+	private void paintMainMenu(Graphics g) {
+		g.drawImage(back1,(int)backX,0,Width,Height,this);
+
+		onePlayerButton.paint(g, this, url);
+		twoPlayersButton.paint(g, this, url);
+		exitButton.paint(g, this, url);
+	}
+
+	private void paintGame(Graphics g) {
+		g.drawImage(back,(int)backX,0,Width,Height,this);
+
+		plateIterator = PlateIterator.getPlateIterator();
+		while (plateIterator.hasnext()) {
+			plate = plateIterator.next();
+			if (plate.isOnPlayer())
+				continue;
+			plate.Paint(g, this, url);
+		}
+
+		player1.paint(g, this, url);
+		if (twoPlayers)
+			player2.paint(g, this, url);
+
+		ArrayList<Plate> rightHandPlates = Control.getRightHandPlatesOne();
+		for (Plate p : rightHandPlates) {
+			p.Paint(g, this, url);
+		}
+		rightHandPlates = Control.getLeftHandPlatesOne();
+		for (Plate p : rightHandPlates) {
+			p.Paint(g, this, url);
+		}
+		
+		if (twoPlayers){
+			rightHandPlates = Control.getRightHandPlatesTwo();
+			for (Plate p : rightHandPlates) {
+				p.Paint(g, this, url);
+			}
+			rightHandPlates = Control.getLeftHandPlatesTwo();
+			for (Plate p : rightHandPlates) {
+				p.Paint(g, this, url);
+			}
+		}
+		
+		exitButton.paint(g, this, url);
+
+
 	}
 
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
+	public void paint(Graphics g) {
+		if (mainMenu) {
+			paintMainMenu(g);
+		} else
+			paintGame(g);
+
 	}
+
+	// ////////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void update(Graphics g) {
 		if (i == null) {
-			i = createImage(this.getSize().width, this.getSize().height);
+			i = createImage(Width,Height);
 			doubleG = i.getGraphics();
 		}
 
 		doubleG.setColor(getBackground());
-		doubleG.fillRect(0, 0, this.getSize().width, this.getSize().height);
+		doubleG.fillRect(0,0,Width,Height);
 
 		doubleG.setColor(getForeground());
 		paint(doubleG);
@@ -108,46 +270,10 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		// g.setColor(new Color(15,77,147));
-		// g.fillRect(0, 0, getWidth(), getHeight());
-		g.drawImage(back, (int) backX, 0, this);
-
-		plateIterator = PlateIterator.getPlateIterator();
-
-		String path = new String();
-
-		while (plateIterator.hasnext()) {
-			plate = plateIterator.next();
-			if(plate.isOnPlayer())continue;
-			path = plate.getImagePath();
-			plateImg = getImage(url, path);
-			g.drawImage(plateImg, plate.getPosition().x, plate.getPosition().y,
-					this);
-		}
-		path = "images/clown.png";
-		plateImg = getImage(url, path);
-		g.drawImage(plateImg, player1.getLeftCenter().x+5, player1.getLeftCenter().y+2,
-				this);
-		ArrayList<Plate> a = Control.getRightHandPlates();
-		for(Plate b : a){
-			path = b.getImagePath();
-			plateImg = getImage(url, path);
-			g.drawImage(plateImg, b.getPosition().x, b.getPosition().y,
-					this);
-		}
-		a = Control.getLeftHandPlates();
-		for(Plate b : a){
-			path = b.getImagePath();
-			plateImg = getImage(url, path);
-			g.drawImage(plateImg, b.getPosition().x, b.getPosition().y,
-					this);
-		}
-//		player1.paint(g);
-		
-//		path = player1.getImagePath();
-
-		
+	public void stop() {
 	}
 
+	@Override
+	public void destroy() {
+	}
 }

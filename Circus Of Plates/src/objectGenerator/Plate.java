@@ -1,9 +1,10 @@
 package objectGenerator;
 
+import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Paint;
 import java.awt.Point;
+import java.net.URL;
 import java.util.Random;
 
 public class Plate {
@@ -71,7 +72,7 @@ public class Plate {
 		id = i;
 	}
 
-	public void Paint(Graphics g) {
+	public void Paint(Graphics g,Applet view,URL url) {
 		// TODO Auto-generated method stub
 	}
 	

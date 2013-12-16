@@ -22,6 +22,7 @@ public class Controler {
 	private Plate plate;
 	private int rowsNo = 3;
 	Boda view;
+	private int timer;
 
 	public Controler(Boda boda) {
 		view = boda;
@@ -34,6 +35,8 @@ public class Controler {
 	}
 
 	void excuteFrame() {
+		timer = (int) System.currentTimeMillis();
+		
 		plateIterator = PlateIterator.getPlateIterator();
 
 		while (plateIterator.hasnext()) {
@@ -46,11 +49,10 @@ public class Controler {
 
 			dealWithPlate();
 		}
-		view.repaint();
 
-		if (Math.abs(view.time1 - System.currentTimeMillis()) > 1200) {
+		if (Math.abs(view.time - System.currentTimeMillis()) > 1200) {
 			insertNewPlates(rowsNo); // insert new 4 plates
-			view.time1 = (System.currentTimeMillis());
+			view.time = (System.currentTimeMillis());
 		}
 	}
 
@@ -61,7 +63,7 @@ public class Controler {
 			plate.setDx(initialDx);
 			plate.setDy(0);
 			plate = platePool.getPlate();
-			plate.setPosition(new Point(view.getWidth(), i * 50));
+			plate.setPosition(new Point(view.gameWidth, i * 50));
 			plate.setDx(-initialDx);
 			plate.setDy(0);
 		}
@@ -89,7 +91,7 @@ public class Controler {
 	}
 
 	private void setPlate() {
-		if (y > view.getHeight() || x > view.getWidth()) { // plate gets out of
+		if (y > view.gameHeight || x > view.gameWidth) { // plate gets out of
 															// screen
 			platePool.releasePlate(plate);
 			plateIterator.justifyIndex();
@@ -127,7 +129,7 @@ public class Controler {
 	}
 
 	private void moveLeftSide() {
-		if (x + plate.getWidth() < (view.getWidth() / (rowsNo * 2 + 3))
+		if (x + plate.getWidth() < (view.gameWidth / (rowsNo * 2 + 3))
 				* ((rowsNo * 50 - y) / 50)) { // Still not fall
 			x += dx;
 		} else
@@ -137,8 +139,8 @@ public class Controler {
 
 	private void moveRightSide() {
 
-		if (x > view.getWidth()
-				- ((view.getWidth() / (rowsNo * 2 + 3)) * ((rowsNo * 50 - y) / 50)))
+		if (x > view.gameWidth
+				- ((view.gameWidth / (rowsNo * 2 + 3)) * ((rowsNo * 50 - y) / 50)))
 			// still not fall
 			x += dx;
 		else
@@ -146,15 +148,26 @@ public class Controler {
 			falling();
 	}
 
-	public ArrayList<Plate> getRightHandPlates() {
+	public ArrayList<Plate> getRightHandPlatesOne() {
 		// TODO Auto-generated method stub
 
-		return Player.getPlayer().getRightHandPlates();
+		return view.player1.getRightHandPlates();
 	}
 
-	public ArrayList<Plate> getLeftHandPlates() {
+	public ArrayList<Plate> getLeftHandPlatesOne() {
 		// TODO Auto-generated method stub
-		return Player.getPlayer().getLeftHandPlates();
+		return view.player1.getLeftHandPlates();
+	}
+	
+	public ArrayList<Plate> getRightHandPlatesTwo() {
+		// TODO Auto-generated method stub
+
+		return view.player2.getRightHandPlates();
+	}
+
+	public ArrayList<Plate> getLeftHandPlatesTwo() {
+		// TODO Auto-generated method stub
+		return view.player2.getLeftHandPlates();
 	}
 
 }
