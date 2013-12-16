@@ -35,6 +35,7 @@ public class Boda extends Applet implements Runnable {
 			loadButton;
 	ArrayList<Player> Players;
 	private int logo = 0, loading = 1;
+	private int now = 0;
 
 	@Override
 	public void init() {
@@ -121,8 +122,9 @@ public class Boda extends Applet implements Runnable {
 	public void run() {
 		time = System.currentTimeMillis();
 
-		while (mainMenu) {
+		while (now == 0 || now ==1) {
 			setSize(Width, Height);
+			if(now == 1)
 			mainMenu();
 			try {
 				Thread.sleep(17);
@@ -203,21 +205,24 @@ public class Boda extends Applet implements Runnable {
 
 	}
 
-	private void paintMainMenu(Graphics g) {
-		g.drawImage(back1, (int) backX, 0, Width, Height, this);
-
-		paintLogo(g);
-		paintLoading(g);
-		
-//		onePlayerButton.paint(g, this, url);
-//		twoPlayersButton.paint(g, this, url);
-//		exitButton.paint(g, this, url);
-	}
-
 	// /////////////////////////////////////////////////////////////////////////////////
 	// //////////////Painting Methods///////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
 
+	private void paintMainMenu(Graphics g) {
+		g.drawImage(back1, (int) backX, 0, Width, Height, this);
+		
+		if(now == 0){ //loading
+			paintLogo(g);
+			paintLoading(g);
+		}else if(now == 1){ //main menu
+			onePlayerButton.paint(g, this, url);
+			twoPlayersButton.paint(g, this, url);
+			exitButton.paint(g, this, url);
+		}
+	
+	}
+	
 	private void paintLogo(Graphics g) {
 		int size = 400;
 		int x = Width/2 -200;
@@ -302,10 +307,8 @@ public class Boda extends Applet implements Runnable {
 
 	@Override
 	public void paint(Graphics g) {
-		if (mainMenu) {
-			paintMainMenu(g);
-		} else
-			paintGame(g);
+		paintMainMenu(g);
+//		paintGame(g);
 
 	}
 
