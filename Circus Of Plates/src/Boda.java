@@ -34,6 +34,7 @@ public class Boda extends Applet implements Runnable {
 	Button onePlayerButton, twoPlayersButton, exitButton, saveButton,
 			loadButton;
 	ArrayList<Player> Players;
+	private int logo = 0, loading = 1;
 
 	@Override
 	public void init() {
@@ -103,6 +104,10 @@ public class Boda extends Applet implements Runnable {
 		loadButton.setPosition(gameWidth + 10, gameHeight - 400);
 
 	}
+
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void start() {
@@ -201,9 +206,78 @@ public class Boda extends Applet implements Runnable {
 	private void paintMainMenu(Graphics g) {
 		g.drawImage(back1, (int) backX, 0, Width, Height, this);
 
-		onePlayerButton.paint(g, this, url);
-		twoPlayersButton.paint(g, this, url);
-		exitButton.paint(g, this, url);
+		paintLogo(g);
+		paintLoading(g);
+		
+//		onePlayerButton.paint(g, this, url);
+//		twoPlayersButton.paint(g, this, url);
+//		exitButton.paint(g, this, url);
+	}
+
+	// /////////////////////////////////////////////////////////////////////////////////
+	// //////////////Painting Methods///////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+
+	private void paintLogo(Graphics g) {
+		int size = 400;
+		int x = Width/2 -200;
+		int y = 100;
+		if (logo == 0 || logo == 1) {
+			Image playerImg = getImage(url, "images/logo1.png");
+			g.drawImage(playerImg, x, y, size, size, this);
+			logo++;
+		} else if (logo == 2 || logo == 3) {
+			Image playerImg = getImage(url, "images/logo2.png");
+			g.drawImage(playerImg, x, y, size, size, this);
+			logo++;
+		} else if (logo == 4 || logo == 5) {
+			Image playerImg = getImage(url, "images/logo3.png");
+			g.drawImage(playerImg, x, y, size, size, this);
+			logo++;
+		} else if (logo == 6 || logo == 7) {
+			Image playerImg = getImage(url, "images/logo4.png");
+			g.drawImage(playerImg, x, y, size, size, this);
+			logo++;
+		} else if (logo == 8 || logo == 9) {
+			Image playerImg = getImage(url, "images/logo5.png");
+			g.drawImage(playerImg, x, y, size, size, this);
+			logo++;
+		} else if (logo == 10 || logo == 11) {
+			Image playerImg = getImage(url, "images/logo6.png");
+			g.drawImage(playerImg, x, y, size, size, this);
+			if (logo == 10)
+				logo++;
+			else
+				logo = 0;
+
+		}
+	}
+
+	private void paintLoading(Graphics g) {
+		int sizeX = 150;
+		int sizeY = 50;
+		int x = Width/2 - 75;
+		int y = 500;
+		if (loading >= 1 && loading < 21) {
+			Image playerImg = getImage(url, "images/loading1.png");
+			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
+			loading++;
+		} else if (loading >= 21 && loading < 41) {
+			Image playerImg = getImage(url, "images/loading2.png");
+			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
+			loading++;
+		} else if (loading >= 41 && loading < 61) {
+			Image playerImg = getImage(url, "images/loading3.png");
+			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
+			loading++;
+		} else if (loading >= 61 && loading < 81) {
+			Image playerImg = getImage(url, "images/loading4.png");
+			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
+			if (loading >= 31 && loading < 80)
+				loading++;
+			else
+				loading = 1;
+		}
 	}
 
 	private void paintGame(Graphics g) {
@@ -234,6 +308,10 @@ public class Boda extends Applet implements Runnable {
 			paintGame(g);
 
 	}
+
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void update(Graphics g) {
