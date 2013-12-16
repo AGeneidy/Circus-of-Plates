@@ -7,29 +7,28 @@ import java.awt.Image;
 import java.net.URL;
 import java.util.Random;
 
-public class OvalPlate extends Plate {
-	public OvalPlate() {
+public class Ball extends Plate {
+	public Ball() {
 		// TODO Auto-generated constructor stub
 		super();
 		plateColor = chooseColor[new Random().nextInt(500) % 3];
-		height = 25;
-		width = 50;
-		State.setType("OvalPlate");
+		height = 30;
+		width = 30;
+		State.setType("Ball");
+
 	}
 	
 	@Override
 	public String getImagePath(){
-		
 		if(plateColor==Color.RED)
-			return "images/platered50-25.png";
+			return "images/redBall2.png";
 		else if(plateColor==Color.BLUE)
-			return "images/plateblue50-25.png";
+			return "images/blueBall2.png";
 		else if(plateColor==Color.GREEN)
-			return "images/plategreen50-25.png";
+			return "images/greenBall2.png";
 		else{
-			return "images/platered50-25.png";
+			return "images/redBall2.png";
 		}
-		
 	}
 
 	@Override

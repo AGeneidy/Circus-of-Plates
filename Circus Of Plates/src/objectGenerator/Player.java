@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Player {
 	ArrayList<Plate> RightHandPlates, leftHandPlates;
-	private int height, rightHeight, leftHeight;
+	private int height;
 	private Point center, rightCenter, leftCenter;
 
 	public Point getLeftCenter() {
@@ -31,8 +31,8 @@ public class Player {
 		RightHandPlates = new ArrayList<Plate>();
 		leftHandPlates = new ArrayList<Plate>();
 		center = new Point(60, height);
-		rightCenter = new Point(center.x + 40, height);
-		leftCenter = new Point(center.x - 40, height);
+		rightCenter = new Point(center.x + 45, height);
+		leftCenter = new Point(center.x - 45, height);
 		Score = 0;
 	}
 
@@ -46,8 +46,8 @@ public class Player {
 	}
 
 	public void paint(Graphics g, Applet view, URL url) {
-		Image plateImg = view.getImage(url, "images/clown.png");
-		g.drawImage(plateImg, getLeftCenter().x + 5, getLeftCenter().y + 2,
+		Image playerImg = view.getImage(url, "images/clown.png");
+		g.drawImage(playerImg, leftCenter.x - 20, height + 2,
 				view);
 		for (Plate p : RightHandPlates) {
 			p.Paint(g, view, url);
@@ -62,25 +62,26 @@ public class Player {
 		// TODO Auto-generated method stub
 		height = height2;
 		center.x = width;
-		rightHeight = leftHeight = height;
 		justify();
 	}
 
 	private void justify() {
 		// TODO Auto-generated method stub
 		center.y = height;
-		rightCenter = new Point(center.x + 35, height);
-		leftCenter = new Point(center.x - 65, height);
+		rightCenter = new Point(center.x + 40, height);
+		leftCenter = new Point(center.x - 45, height);
 		if (RightHandPlates.isEmpty()) {
 			RH = rightCenter;
-			RH.x -= 15;
 		} else {
-			RH = RightHandPlates.get(RightHandPlates.size() - 1).getPosition();
+			RH = rightCenter;
+			RH.y = RightHandPlates.get(RightHandPlates.size() - 1).getPosition().y;
 		}
 		if (leftHandPlates.isEmpty())
 			LH = leftCenter;
-		else
-			LH = leftHandPlates.get(leftHandPlates.size() - 1).getPosition();
+		else{
+			LH = leftCenter;
+			LH.y = leftHandPlates.get(leftHandPlates.size() - 1).getPosition().y;
+		}
 	}
 
 	public int LeftHandWidth() {
@@ -99,11 +100,13 @@ public class Player {
 		// TODO Auto-generated method stub
 		if (t.getState().equalsIgnoreCase("OnPLayer"))
 			return;
-		t.position.x = LH.x;
-		t.position.y = LH.y - 10;
+		t.position.x = LH.x	- t.getWidth()/2;
+		t.position.y = LH.y - t.getHeight() + 10;
 		leftHandPlates.add(t);
-		LH = t.getPosition();
+		LH.y = t.getPosition().y;
+		
 		t.setState("OnPLayer");
+		
 		if (leftHandPlates.size() >= 3) {
 			Plate[] w = { leftHandPlates.get(leftHandPlates.size() - 1),
 					leftHandPlates.get(leftHandPlates.size() - 2),
@@ -117,11 +120,11 @@ public class Player {
 		if (t.getState().equalsIgnoreCase("OnPLayer"))
 			return;
 
-		t.position.x = RH.x;
-		t.position.y = RH.y - 10;
+		t.position.x = RH.x	- t.getWidth()/2;
+		t.position.y = RH.y - t.getHeight() + 10;
 		RightHandPlates.add(t);
+		RH.y = t.getPosition().y;
 
-		RH = t.getPosition();
 		t.setState("OnPLayer");
 
 		if (RightHandPlates.size() >= 3) {
@@ -155,15 +158,16 @@ public class Player {
 			q.releasePlate(a);
 		}
 		if (!RightHandPlates.isEmpty())
-			RH = RightHandPlates.get(RightHandPlates.size() - 1).getPosition();
+			RH.y = RightHandPlates.get(RightHandPlates.size() - 1).getPosition().y;
 		else {
 			RH = rightCenter;
 		}
 
 		if (!leftHandPlates.isEmpty())
-			LH = leftHandPlates.get(leftHandPlates.size() - 1).getPosition();
+			LH.y = leftHandPlates.get(leftHandPlates.size() - 1).getPosition().y;
 		else
 			LH = leftCenter;
+		
 		Score++;
 		System.out.println(Score);
 
@@ -190,8 +194,10 @@ public class Player {
 		// TODO Auto-generated method stub
 		for (Plate b : RightHandPlates)
 			b.position.x = (b.position.x + u + windowWidth) % windowWidth;
+		
 		for (Plate b : leftHandPlates)
 			b.position.x = (b.position.x + u + windowWidth) % windowWidth;
+		
 		setattributes((center.x + u + windowWidth) % windowWidth, height);
 
 	}

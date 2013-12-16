@@ -22,7 +22,7 @@ public class PlateFactory extends AbstractFactory {
 		case 0 :
 			return new OvalPlate();
 		case 1 : 
-			return new BodaPlate();
+			return new Ball();
 		}
 		return new OvalPlate();
 	}
