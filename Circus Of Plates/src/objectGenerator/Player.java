@@ -167,8 +167,8 @@ public class Player implements java.io.Serializable {
 		// TODO Auto-generated method stub
 		// System.out.println("a77a");
 
-		if (b[0].getColor() != b[1].getColor()
-				|| b[0].getColor() != b[2].getColor())
+		if (b[0].getPlateColor() != b[1].getPlateColor()
+				|| b[0].getPlateColor() != b[2].getPlateColor())
 			return;
 		if (!(b[0].getType().equalsIgnoreCase(b[1].getType()) && b[0].getType()
 				.equalsIgnoreCase(b[2].getType())))

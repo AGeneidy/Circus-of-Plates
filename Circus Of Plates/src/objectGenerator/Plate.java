@@ -9,13 +9,36 @@ import java.util.Random;
 
 public class Plate implements java.io.Serializable {
 	private int id;
-	protected Color[] chooseColor = { Color.RED, Color.GREEN, Color.BLUE ,Color.BLACK};
-	protected Color plateColor;
+	protected int plateColor;
 	protected Point position;
 	protected int height, width, type;
 	protected double dx;
 	protected double dy;
 	protected state State;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public void setState(state state) {
+		State = state;
+	}
 
 	public String getState() {
 		return State.getState();
@@ -34,14 +57,6 @@ public class Plate implements java.io.Serializable {
 		dx = 0;
 	}
 
-	public Color[] getChooseColor() {
-		return chooseColor;
-	}
-
-	public void setChooseColor(Color[] chooseColor) {
-		this.chooseColor = chooseColor;
-	}
-
 	public int getHeight() {
 		return height;
 	}
@@ -58,11 +73,11 @@ public class Plate implements java.io.Serializable {
 		this.position = position;
 	}
 
-	public Color getPlateColor() {
+	public int getPlateColor() {
 		return plateColor;
 	}
 
-	public void setPlateColor(Color plateColor) {
+	public void setPlateColor(int plateColor) {
 		this.plateColor = plateColor;
 	}
 
@@ -95,11 +110,6 @@ public class Plate implements java.io.Serializable {
 
 	public String getImagePath() {
 		return null;
-	}
-
-	public Color getColor() {
-		// TODO Auto-generated method stub
-		return plateColor;
 	}
 
 	public String getType() {

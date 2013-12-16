@@ -11,29 +11,30 @@ public class Ball extends Plate {
 	public Ball() {
 		// TODO Auto-generated constructor stub
 		super();
-		plateColor = chooseColor[new Random().nextInt(500) % 3];
+		plateColor = new Random().nextInt(500) % 3;
 		height = 30;
 		width = 30;
 		State.setType("Ball");
 
 	}
-	
+
 	@Override
-	public String getImagePath(){
-		if(plateColor==Color.RED)
-			return "images/redBall2.png";
-		else if(plateColor==Color.BLUE)
+	public String getImagePath() {
+		switch (plateColor) {
+		case 0:
 			return "images/blueBall2.png";
-		else if(plateColor==Color.GREEN)
+		case 1:
+			return "images/redBall2.png";
+		case 2:
 			return "images/greenBall2.png";
-		else{
+		default:
 			return "images/redBall2.png";
 		}
 	}
 
 	@Override
-	public void Paint(Graphics g,Applet view,URL url) {
+	public void Paint(Graphics g, Applet view, URL url) {
 		Image plateImg = view.getImage(url, getImagePath());
-		g.drawImage(plateImg, getPosition().x, getPosition().y,view);
+		g.drawImage(plateImg, getPosition().x, getPosition().y, view);
 	}
 }
