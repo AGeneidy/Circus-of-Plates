@@ -97,11 +97,24 @@ public class Player {
 	}
 
 	public void addAtLeft(Plate t) {
-		// TODO Auto-generated method stub
+		Plate lastPlate = null;
+		if(!leftHandPlates.isEmpty())
+			lastPlate = leftHandPlates.get(leftHandPlates.size() - 1);
+		
 		if (t.getState().equalsIgnoreCase("OnPLayer"))
 			return;
+		
 		t.position.x = LH.x	- t.getWidth()/2;
-		t.position.y = LH.y - t.getHeight() + 10;
+		
+		if(!leftHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball") && lastPlate.getType().equalsIgnoreCase("ball")){
+			t.position.y = LH.y - t.getHeight();
+		}else if(leftHandPlates.isEmpty() && t.getType().equalsIgnoreCase("OvalPlate")){
+			t.position.y = LH.y - t.getHeight()+10;
+		}else if(leftHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball")){
+			t.position.y = LH.y - t.getHeight()+5;
+		}else 
+			t.position.y = LH.y - t.getHeight() + 15;		
+		
 		leftHandPlates.add(t);
 		LH.y = t.getPosition().y;
 		
@@ -116,12 +129,24 @@ public class Player {
 	}
 
 	public void addAtRight(Plate t) {
-		// TODO Auto-generated method stub
+		Plate lastPlate = null;
+		if(!RightHandPlates.isEmpty())
+			lastPlate = RightHandPlates.get(RightHandPlates.size() - 1);
+		
 		if (t.getState().equalsIgnoreCase("OnPLayer"))
 			return;
 
 		t.position.x = RH.x	- t.getWidth()/2;
-		t.position.y = RH.y - t.getHeight() + 10;
+		
+		if(!RightHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball") && lastPlate.getType().equalsIgnoreCase("ball")){
+			t.position.y = RH.y - t.getHeight();
+		}else if(RightHandPlates.isEmpty() && t.getType().equalsIgnoreCase("OvalPlate")){
+			t.position.y = RH.y - t.getHeight()+10;
+		}else if(RightHandPlates.isEmpty() && t.getType().equalsIgnoreCase("ball")){
+			t.position.y = RH.y - t.getHeight()+5;
+		}else 
+			t.position.y = RH.y - t.getHeight() + 15;
+	
 		RightHandPlates.add(t);
 		RH.y = t.getPosition().y;
 
