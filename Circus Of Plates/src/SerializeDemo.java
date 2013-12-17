@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class SerializeDemo {
 	View a;
 
@@ -9,8 +11,9 @@ public class SerializeDemo {
 		a = Boda;
 	}
 
-	public void save(String name) {
+	public void save() {
 		try {
+			String name = JOptionPane.showInputDialog(null, "Enter your full name: ");
 			File file = new File("E:\\" + name + ".ser");
 			if (!file.exists()) {
 				file.createNewFile();
@@ -24,14 +27,14 @@ public class SerializeDemo {
 			out.writeObject(PlatePool.getPlatePool());
 			out.close();
 			fileOut.close();
-			System.out.printf("Serialized data is saved in /tmp/employee.ser");
 		} catch (IOException i) {
 			i.printStackTrace();
 		}
 	}
 
-	public void load(String name) {
+	public void load() {
 		try {
+			String name = JOptionPane.showInputDialog(null, "Enter your full name: ");
 			File file = new File("E:\\" + name + ".ser");
 			if (!file.exists()) {
 				file.createNewFile();

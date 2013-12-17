@@ -12,7 +12,7 @@ public class DynamicLinkage {
 	public Constructor[] constructors;
 
 	public DynamicLinkage() {
-		
+
 	}
 
 	public Class<?> loadChosenClass() {

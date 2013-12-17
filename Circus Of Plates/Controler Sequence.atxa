@@ -1,0 +1,1419 @@
+<,ayman.geneidy@gmail.com> <http://www.architexa.com/rdf/core#creator> "true" .
+
+@prefix atxa-rse-eclipse: <http://www.architexa.com/rdf/rse-eclipse#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> a atxa-core:chronoFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1576 .
+
+_:node18bvbl8fnx1576 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler> ;
+	atxa-jdt:index "0" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node18bvbl8fnx1577 .
+
+_:node18bvbl8fnx1577 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.catchPlate()> ;
+	atxa-jdt:index "0" ;
+	atxa-core:contains _:node18bvbl8fnx1578 .
+
+_:node18bvbl8fnx1578 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.getRightHand()> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Player.getRightHand()> atxa-core:link _:node18bvbl8fnx1579 .
+
+_:node18bvbl8fnx1580 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1578 ;
+	rdf:object _:node18bvbl8fnx1579 ;
+	atxa-core:name "getRightHand()" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1581 .
+
+_:node18bvbl8fnx1581 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.getLeftHand()> ;
+	atxa-jdt:index "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Player.getLeftHand()> atxa-core:link _:node18bvbl8fnx1582 .
+
+_:node18bvbl8fnx1583 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1581 ;
+	rdf:object _:node18bvbl8fnx1582 ;
+	atxa-core:name "getLeftHand()" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1584 .
+
+_:node18bvbl8fnx1584 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.LeftHandWidth()> ;
+	atxa-jdt:index "2" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Player.LeftHandWidth()> atxa-core:link _:node18bvbl8fnx1585 .
+
+_:node18bvbl8fnx1586 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1584 ;
+	rdf:object _:node18bvbl8fnx1585 ;
+	atxa-core:name "LeftHandWidth()" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1587 .
+
+_:node18bvbl8fnx1587 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.RightHandWidth()> ;
+	atxa-jdt:index "3" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Player.RightHandWidth()> atxa-core:link _:node18bvbl8fnx1588 .
+
+_:node18bvbl8fnx1589 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1587 ;
+	rdf:object _:node18bvbl8fnx1588 ;
+	atxa-core:name "RightHandWidth()" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1590 .
+
+_:node18bvbl8fnx1590 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getWidth()> ;
+	atxa-jdt:index "4" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.getWidth()> atxa-core:link _:node18bvbl8fnx1591 .
+
+_:node18bvbl8fnx1592 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1590 ;
+	rdf:object _:node18bvbl8fnx1591 ;
+	atxa-core:name "getWidth()" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1593 .
+
+_:node18bvbl8fnx1593 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt$Point.y> ;
+	atxa-jdt:index "5" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.awt$Point.y> atxa-core:link _:node18bvbl8fnx1594 .
+
+_:node18bvbl8fnx1595 a atxa-core:link ;
+	atxa-core:model atxa-jdt:fieldRead ;
+	rdf:subject _:node18bvbl8fnx1593 ;
+	rdf:object _:node18bvbl8fnx1594 ;
+	atxa-core:name "RH.y" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1596 .
+
+_:node18bvbl8fnx1596 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math.abs(int,)> ;
+	atxa-jdt:index "6" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math.abs(int,)> atxa-core:link _:node18bvbl8fnx1597 .
+
+_:node18bvbl8fnx1598 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1596 ;
+	rdf:object _:node18bvbl8fnx1597 ;
+	atxa-core:name "abs(y + plate.getHeight() - RH.y)" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1599 .
+
+_:node18bvbl8fnx1599 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.addAtRight(Plate,)> ;
+	atxa-jdt:index "7" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Player.addAtRight(Plate,)> atxa-core:link _:node18bvbl8fnx1600 .
+
+_:node18bvbl8fnx1601 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1599 ;
+	rdf:object _:node18bvbl8fnx1600 ;
+	atxa-core:name "addAtRight(plate)" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1602 .
+
+_:node18bvbl8fnx1602 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getWidth()> ;
+	atxa-jdt:index "8" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.getWidth()> atxa-core:link _:node18bvbl8fnx1603 .
+
+_:node18bvbl8fnx1604 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1602 ;
+	rdf:object _:node18bvbl8fnx1603 ;
+	atxa-core:name "getWidth()" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1605 .
+
+_:node18bvbl8fnx1605 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt$Point.y> ;
+	atxa-jdt:index "9" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.awt$Point.y> atxa-core:link _:node18bvbl8fnx1606 .
+
+_:node18bvbl8fnx1607 a atxa-core:link ;
+	atxa-core:model atxa-jdt:fieldRead ;
+	rdf:subject _:node18bvbl8fnx1605 ;
+	rdf:object _:node18bvbl8fnx1606 ;
+	atxa-core:name "LH.y" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1608 .
+
+_:node18bvbl8fnx1608 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math.abs(int,)> ;
+	atxa-jdt:index "10" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math.abs(int,)> atxa-core:link _:node18bvbl8fnx1609 .
+
+_:node18bvbl8fnx1610 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1608 ;
+	rdf:object _:node18bvbl8fnx1609 ;
+	atxa-core:name "abs(y + plate.getHeight() - LH.y)" .
+
+_:node18bvbl8fnx1577 atxa-core:contains _:node18bvbl8fnx1611 .
+
+_:node18bvbl8fnx1611 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.addAtLeft(Plate,)> ;
+	atxa-jdt:index "11" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Player.addAtLeft(Plate,)> atxa-core:link _:node18bvbl8fnx1612 .
+
+_:node18bvbl8fnx1613 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1611 ;
+	rdf:object _:node18bvbl8fnx1612 ;
+	atxa-core:name "addAtLeft(plate)" .
+
+_:node18bvbl8fnx1576 atxa-core:contains _:node18bvbl8fnx1614 .
+
+_:node18bvbl8fnx1614 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.dealWithPlate()> ;
+	atxa-jdt:index "1" ;
+	atxa-core:contains _:node18bvbl8fnx1615 .
+
+_:node18bvbl8fnx1615 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.catchPlate()> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Controler.catchPlate()> atxa-core:link _:node18bvbl8fnx1616 .
+
+_:node18bvbl8fnx1617 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1615 ;
+	rdf:object _:node18bvbl8fnx1616 ;
+	atxa-core:name "catchPlate()" .
+
+_:node18bvbl8fnx1615 atxa-core:contains _:node18bvbl8fnx1616 .
+
+_:node18bvbl8fnx1616 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.catchPlate()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1618 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1616 ;
+	rdf:object _:node18bvbl8fnx1615 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1614 atxa-core:contains _:node18bvbl8fnx1619 .
+
+_:node18bvbl8fnx1619 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$String.equalsIgnoreCase(String,)> ;
+	atxa-jdt:index "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.lang$String.equalsIgnoreCase(String,)> atxa-core:link _:node18bvbl8fnx1620 .
+
+_:node18bvbl8fnx1621 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1619 ;
+	rdf:object _:node18bvbl8fnx1620 ;
+	atxa-core:name "plate.getState().equalsIgnoreCase(\"OnPlayer\")" .
+
+_:node18bvbl8fnx1614 atxa-core:contains _:node18bvbl8fnx1622 .
+
+_:node18bvbl8fnx1622 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> ;
+	atxa-jdt:index "2" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> atxa-core:link _:node18bvbl8fnx1623 .
+
+_:node18bvbl8fnx1624 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1622 ;
+	rdf:object _:node18bvbl8fnx1623 ;
+	atxa-core:name "falling()" .
+
+_:node18bvbl8fnx1622 atxa-core:contains _:node18bvbl8fnx1623 .
+
+_:node18bvbl8fnx1623 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1625 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1623 ;
+	rdf:object _:node18bvbl8fnx1622 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1614 atxa-core:contains _:node18bvbl8fnx1626 .
+
+_:node18bvbl8fnx1626 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.moveLeftSide()> ;
+	atxa-jdt:index "3" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Controler.moveLeftSide()> atxa-core:link _:node18bvbl8fnx1627 .
+
+_:node18bvbl8fnx1628 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1626 ;
+	rdf:object _:node18bvbl8fnx1627 ;
+	atxa-core:name "moveLeftSide()" .
+
+_:node18bvbl8fnx1626 atxa-core:contains _:node18bvbl8fnx1627 .
+
+_:node18bvbl8fnx1627 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.moveLeftSide()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1629 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1627 ;
+	rdf:object _:node18bvbl8fnx1626 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1614 atxa-core:contains _:node18bvbl8fnx1630 .
+
+_:node18bvbl8fnx1630 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.moveRightSide()> ;
+	atxa-jdt:index "4" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Controler.moveRightSide()> atxa-core:link _:node18bvbl8fnx1631 .
+
+_:node18bvbl8fnx1632 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1630 ;
+	rdf:object _:node18bvbl8fnx1631 ;
+	atxa-core:name "moveRightSide()" .
+
+_:node18bvbl8fnx1630 atxa-core:contains _:node18bvbl8fnx1631 .
+
+_:node18bvbl8fnx1631 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.moveRightSide()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1633 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1631 ;
+	rdf:object _:node18bvbl8fnx1630 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1614 atxa-core:contains _:node18bvbl8fnx1634 .
+
+_:node18bvbl8fnx1634 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.setPlate()> ;
+	atxa-jdt:index "5" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Controler.setPlate()> atxa-core:link _:node18bvbl8fnx1635 .
+
+_:node18bvbl8fnx1636 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1634 ;
+	rdf:object _:node18bvbl8fnx1635 ;
+	atxa-core:name "setPlate()" .
+
+_:node18bvbl8fnx1634 atxa-core:contains _:node18bvbl8fnx1635 .
+
+_:node18bvbl8fnx1635 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.setPlate()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1637 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1635 ;
+	rdf:object _:node18bvbl8fnx1634 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1576 atxa-core:contains _:node18bvbl8fnx1638 .
+
+_:node18bvbl8fnx1638 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.excuteFrame()> ;
+	atxa-jdt:index "2" ;
+	atxa-core:contains _:node18bvbl8fnx1639 .
+
+_:node18bvbl8fnx1639 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$System.currentTimeMillis()> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.lang$System.currentTimeMillis()> atxa-core:link _:node18bvbl8fnx1640 .
+
+_:node18bvbl8fnx1641 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1639 ;
+	rdf:object _:node18bvbl8fnx1640 ;
+	atxa-core:name "currentTimeMillis()" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1642 .
+
+_:node18bvbl8fnx1642 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.getPlateIterator()> ;
+	atxa-jdt:index "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.getPlateIterator()> atxa-core:link _:node18bvbl8fnx1643 .
+
+_:node18bvbl8fnx1644 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1642 ;
+	rdf:object _:node18bvbl8fnx1643 ;
+	atxa-core:name "getPlateIterator()" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1645 .
+
+_:node18bvbl8fnx1645 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.hasnext()> ;
+	atxa-jdt:index "2" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.hasnext()> atxa-core:link _:node18bvbl8fnx1646 .
+
+_:node18bvbl8fnx1647 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1645 ;
+	rdf:object _:node18bvbl8fnx1646 ;
+	atxa-core:name "hasnext()" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1648 .
+
+_:node18bvbl8fnx1648 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.next()> ;
+	atxa-jdt:index "3" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.next()> atxa-core:link _:node18bvbl8fnx1649 .
+
+_:node18bvbl8fnx1650 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1648 ;
+	rdf:object _:node18bvbl8fnx1649 ;
+	atxa-core:name "next()" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1651 .
+
+_:node18bvbl8fnx1651 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getPosition()> ;
+	atxa-jdt:index "4" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.getPosition()> atxa-core:link _:node18bvbl8fnx1652 .
+
+_:node18bvbl8fnx1653 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1651 ;
+	rdf:object _:node18bvbl8fnx1652 ;
+	atxa-core:name "getPosition()" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1654 .
+
+_:node18bvbl8fnx1654 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getPosition()> ;
+	atxa-jdt:index "5" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.getPosition()> atxa-core:link _:node18bvbl8fnx1655 .
+
+_:node18bvbl8fnx1656 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1654 ;
+	rdf:object _:node18bvbl8fnx1655 ;
+	atxa-core:name "getPosition()" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1657 .
+
+_:node18bvbl8fnx1657 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getDx()> ;
+	atxa-jdt:index "6" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.getDx()> atxa-core:link _:node18bvbl8fnx1658 .
+
+_:node18bvbl8fnx1659 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1657 ;
+	rdf:object _:node18bvbl8fnx1658 ;
+	atxa-core:name "getDx()" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1660 .
+
+_:node18bvbl8fnx1660 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getDy()> ;
+	atxa-jdt:index "7" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.getDy()> atxa-core:link _:node18bvbl8fnx1661 .
+
+_:node18bvbl8fnx1662 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1660 ;
+	rdf:object _:node18bvbl8fnx1661 ;
+	atxa-core:name "getDy()" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1663 .
+
+_:node18bvbl8fnx1663 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.dealWithPlate()> ;
+	atxa-jdt:index "8" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Controler.dealWithPlate()> atxa-core:link _:node18bvbl8fnx1664 .
+
+_:node18bvbl8fnx1665 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1663 ;
+	rdf:object _:node18bvbl8fnx1664 ;
+	atxa-core:name "dealWithPlate()" .
+
+_:node18bvbl8fnx1663 atxa-core:contains _:node18bvbl8fnx1664 .
+
+_:node18bvbl8fnx1664 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.dealWithPlate()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1666 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1664 ;
+	rdf:object _:node18bvbl8fnx1663 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1667 .
+
+_:node18bvbl8fnx1667 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$View.time> ;
+	atxa-jdt:index "9" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$View.time> atxa-core:link _:node18bvbl8fnx1668 .
+
+_:node18bvbl8fnx1669 a atxa-core:link ;
+	atxa-core:model atxa-jdt:fieldRead ;
+	rdf:subject _:node18bvbl8fnx1667 ;
+	rdf:object _:node18bvbl8fnx1668 ;
+	atxa-core:name "view.time" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1670 .
+
+_:node18bvbl8fnx1670 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math.abs(long,)> ;
+	atxa-jdt:index "10" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math.abs(long,)> atxa-core:link _:node18bvbl8fnx1671 .
+
+_:node18bvbl8fnx1672 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1670 ;
+	rdf:object _:node18bvbl8fnx1671 ;
+	atxa-core:name "abs(view.time - System.currentTimeMillis())" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1673 .
+
+_:node18bvbl8fnx1673 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.insertNewPlates(int,)> ;
+	atxa-jdt:index "11" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Controler.insertNewPlates(int,)> atxa-core:link _:node18bvbl8fnx1674 .
+
+_:node18bvbl8fnx1675 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1673 ;
+	rdf:object _:node18bvbl8fnx1674 ;
+	atxa-core:name "insertNewPlates(rowsNo)" .
+
+_:node18bvbl8fnx1673 atxa-core:contains _:node18bvbl8fnx1674 .
+
+_:node18bvbl8fnx1674 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.insertNewPlates(int,)> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1676 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1674 ;
+	rdf:object _:node18bvbl8fnx1673 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1638 atxa-core:contains _:node18bvbl8fnx1677 .
+
+_:node18bvbl8fnx1677 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$System.currentTimeMillis()> ;
+	atxa-jdt:index "12" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.lang$System.currentTimeMillis()> atxa-core:link _:node18bvbl8fnx1678 .
+
+_:node18bvbl8fnx1679 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1677 ;
+	rdf:object _:node18bvbl8fnx1678 ;
+	atxa-core:name "currentTimeMillis()" .
+
+_:node18bvbl8fnx1576 atxa-core:contains _:node18bvbl8fnx1680 .
+
+_:node18bvbl8fnx1680 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> ;
+	atxa-jdt:index "3" .
+
+_:node18bvbl8fnx1576 atxa-core:contains _:node18bvbl8fnx1681 .
+
+_:node18bvbl8fnx1681 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.insertNewPlates(int,)> ;
+	atxa-jdt:index "4" ;
+	atxa-core:contains _:node18bvbl8fnx1682 .
+
+_:node18bvbl8fnx1682 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlatePool.getPlate()> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$PlatePool.getPlate()> atxa-core:link _:node18bvbl8fnx1683 .
+
+_:node18bvbl8fnx1684 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1682 ;
+	rdf:object _:node18bvbl8fnx1683 ;
+	atxa-core:name "getPlate()" .
+
+_:node18bvbl8fnx1681 atxa-core:contains _:node18bvbl8fnx1685 .
+
+_:node18bvbl8fnx1685 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setPosition(Point,)> ;
+	atxa-jdt:index "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.setPosition(Point,)> atxa-core:link _:node18bvbl8fnx1686 .
+
+_:node18bvbl8fnx1687 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1685 ;
+	rdf:object _:node18bvbl8fnx1686 ;
+	atxa-core:name "setPosition(new Point(0, i * 50))" .
+
+_:node18bvbl8fnx1681 atxa-core:contains _:node18bvbl8fnx1688 .
+
+_:node18bvbl8fnx1688 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDx(double,)> ;
+	atxa-jdt:index "2" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDx(double,)> atxa-core:link _:node18bvbl8fnx1689 .
+
+_:node18bvbl8fnx1690 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1688 ;
+	rdf:object _:node18bvbl8fnx1689 ;
+	atxa-core:name "setDx(initialDx)" .
+
+_:node18bvbl8fnx1681 atxa-core:contains _:node18bvbl8fnx1691 .
+
+_:node18bvbl8fnx1691 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDy(double,)> ;
+	atxa-jdt:index "3" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDy(double,)> atxa-core:link _:node18bvbl8fnx1692 .
+
+_:node18bvbl8fnx1693 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1691 ;
+	rdf:object _:node18bvbl8fnx1692 ;
+	atxa-core:name "setDy(0)" .
+
+_:node18bvbl8fnx1681 atxa-core:contains _:node18bvbl8fnx1694 .
+
+_:node18bvbl8fnx1694 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlatePool.getPlate()> ;
+	atxa-jdt:index "4" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$PlatePool.getPlate()> atxa-core:link _:node18bvbl8fnx1695 .
+
+_:node18bvbl8fnx1696 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1694 ;
+	rdf:object _:node18bvbl8fnx1695 ;
+	atxa-core:name "getPlate()" .
+
+_:node18bvbl8fnx1681 atxa-core:contains _:node18bvbl8fnx1697 .
+
+_:node18bvbl8fnx1697 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setPosition(Point,)> ;
+	atxa-jdt:index "5" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.setPosition(Point,)> atxa-core:link _:node18bvbl8fnx1698 .
+
+_:node18bvbl8fnx1699 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1697 ;
+	rdf:object _:node18bvbl8fnx1698 ;
+	atxa-core:name "setPosition(new Point(view.gameWidth, i * 50))" .
+
+_:node18bvbl8fnx1681 atxa-core:contains _:node18bvbl8fnx1700 .
+
+_:node18bvbl8fnx1700 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDx(double,)> ;
+	atxa-jdt:index "6" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDx(double,)> atxa-core:link _:node18bvbl8fnx1701 .
+
+_:node18bvbl8fnx1702 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1700 ;
+	rdf:object _:node18bvbl8fnx1701 ;
+	atxa-core:name "setDx(-initialDx)" .
+
+_:node18bvbl8fnx1681 atxa-core:contains _:node18bvbl8fnx1703 .
+
+_:node18bvbl8fnx1703 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDy(double,)> ;
+	atxa-jdt:index "7" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDy(double,)> atxa-core:link _:node18bvbl8fnx1704 .
+
+_:node18bvbl8fnx1705 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1703 ;
+	rdf:object _:node18bvbl8fnx1704 ;
+	atxa-core:name "setDy(0)" .
+
+_:node18bvbl8fnx1576 atxa-core:contains _:node18bvbl8fnx1706 .
+
+_:node18bvbl8fnx1706 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.moveLeftSide()> ;
+	atxa-jdt:index "5" ;
+	atxa-core:contains _:node18bvbl8fnx1707 .
+
+_:node18bvbl8fnx1707 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getWidth()> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.getWidth()> atxa-core:link _:node18bvbl8fnx1708 .
+
+_:node18bvbl8fnx1709 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1707 ;
+	rdf:object _:node18bvbl8fnx1708 ;
+	atxa-core:name "getWidth()" .
+
+_:node18bvbl8fnx1706 atxa-core:contains _:node18bvbl8fnx1710 .
+
+_:node18bvbl8fnx1710 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> ;
+	atxa-jdt:index "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> atxa-core:link _:node18bvbl8fnx1711 .
+
+_:node18bvbl8fnx1712 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1710 ;
+	rdf:object _:node18bvbl8fnx1711 ;
+	atxa-core:name "falling()" .
+
+_:node18bvbl8fnx1710 atxa-core:contains _:node18bvbl8fnx1711 .
+
+_:node18bvbl8fnx1711 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1713 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1711 ;
+	rdf:object _:node18bvbl8fnx1710 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1576 atxa-core:contains _:node18bvbl8fnx1714 .
+
+_:node18bvbl8fnx1714 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.moveRightSide()> ;
+	atxa-jdt:index "6" ;
+	atxa-core:contains _:node18bvbl8fnx1715 .
+
+_:node18bvbl8fnx1715 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> atxa-core:link _:node18bvbl8fnx1716 .
+
+_:node18bvbl8fnx1717 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1715 ;
+	rdf:object _:node18bvbl8fnx1716 ;
+	atxa-core:name "falling()" .
+
+_:node18bvbl8fnx1715 atxa-core:contains _:node18bvbl8fnx1716 .
+
+_:node18bvbl8fnx1716 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.falling()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1718 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1716 ;
+	rdf:object _:node18bvbl8fnx1715 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1576 atxa-core:contains _:node18bvbl8fnx1719 .
+
+_:node18bvbl8fnx1719 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Controler.setPlate()> ;
+	atxa-jdt:index "7" ;
+	atxa-core:contains _:node18bvbl8fnx1720 .
+
+_:node18bvbl8fnx1720 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlatePool.releasePlate(Plate,)> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$PlatePool.releasePlate(Plate,)> atxa-core:link _:node18bvbl8fnx1721 .
+
+_:node18bvbl8fnx1722 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1720 ;
+	rdf:object _:node18bvbl8fnx1721 ;
+	atxa-core:name "releasePlate(plate)" .
+
+_:node18bvbl8fnx1719 atxa-core:contains _:node18bvbl8fnx1723 .
+
+_:node18bvbl8fnx1723 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.justifyIndex()> ;
+	atxa-jdt:index "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.justifyIndex()> atxa-core:link _:node18bvbl8fnx1724 .
+
+_:node18bvbl8fnx1725 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1723 ;
+	rdf:object _:node18bvbl8fnx1724 ;
+	atxa-core:name "justifyIndex()" .
+
+_:node18bvbl8fnx1719 atxa-core:contains _:node18bvbl8fnx1726 .
+
+_:node18bvbl8fnx1726 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setPosition(Point,)> ;
+	atxa-jdt:index "2" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.setPosition(Point,)> atxa-core:link _:node18bvbl8fnx1727 .
+
+_:node18bvbl8fnx1728 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1726 ;
+	rdf:object _:node18bvbl8fnx1727 ;
+	atxa-core:name "setPosition(new Point(x, y))" .
+
+_:node18bvbl8fnx1719 atxa-core:contains _:node18bvbl8fnx1729 .
+
+_:node18bvbl8fnx1729 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDx(double,)> ;
+	atxa-jdt:index "3" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDx(double,)> atxa-core:link _:node18bvbl8fnx1730 .
+
+_:node18bvbl8fnx1731 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1729 ;
+	rdf:object _:node18bvbl8fnx1730 ;
+	atxa-core:name "setDx(dx)" .
+
+_:node18bvbl8fnx1719 atxa-core:contains _:node18bvbl8fnx1732 .
+
+_:node18bvbl8fnx1732 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDy(double,)> ;
+	atxa-jdt:index "4" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDy(double,)> atxa-core:link _:node18bvbl8fnx1733 .
+
+_:node18bvbl8fnx1734 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node18bvbl8fnx1732 ;
+	rdf:object _:node18bvbl8fnx1733 ;
+	atxa-core:name "setDy(dy)" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1558 .
+
+_:node18bvbl8fnx1558 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player> ;
+	atxa-jdt:index "1" ;
+	atxa-core:instanceName "a" ;
+	atxa-core:contains _:node18bvbl8fnx1579 .
+
+_:node18bvbl8fnx1579 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.getRightHand()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1735 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1579 ;
+	rdf:object _:node18bvbl8fnx1578 ;
+	atxa-core:name "Point" .
+
+_:node18bvbl8fnx1558 atxa-core:contains _:node18bvbl8fnx1582 .
+
+_:node18bvbl8fnx1582 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.getLeftHand()> ;
+	atxa-jdt:index "1" .
+
+_:node18bvbl8fnx1736 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1582 ;
+	rdf:object _:node18bvbl8fnx1581 ;
+	atxa-core:name "Point" .
+
+_:node18bvbl8fnx1558 atxa-core:contains _:node18bvbl8fnx1585 .
+
+_:node18bvbl8fnx1585 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.LeftHandWidth()> ;
+	atxa-jdt:index "2" .
+
+_:node18bvbl8fnx1737 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1585 ;
+	rdf:object _:node18bvbl8fnx1584 ;
+	atxa-core:name "int" .
+
+_:node18bvbl8fnx1558 atxa-core:contains _:node18bvbl8fnx1588 .
+
+_:node18bvbl8fnx1588 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.RightHandWidth()> ;
+	atxa-jdt:index "3" .
+
+_:node18bvbl8fnx1738 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1588 ;
+	rdf:object _:node18bvbl8fnx1587 ;
+	atxa-core:name "int" .
+
+_:node18bvbl8fnx1558 atxa-core:contains _:node18bvbl8fnx1600 .
+
+_:node18bvbl8fnx1600 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.addAtRight(Plate,)> ;
+	atxa-jdt:index "4" .
+
+_:node18bvbl8fnx1739 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1600 ;
+	rdf:object _:node18bvbl8fnx1599 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1558 atxa-core:contains _:node18bvbl8fnx1612 .
+
+_:node18bvbl8fnx1612 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player.addAtLeft(Plate,)> ;
+	atxa-jdt:index "5" .
+
+_:node18bvbl8fnx1740 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1612 ;
+	rdf:object _:node18bvbl8fnx1611 ;
+	atxa-core:name "void" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1559 .
+
+_:node18bvbl8fnx1559 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate> ;
+	atxa-jdt:index "2" ;
+	atxa-core:instanceName "plate" ;
+	atxa-core:contains _:node18bvbl8fnx1591 .
+
+_:node18bvbl8fnx1591 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getWidth()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1741 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1591 ;
+	rdf:object _:node18bvbl8fnx1590 ;
+	atxa-core:name "int" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1603 .
+
+_:node18bvbl8fnx1603 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getWidth()> ;
+	atxa-jdt:index "1" .
+
+_:node18bvbl8fnx1742 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1603 ;
+	rdf:object _:node18bvbl8fnx1602 ;
+	atxa-core:name "int" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1652 .
+
+_:node18bvbl8fnx1652 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getPosition()> ;
+	atxa-jdt:index "2" .
+
+_:node18bvbl8fnx1743 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1652 ;
+	rdf:object _:node18bvbl8fnx1651 ;
+	atxa-core:name "Point" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1655 .
+
+_:node18bvbl8fnx1655 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getPosition()> ;
+	atxa-jdt:index "3" .
+
+_:node18bvbl8fnx1744 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1655 ;
+	rdf:object _:node18bvbl8fnx1654 ;
+	atxa-core:name "Point" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1658 .
+
+_:node18bvbl8fnx1658 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getDx()> ;
+	atxa-jdt:index "4" .
+
+_:node18bvbl8fnx1745 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1658 ;
+	rdf:object _:node18bvbl8fnx1657 ;
+	atxa-core:name "double" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1661 .
+
+_:node18bvbl8fnx1661 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getDy()> ;
+	atxa-jdt:index "5" .
+
+_:node18bvbl8fnx1746 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1661 ;
+	rdf:object _:node18bvbl8fnx1660 ;
+	atxa-core:name "double" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1686 .
+
+_:node18bvbl8fnx1686 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setPosition(Point,)> ;
+	atxa-jdt:index "6" .
+
+_:node18bvbl8fnx1747 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1686 ;
+	rdf:object _:node18bvbl8fnx1685 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1689 .
+
+_:node18bvbl8fnx1689 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDx(double,)> ;
+	atxa-jdt:index "7" .
+
+_:node18bvbl8fnx1748 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1689 ;
+	rdf:object _:node18bvbl8fnx1688 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1692 .
+
+_:node18bvbl8fnx1692 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDy(double,)> ;
+	atxa-jdt:index "8" .
+
+_:node18bvbl8fnx1749 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1692 ;
+	rdf:object _:node18bvbl8fnx1691 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1698 .
+
+_:node18bvbl8fnx1698 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setPosition(Point,)> ;
+	atxa-jdt:index "9" .
+
+_:node18bvbl8fnx1750 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1698 ;
+	rdf:object _:node18bvbl8fnx1697 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1701 .
+
+_:node18bvbl8fnx1701 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDx(double,)> ;
+	atxa-jdt:index "10" .
+
+_:node18bvbl8fnx1751 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1701 ;
+	rdf:object _:node18bvbl8fnx1700 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1704 .
+
+_:node18bvbl8fnx1704 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDy(double,)> ;
+	atxa-jdt:index "11" .
+
+_:node18bvbl8fnx1752 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1704 ;
+	rdf:object _:node18bvbl8fnx1703 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1708 .
+
+_:node18bvbl8fnx1708 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.getWidth()> ;
+	atxa-jdt:index "12" .
+
+_:node18bvbl8fnx1753 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1708 ;
+	rdf:object _:node18bvbl8fnx1707 ;
+	atxa-core:name "int" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1727 .
+
+_:node18bvbl8fnx1727 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setPosition(Point,)> ;
+	atxa-jdt:index "13" .
+
+_:node18bvbl8fnx1754 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1727 ;
+	rdf:object _:node18bvbl8fnx1726 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1730 .
+
+_:node18bvbl8fnx1730 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDx(double,)> ;
+	atxa-jdt:index "14" .
+
+_:node18bvbl8fnx1755 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1730 ;
+	rdf:object _:node18bvbl8fnx1729 ;
+	atxa-core:name "void" .
+
+_:node18bvbl8fnx1559 atxa-core:contains _:node18bvbl8fnx1733 .
+
+_:node18bvbl8fnx1733 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Plate.setDy(double,)> ;
+	atxa-jdt:index "15" .
+
+_:node18bvbl8fnx1756 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1733 ;
+	rdf:object _:node18bvbl8fnx1732 ;
+	atxa-core:name "void" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1757 .
+
+_:node18bvbl8fnx1757 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math> ;
+	atxa-jdt:index "3" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node18bvbl8fnx1597 .
+
+_:node18bvbl8fnx1597 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math.abs(int,)> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1758 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1597 ;
+	rdf:object _:node18bvbl8fnx1596 ;
+	atxa-core:name "int" .
+
+_:node18bvbl8fnx1757 atxa-core:contains _:node18bvbl8fnx1609 .
+
+_:node18bvbl8fnx1609 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math.abs(int,)> ;
+	atxa-jdt:index "1" .
+
+_:node18bvbl8fnx1759 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1609 ;
+	rdf:object _:node18bvbl8fnx1608 ;
+	atxa-core:name "int" .
+
+_:node18bvbl8fnx1757 atxa-core:contains _:node18bvbl8fnx1671 .
+
+_:node18bvbl8fnx1671 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Math.abs(long,)> ;
+	atxa-jdt:index "2" .
+
+_:node18bvbl8fnx1760 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1671 ;
+	rdf:object _:node18bvbl8fnx1670 ;
+	atxa-core:name "long" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1560 .
+
+_:node18bvbl8fnx1560 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt$Point> ;
+	atxa-jdt:index "4" ;
+	atxa-core:instanceName "RH" ;
+	atxa-core:contains _:node18bvbl8fnx1594 .
+
+_:node18bvbl8fnx1594 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt$Point.y> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1561 .
+
+_:node18bvbl8fnx1561 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt$Point> ;
+	atxa-jdt:index "5" ;
+	atxa-core:instanceName "LH" ;
+	atxa-core:contains _:node18bvbl8fnx1606 .
+
+_:node18bvbl8fnx1606 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt$Point.y> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1761 .
+
+_:node18bvbl8fnx1761 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$String> ;
+	atxa-jdt:index "6" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node18bvbl8fnx1620 .
+
+_:node18bvbl8fnx1620 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$String.equalsIgnoreCase(String,)> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1762 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1620 ;
+	rdf:object _:node18bvbl8fnx1619 ;
+	atxa-core:name "boolean" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1763 .
+
+_:node18bvbl8fnx1763 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$System> ;
+	atxa-jdt:index "7" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node18bvbl8fnx1640 .
+
+_:node18bvbl8fnx1640 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$System.currentTimeMillis()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1764 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1640 ;
+	rdf:object _:node18bvbl8fnx1639 ;
+	atxa-core:name "long" .
+
+_:node18bvbl8fnx1763 atxa-core:contains _:node18bvbl8fnx1678 .
+
+_:node18bvbl8fnx1678 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$System.currentTimeMillis()> ;
+	atxa-jdt:index "1" .
+
+_:node18bvbl8fnx1765 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1678 ;
+	rdf:object _:node18bvbl8fnx1677 ;
+	atxa-core:name "long" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1766 .
+
+_:node18bvbl8fnx1766 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator> ;
+	atxa-jdt:index "8" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node18bvbl8fnx1643 .
+
+_:node18bvbl8fnx1643 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.getPlateIterator()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1767 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1643 ;
+	rdf:object _:node18bvbl8fnx1642 ;
+	atxa-core:name "PlateIterator" .
+
+_:node18bvbl8fnx1766 atxa-core:contains _:node18bvbl8fnx1646 .
+
+_:node18bvbl8fnx1646 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.hasnext()> ;
+	atxa-jdt:index "1" .
+
+_:node18bvbl8fnx1768 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1646 ;
+	rdf:object _:node18bvbl8fnx1645 ;
+	atxa-core:name "boolean" .
+
+_:node18bvbl8fnx1766 atxa-core:contains _:node18bvbl8fnx1649 .
+
+_:node18bvbl8fnx1649 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.next()> ;
+	atxa-jdt:index "2" .
+
+_:node18bvbl8fnx1769 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1649 ;
+	rdf:object _:node18bvbl8fnx1648 ;
+	atxa-core:name "Plate" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1568 .
+
+_:node18bvbl8fnx1568 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$View> ;
+	atxa-jdt:index "9" ;
+	atxa-core:instanceName "view" ;
+	atxa-core:contains _:node18bvbl8fnx1668 .
+
+_:node18bvbl8fnx1668 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$View.time> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1571 .
+
+_:node18bvbl8fnx1571 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlatePool> ;
+	atxa-jdt:index "10" ;
+	atxa-core:instanceName "platePool" ;
+	atxa-core:contains _:node18bvbl8fnx1683 .
+
+_:node18bvbl8fnx1683 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlatePool.getPlate()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1770 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1683 ;
+	rdf:object _:node18bvbl8fnx1682 ;
+	atxa-core:name "Plate" .
+
+_:node18bvbl8fnx1571 atxa-core:contains _:node18bvbl8fnx1695 .
+
+_:node18bvbl8fnx1695 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlatePool.getPlate()> ;
+	atxa-jdt:index "1" .
+
+_:node18bvbl8fnx1771 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1695 ;
+	rdf:object _:node18bvbl8fnx1694 ;
+	atxa-core:name "Plate" .
+
+_:node18bvbl8fnx1571 atxa-core:contains _:node18bvbl8fnx1721 .
+
+_:node18bvbl8fnx1721 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlatePool.releasePlate(Plate,)> ;
+	atxa-jdt:index "2" .
+
+_:node18bvbl8fnx1772 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1721 ;
+	rdf:object _:node18bvbl8fnx1720 ;
+	atxa-core:name "void" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1574 .
+
+_:node18bvbl8fnx1574 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator> ;
+	atxa-jdt:index "11" ;
+	atxa-core:instanceName "plateIterator" ;
+	atxa-core:contains _:node18bvbl8fnx1724 .
+
+_:node18bvbl8fnx1724 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlateIterator.justifyIndex()> ;
+	atxa-jdt:index "0" .
+
+_:node18bvbl8fnx1773 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node18bvbl8fnx1724 ;
+	rdf:object _:node18bvbl8fnx1723 ;
+	atxa-core:name "void" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1562 .
+
+_:node18bvbl8fnx1562 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1562 ;
+	atxa-core:controlflowname atxa-core:loopBlock ;
+	atxa-core:loopStmt "Point getRightHand()  contained in  : Controler" , "Point getLeftHand()  contained in  : Controler" , "int LeftHandWidth()  contained in  : Controler" , "int RightHandWidth()  contained in  : Controler" , "int getWidth()  contained in  : Controler" , "static int abs(int)  contained in  : Controler" , "void addAtRight(Plate)  contained in  : Controler" , "int getWidth()  contained in  : Controler" , "static int abs(int)  contained in  : Controler" , "void addAtLeft(Plate)  contained in  : Controler" ;
+	atxa-core:name "view.Players" ;
+	atxa-core:contains _:node18bvbl8fnx1563 .
+
+_:node18bvbl8fnx1563 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1563 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:thenStmt "static int abs(int)  contained in  : Controler" , "void addAtRight(Plate)  contained in  : Controler" ;
+	atxa-core:ifStmt "static int abs(int)  contained in  : Controler" , "void addAtLeft(Plate)  contained in  : Controler" ;
+	atxa-core:name "(x < (RH.x + widthR - 2)) && x > (RH.x - plate.getWidth() + 2)" ;
+	atxa-core:contains _:node18bvbl8fnx1564 .
+
+_:node18bvbl8fnx1564 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1564 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:thenStmt "void addAtRight(Plate)  contained in  : Controler" ;
+	atxa-core:name "Math.abs(y + plate.getHeight() - RH.y) < 7" .
+
+_:node18bvbl8fnx1563 atxa-core:contains _:node18bvbl8fnx1565 .
+
+_:node18bvbl8fnx1565 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1565 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:thenStmt "void addAtLeft(Plate)  contained in  : Controler" ;
+	atxa-core:name "Math.abs(y + plate.getHeight() - LH.y) < 7" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1566 .
+
+_:node18bvbl8fnx1566 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1566 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:thenStmt "void falling()  contained in  : Controler" , "void moveLeftSide()  contained in  : Controler" , "void moveRightSide()  contained in  : Controler" , "void setPlate()  contained in  : Controler" ;
+	atxa-core:name "!plate.getState().equalsIgnoreCase(\"OnPlayer\")" ;
+	atxa-core:contains _:node18bvbl8fnx1567 .
+
+_:node18bvbl8fnx1567 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1567 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:thenStmt "void falling()  contained in  : Controler" ;
+	atxa-core:elseStmt "void moveRightSide()  contained in  : Controler" ;
+	atxa-core:ifStmt "void moveLeftSide()  contained in  : Controler" ;
+	atxa-core:name "dy > 0" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1570 .
+
+_:node18bvbl8fnx1570 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1570 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:thenStmt "void insertNewPlates(int)  contained in  : Controler" , "static long currentTimeMillis()  contained in  : Controler" ;
+	atxa-core:name "Math.abs(view.time - System.currentTimeMillis()) > 1200" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1569 .
+
+_:node18bvbl8fnx1569 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1569 ;
+	atxa-core:controlflowname atxa-core:loopBlock ;
+	atxa-core:loopStmt "Plate next()  contained in  : Controler" , "Point getPosition()  contained in  : Controler" , "Point getPosition()  contained in  : Controler" , "double getDx()  contained in  : Controler" , "double getDy()  contained in  : Controler" , "void dealWithPlate()  contained in  : Controler" , "boolean hasnext()  contained in  : Controler" ;
+	atxa-core:name "plateIterator.hasnext()" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1572 .
+
+_:node18bvbl8fnx1572 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1572 ;
+	atxa-core:controlflowname atxa-core:loopBlock ;
+	atxa-core:loopStmt "Plate getPlate()  contained in  : Controler" , "void setPosition(Point)  contained in  : Controler" , "void setDx(double)  contained in  : Controler" , "void setDy(double)  contained in  : Controler" , "Plate getPlate()  contained in  : Controler" , "void setPosition(Point)  contained in  : Controler" , "void setDx(double)  contained in  : Controler" , "void setDy(double)  contained in  : Controler" ;
+	atxa-core:name "i < rowsNo" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1573 .
+
+_:node18bvbl8fnx1573 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1573 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:elseStmt "void falling()  contained in  : Controler" ;
+	atxa-core:name "x + plate.getWidth() < (view.gameWidth / (rowsNo * 2 + 3)) * ((rowsNo * 50 - y) / 50)" .
+
+<http://www.architexa.com/rdf/rse-eclipse#Controler Sequence.atxa> atxa-core:contains _:node18bvbl8fnx1575 .
+
+_:node18bvbl8fnx1575 a atxa-core:controlflow ;
+	atxa-core:model _:node18bvbl8fnx1575 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:thenStmt "void releasePlate(Plate)  contained in  : Controler" , "void justifyIndex()  contained in  : Controler" ;
+	atxa-core:elseStmt "void setPosition(Point)  contained in  : Controler" , "void setDx(double)  contained in  : Controler" , "void setDy(double)  contained in  : Controler" ;
+	atxa-core:name "y > view.gameHeight || x > view.gameWidth" .
+

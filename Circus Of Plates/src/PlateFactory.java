@@ -21,6 +21,7 @@ public class PlateFactory extends AbstractFactory {
 			PlateChooser.add(link
 					.CheckClassExist(new URL(this.getClass().getResource("")
 							.toString().replaceAll("%20", " ")), "Ball"));
+
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,6 +46,11 @@ public class PlateFactory extends AbstractFactory {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public void getnewShape() {
+		// TODO Auto-generated method stub
+		PlateChooser.add(link.loadChosenClass());
 	}
 
 	@Override
