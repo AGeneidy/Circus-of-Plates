@@ -34,6 +34,13 @@ public class View extends Applet implements Runnable {
 	int now = 0;
 	boolean gameOver = false;
 
+
+	private void main() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 	@Override
 	public void init() {
 
@@ -421,6 +428,7 @@ public class View extends Applet implements Runnable {
 				save();
 			else if (mainMenuButton.isClicked()){
 				now = 1;
+				main();
 				init();
 			}
 				
@@ -432,7 +440,7 @@ public class View extends Applet implements Runnable {
 			repaint();
 		}
 	}
-	
+
 
 	private void save() {
 		// TODO Auto-generated method stub
@@ -458,6 +466,7 @@ public class View extends Applet implements Runnable {
 			
 			if (mainMenuButton.isClicked()){
 				now = 1;
+				main();
 				init();
 			}
 				
