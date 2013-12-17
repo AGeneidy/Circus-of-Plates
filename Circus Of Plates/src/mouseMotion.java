@@ -34,8 +34,9 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 			view.Players.get(0).mouseMove(e.getX());
 			checkOnButton(view.pauseButton, e);
 		}else if(view.now == 4){
-			checkOnButton(view.resumeButton, e);
 			checkOnButton(view.saveButton, e);
+			checkOnButton(view.mainMenuButton, e);
+		}else if(view.now == 5){
 			checkOnButton(view.mainMenuButton, e);
 		}
 	}
@@ -62,8 +63,9 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 		}else if(view.now == 3){
 			checkClicked(view.pauseButton,e); // exit
 		}else if(view.now == 4){
-			checkClicked(view.resumeButton,e); // exit
 			checkClicked(view.saveButton,e); // exit
+			checkClicked(view.mainMenuButton,e); // exit
+		}else if(view.now == 5){
 			checkClicked(view.mainMenuButton,e); // exit
 		}
 	}

@@ -48,6 +48,7 @@ public class Controler {
 			insertNewPlates(rowsNo); // insert new 4 plates
 			view.time = (System.currentTimeMillis());
 		}
+
 	}
 
 	private void insertNewPlates(int rowsNo) {

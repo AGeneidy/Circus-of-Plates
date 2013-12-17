@@ -28,10 +28,11 @@ public class View extends Applet implements Runnable {
 	protected Controler Control;
 	boolean mainMenu = true;
 	Button newGameButton, loadGameButton, importButton, onePlayerButton,
-			twoPlayersButton, exitButton, mainMenuButton, pauseButton, resumeButton, saveButton;
+			twoPlayersButton, exitButton, mainMenuButton, pauseButton, saveButton;
 	ArrayList<Player> Players;
 	private int logo = 0;
 	int now = 0;
+	boolean gameOver = false;
 
 	@Override
 	public void init() {
@@ -118,13 +119,6 @@ public class View extends Applet implements Runnable {
 		pauseButton.setHight(86);
 		pauseButton.setPosition(Width - pauseButton.getWidth() - 30, Height - (pauseButton.getHeight() / 2 + 50));
 		
-		resumeButton = abstractfactory.getButton();
-		resumeButton.setType("resume");
-		resumeButton.setWidth(200);
-		resumeButton.setHight(86);
-		resumeButton.setPosition((Width - resumeButton.getWidth())/2, Height / 2
-				- (newGameButton.getHeight() * 3 / 2 + 50));
-		
 		saveButton = abstractfactory.getButton();
 		saveButton.setType("save");
 		saveButton.setWidth(200);
@@ -165,12 +159,14 @@ public class View extends Applet implements Runnable {
 			play();
 			
 			pauseMenu();
+			
+			gameOverMenu();
 		}
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////
 	// //////loading/////////////////////////////////////////////////////////////////////////
-	// //////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////\
 
 	private void loading() {
 		while (now == 0) {
@@ -387,8 +383,14 @@ public class View extends Applet implements Runnable {
 			
 			if(pauseButton.isClicked())
 				now = 4;
-			else
-				Control.excuteFrame();
+			
+			
+			if(System.currentTimeMillis() - gameStartTime >= 3*1000){
+				gameOver = true;
+				now = 5;
+			}
+			
+			Control.excuteFrame();
 
 			
 			try {
@@ -410,15 +412,12 @@ public class View extends Applet implements Runnable {
 		mainMenuButton.setPosition(Width / 2 - mainMenuButton.getWidth() / 2,  Height / 2 + mainMenuButton.getHeight() / 2
 				+ 50);
 		pauseButton.setClicked(true);
-		resumeButton.setClicked(false);
 		while (now == 4) {
 			setSize(Width, Height);
 
 			pauseMenuButtons();
 
-			if (resumeButton.isClicked())
-				now = 3;
-			else if (saveButton.isClicked())
+			if (saveButton.isClicked())
 				save();
 			else if (mainMenuButton.isClicked()){
 				now = 1;
@@ -445,6 +444,32 @@ public class View extends Applet implements Runnable {
 		
 	}
 	
+	// //////////////////////////////////////////////////////////////////////////////////////
+	// //////gameOverMenu////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////
+
+
+	private void gameOverMenu() {
+		mainMenuButton.setClicked(false);
+		mainMenuButton.setPosition(Width / 2 - mainMenuButton.getWidth() / 2,  Height / 2 + mainMenuButton.getHeight() / 2
+				+ 50);
+		while (now == 5) {
+			setSize(Width, Height);
+			
+			if (mainMenuButton.isClicked()){
+				now = 1;
+				init();
+			}
+				
+			try {
+				Thread.sleep(17);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			repaint();
+		}
+	}
+	
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -467,11 +492,35 @@ public class View extends Applet implements Runnable {
 			paintGame(g);
 		else if (now == 4)
 			paintPauseMenu(g);
+		else if (now == 5)
+			paintGameOverMenu(g);
 	}
 	
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////paintLoading////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
+
+	private void paintGameOverMenu(Graphics g) {
+		if(Players.size() == 1)
+			g.drawImage(backOverOne, (int) backX, 0, Width, Height, this);
+		else if(Players.size() == 2)
+			g.drawImage(backOverTwo, (int) backX, 0, Width, Height, this);
+		
+		g.setColor(Color.getHSBColor(11, 11, 11));
+		Font font = new Font("Serif", Font.BOLD, 40);
+		g.setFont(font);
+
+		String s = Integer.toString(Players.get(0).getScore());
+		g.drawString(s, Width/2 + 50, Height*160/612);
+		if(Players.size() == 2){
+			s = Integer.toString(Players.get(1).getScore());
+			g.drawString(s, Width/2 + 50, Height*320/612);
+		}
+		
+		mainMenuButton.paint(g, this, url);
+		
+		
+	}
 
 	private void paintLoading(Graphics g) {
 		g.drawImage(backMenu, (int) backX, 0, Width, Height, this);
@@ -612,8 +661,7 @@ public class View extends Applet implements Runnable {
 	
 	private void paintPauseMenu(Graphics g) {
 		g.drawImage(backPause, (int) backX, 0, Width, Height, this);
-		if(resumeButton.getY()!=0){
-			resumeButton.paint(g, this, url);
+		if(saveButton.getY()!=0){
 			saveButton.paint(g, this, url);
 			mainMenuButton.paint(g, this, url);
 		}
