@@ -387,8 +387,9 @@ public class View extends Applet implements Runnable {
 			
 			if(pauseButton.isClicked())
 				now = 4;
-			
-			Control.excuteFrame();
+			else
+				Control.excuteFrame();
+
 			
 			try {
 				Thread.sleep(17);
@@ -406,9 +407,10 @@ public class View extends Applet implements Runnable {
 
 	private void pauseMenu() {
 		mainMenuButton.setClicked(false);
-		mainMenuButton.setPosition(Width / 2 - mainMenuButton.getWidth() / 2,  Height / 2 + loadGameButton.getHeight() / 2
+		mainMenuButton.setPosition(Width / 2 - mainMenuButton.getWidth() / 2,  Height / 2 + mainMenuButton.getHeight() / 2
 				+ 50);
 		pauseButton.setClicked(true);
+		resumeButton.setClicked(false);
 		while (now == 4) {
 			setSize(Width, Height);
 
