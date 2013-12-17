@@ -15,9 +15,9 @@ public class PlateFactory extends AbstractFactory {
 				.replaceAll("%20", " "));
 		link = new DynamicLinkage();
 		try {
-			PlateChooser.add(link
-					.CheckClassExist(new URL(this.getClass().getResource("")
-							.toString().replaceAll("%20", " ")), "Oval"));
+			PlateChooser.add(link.CheckClassExist(new URL(this.getClass()
+					.getResource("").toString().replaceAll("%20", " ")),
+					"OvalPlate"));
 			PlateChooser.add(link
 					.CheckClassExist(new URL(this.getClass().getResource("")
 							.toString().replaceAll("%20", " ")), "Ball"));
