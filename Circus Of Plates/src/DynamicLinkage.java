@@ -1,59 +1,61 @@
-
-
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 
 public class DynamicLinkage {
-	ArrayList<String> nameOfLoadedClasses;
-	private static DynamicLinkage a ;
+
+	public Constructor[] constructors;
+
 	public DynamicLinkage() {
-		// TODO Auto-generated constructor stub
-		nameOfLoadedClasses = new ArrayList<String>();
+		
 	}
 
-	public Class<?> loadClass(URL name, String nameOfClass) {
-		System.out.println(name.toString());
-		URL[] my = { name };
-		URLClassLoader classloader = new URLClassLoader(my);
-		for (String s : nameOfLoadedClasses)
-			if (nameOfClass.equals(s)) {
-				return null;
+	public Class<?> loadChosenClass() {
+		JFileChooser chooser = new JFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		int returnVal = chooser.showOpenDialog(chooser);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = chooser.getSelectedFile();
+			URL myUrl;
+			try {
+				String nameOfClass = "";
+				myUrl = file.toURL();
+				String str = myUrl + "";// full path
+				int i = 0;
+				for (i = str.length() - 1; i >= 0; i--) {
+					if (str.charAt(i) == '/') {
+						break;
+					}
+				}
+				nameOfClass = str.substring(++i, str.length() - 6);
+				URL name;
+
+				name = new URL(str.substring(0, i));
+				System.out.println(name);
+				System.out.println(nameOfClass);
+				return CheckClassExist(name, nameOfClass);
+			} catch (MalformedURLException e1) {
+
 			}
 
-		try {
-			System.out.println(name);
-			System.out.println(nameOfClass);
-			Class myClass = classloader.loadClass(nameOfClass);
-			if (nameOfLoadedClasses.contains(nameOfClass)) {
-				System.out.println("u already loaded such a class");
-				return null;
-			}
-			nameOfLoadedClasses.add(nameOfClass);
-			System.out.println(nameOfClass);
-			return myClass;
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			System.out.println("Cant load from this path " + name);
-			// JOptionPane.showMessageDialog("u cannot load class " + str,wa);
 		}
 		return null;
 	}
 
-	public boolean CheckClassExist(URL name, String nameOfClass) {
-		if (nameOfLoadedClasses.contains(nameOfClass))
-			return false;
+	Class<?> CheckClassExist(URL name, String nameOfClass) {
 		URL[] my = { name };
 		URLClassLoader classloader = new URLClassLoader(my);
 		try {
-			Class myClass = classloader.loadClass(nameOfClass);
-			// nameOfLoadedClasses.add(nameOfClass);
-			return true;
+			return classloader.loadClass(nameOfClass);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			System.out.println("Cant load from this path " + name);
-			// JOptionPane.showMessageDialog("u cannot load class " + str,wa);
-			return false;
+			return null;
 		}
 
 	}
