@@ -67,7 +67,7 @@ public class PlatePool implements Container, java.io.Serializable {
 
 	public void getNewSape() {
 		// TODO Auto-generated method stub
-		pool.getNewSape();
+		plateFactory.getnewShape();
 		
 	}
 

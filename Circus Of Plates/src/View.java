@@ -43,7 +43,6 @@ public class View extends Applet implements Runnable {
 
 	@Override
 	public void init() {
-		PlatePool a = PlatePool.getPlatePool();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		Height = dim.height - 100;
 		Width = dim.width - 100;
@@ -297,6 +296,7 @@ public class View extends Applet implements Runnable {
 
 	private void importShape() {
 		// TODO Auto-generated method stub
+		PlatePool a = PlatePool.getPlatePool();
 		importButton.setClicked(false);
 		Control.addNewShape();
 	}

@@ -1,5 +1,4 @@
 
-
 import java.applet.Applet;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -178,9 +177,10 @@ public class Player implements java.io.Serializable {
 		if (b[0].getPlateColor() != b[1].getPlateColor()
 				|| b[0].getPlateColor() != b[2].getPlateColor())
 			return;
-		if (!(b[0].getType().equalsIgnoreCase(b[1].getType()) && b[0].getType()
-				.equalsIgnoreCase(b[2].getType())))
-			return;
+		// if (!(b[0].getType().equalsIgnoreCase(b[1].getType()) &&
+		// b[0].getType()
+		// .equalsIgnoreCase(b[2].getType())))
+		// return;
 
 		PlatePool q = PlatePool.getPlatePool();
 		for (Plate a : b) {
