@@ -24,11 +24,11 @@ public class View extends Applet implements Runnable {
 	int gameWidth, gameHeight;
 	private double backX, backDx;
 	URL url;
-	Image backMenu, back1, back2;
+	Image backMenu, back1, back2, backPause, backOverOne, backOverTwo;
 	protected Controler Control;
 	boolean mainMenu = true;
 	Button newGameButton, loadGameButton, importButton, onePlayerButton,
-			twoPlayersButton, exitButton, mainMenuButton, pauseButton;
+			twoPlayersButton, exitButton, mainMenuButton, pauseButton, resumeButton, saveButton;
 	ArrayList<Player> Players;
 	private int logo = 0;
 	int now = 0;
@@ -57,6 +57,9 @@ public class View extends Applet implements Runnable {
 		back1 = getImage(url, "images/background1.png");
 		back2 = getImage(url, "images/background2.png");
 		backMenu = getImage(url, "images/back1.jpg");
+		backPause = getImage(url, "images/background3.png");
+		backOverOne = getImage(url, "images/background4.png");
+		backOverTwo = getImage(url, "images/background5.png");
 
 		getButtons();
 	}
@@ -113,6 +116,21 @@ public class View extends Applet implements Runnable {
 		pauseButton.setType("pause");
 		pauseButton.setWidth(200);
 		pauseButton.setHight(86);
+		pauseButton.setPosition(Width - pauseButton.getWidth() - 30, Height - (pauseButton.getHeight() / 2 + 50));
+		
+		resumeButton = abstractfactory.getButton();
+		resumeButton.setType("resume");
+		resumeButton.setWidth(200);
+		resumeButton.setHight(86);
+		resumeButton.setPosition((Width - resumeButton.getWidth())/2, Height / 2
+				- (newGameButton.getHeight() * 3 / 2 + 50));
+		
+		saveButton = abstractfactory.getButton();
+		saveButton.setType("save");
+		saveButton.setWidth(200);
+		saveButton.setHight(86);
+		saveButton.setPosition((Width - saveButton.getWidth())/2, Height
+				/ 2 - loadGameButton.getHight() / 2);
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -145,6 +163,8 @@ public class View extends Applet implements Runnable {
 			addPlayers();
 			
 			play();
+			
+			pauseMenu();
 		}
 	}
 
@@ -360,6 +380,7 @@ public class View extends Applet implements Runnable {
 
 	private void play() {
 		gameStartTime = System.currentTimeMillis();
+		pauseButton.setClicked(false);
 		while (now == 3) {
 			
 			setSize(Width, Height);
@@ -379,6 +400,48 @@ public class View extends Applet implements Runnable {
 		}
 	}
 	
+	// //////////////////////////////////////////////////////////////////////////////////////
+	// //////pauseMenu///////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////
+
+	private void pauseMenu() {
+		mainMenuButton.setClicked(false);
+		mainMenuButton.setPosition(Width / 2 - mainMenuButton.getWidth() / 2,  Height / 2 + loadGameButton.getHeight() / 2
+				+ 50);
+		pauseButton.setClicked(true);
+		while (now == 4) {
+			setSize(Width, Height);
+
+			pauseMenuButtons();
+
+			if (resumeButton.isClicked())
+				now = 3;
+			else if (saveButton.isClicked())
+				save();
+			else if (mainMenuButton.isClicked()){
+				now = 1;
+				init();
+			}
+				
+			try {
+				Thread.sleep(17);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			repaint();
+		}
+	}
+	
+
+	private void save() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void pauseMenuButtons() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -390,7 +453,6 @@ public class View extends Applet implements Runnable {
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
 
-
 	@Override
 	public void paint(Graphics g) {
 		if (now == 0)
@@ -401,6 +463,8 @@ public class View extends Applet implements Runnable {
 			paintPlayersMenu(g);
 		else if (now == 3)
 			paintGame(g);
+		else if (now == 4)
+			paintPauseMenu(g);
 	}
 	
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -537,8 +601,22 @@ public class View extends Applet implements Runnable {
 		for (Player a : Players)
 			a.paint(g, this, url);
 
-		exitButton.paint(g, this, url);
+		pauseButton.paint(g, this, url);
 	}
+	
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////paintPauseMenu//////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+	
+	private void paintPauseMenu(Graphics g) {
+		g.drawImage(backPause, (int) backX, 0, Width, Height, this);
+		if(resumeButton.getY()!=0){
+			resumeButton.paint(g, this, url);
+			saveButton.paint(g, this, url);
+			mainMenuButton.paint(g, this, url);
+		}
+	}
+
 
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////

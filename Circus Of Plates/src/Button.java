@@ -143,6 +143,16 @@ public class Button {
 			if (mouseOnButton)
 				return "images/pauseButton2.png";
 			return "images/pauseButton1.png";
+			
+		case "save":
+			if (mouseOnButton)
+				return "images/saveButton2.png";
+			return "images/saveButton1.png";
+			
+		case "resume":
+			if (mouseOnButton)
+				return "images/resumeButton2.png";
+			return "images/resumeButton1.png";
 		}
 		
 		
