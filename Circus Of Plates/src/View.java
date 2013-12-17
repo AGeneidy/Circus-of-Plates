@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 public class View extends Applet implements Runnable {
 
 	protected long time, startTime, timeBeforLoading, loadingTime,
@@ -73,16 +75,16 @@ public class View extends Applet implements Runnable {
 
 	public void addOnePlayer() {
 		// TODO Auto-generated method stub
+		Control.Zero();
 		abstractfactory = FactoryProducer.getFactory("PLAYER");
-
 		Player player = abstractfactory.getPlayerOne();
 		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
 		Players.add(player);
 	}
 
 	public void addTwoPlayers() {
+		Control.Zero();
 		abstractfactory = FactoryProducer.getFactory("PLAYER");
-
 		Player player = abstractfactory.getPlayerOne();
 		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
 		Players.add(player);
@@ -141,7 +143,6 @@ public class View extends Applet implements Runnable {
 	@Override
 	public void start() {
 		Control = new Controler(this);
-
 		Thread thread = new Thread(this);
 		thread.start();
 	}
@@ -218,8 +219,12 @@ public class View extends Applet implements Runnable {
 				now = 2; // players menu
 				newGameButton.setClicked(false);
 				Control.generate();
-			} else if (loadGameButton.isClicked())
+			} else if (loadGameButton.isClicked()){
+				Control.generate();
+				PlateIterator a = PlateIterator.getPlateIterator();
 				loadGame();
+				now = 3;
+			}
 			else if (importButton.isClicked())
 				importShape();
 			else if (exitButton.isClicked())
@@ -303,8 +308,19 @@ public class View extends Applet implements Runnable {
 
 	private void loadGame() {
 		// TODO Auto-generated method stub
+		if(Control.platePool==null)
+			Control.platePool = PlatePool.getPlatePool();
+		Control.platePool.genreate();
+		if(plateIterator!=null)
+			plateIterator.reset();
+		else
+			plateIterator = PlateIterator.getPlateIterator();
 		loadGameButton.setClicked(false);
 		Serialize.load();
+		abstractfactory = FactoryProducer.getFactory("PLAYER");
+		Control.excuteFrame();
+
+
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////
@@ -448,8 +464,8 @@ public class View extends Applet implements Runnable {
 				save();
 			else if (mainMenuButton.isClicked()) {
 				now = 1;
-				main();
-				init();
+//				main();
+//				init();
 			}
 
 			try {
@@ -671,6 +687,7 @@ public class View extends Applet implements Runnable {
 			g.drawString(s, Width - 150, Height * 420 / 612);
 		}
 		plateIterator = PlateIterator.getPlateIterator();
+		plateIterator.reset();
 		while (plateIterator.hasnext()) {
 			plate = plateIterator.next();
 			if (plate.getState().equalsIgnoreCase("OnPlayer"))

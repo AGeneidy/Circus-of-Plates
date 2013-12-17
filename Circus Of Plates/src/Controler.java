@@ -48,7 +48,6 @@ public class Controler {
 			insertNewPlates(rowsNo); // insert new 4 plates
 			view.time = (System.currentTimeMillis());
 		}
-
 	}
 
 	private void insertNewPlates(int rowsNo) {
@@ -139,45 +138,29 @@ public class Controler {
 
 		if (x > view.gameWidth
 				- ((view.gameWidth / (rowsNo * 2 + 3)) * ((rowsNo * 50 - y) / 50)))
-			// still not fall
 			x += dx;
 		else
-			// Fall Now
 			falling();
 	}
 
 	public void addNewShape() {
 		// TODO Auto-generated method stub
 		platePool.getNewSape();
-		
+
 	}
 
 	public void generate() {
 		// TODO Auto-generated method stub
 		platePool.genreate();
-		
+
 	}
 
-//	public ArrayList<Plate> getRightHandPlatesOne() {
-//		// TODO Auto-generated method stub
-//
-//		return view.Players.get(0).getRightHandPlates();
-//	}
-//
-//	public ArrayList<Plate> getLeftHandPlatesOne() {
-//		// TODO Auto-generated method stub
-//		return view.Players.get(0).getLeftHandPlates();
-//	}
-//
-//	public ArrayList<Plate> getRightHandPlatesTwo() {
-//		// TODO Auto-generated method stub
-//
-//		return view.Players.get(1).getRightHandPlates();
-//	}
-//
-//	public ArrayList<Plate> getLeftHandPlatesTwo() {
-//		// TODO Auto-generated method stub
-//		return view.Players.get(1).getLeftHandPlates();
-//	}
-
+	public void Zero() {
+		// TODO Auto-generated method stub
+		platePool = null;
+		platePool = PlatePool.getPlatePool();
+		platePool.genreate();
+		if(plateIterator!=null)
+			plateIterator.reset();
+	}
 }

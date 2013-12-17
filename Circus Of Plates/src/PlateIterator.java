@@ -46,4 +46,9 @@ public class PlateIterator implements Iterator {
 	public void justifyIndex() {
 		index--;
 	}
+
+	public void reset() {
+		// TODO Auto-generated method stub
+		plateIterator = new PlateIterator();
+	}
 }
