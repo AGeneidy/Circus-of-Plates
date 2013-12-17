@@ -1,11 +1,31 @@
 package objectGenerator;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class PlateFactory extends AbstractFactory {
 	private static PlateFactory plateFactory;
+	private ArrayList<Class<?>> PlateChooser;
+	private DynamicLinkage link;
 
 	private PlateFactory() {
+		System.out.println(getClass().getClassLoader().getResource("")
+				.toString());
+		link = new DynamicLinkage();
+		PlateChooser = new ArrayList<Class<?>>();
+		String u = getClass().getResource("").toString().replace("%20", " ");
+		try {
+			PlateChooser.add(link.loadClass(new URL(u), "OvalPlate"));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// PlateChooser.add(link.loadClass(getClass().getResource(""),
+		// "OvalPlate"));
+		System.out.println(PlateChooser.size());
 	}
 
 	protected static PlateFactory getPlateFactory() {
@@ -18,13 +38,16 @@ public class PlateFactory extends AbstractFactory {
 
 	@Override
 	public Plate getRandomPlate() {
-		switch(new Random().nextInt(500) % 2){
-		case 0 :
-			return new OvalPlate();
-		case 1 : 
-			return new Ball();
+		int i = new Random().nextInt(500) % PlateChooser.size();
+		try {
+			return (Plate) PlateChooser.get(i).newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
-		return new OvalPlate();
+		// }
+		// return new OvalPlate();
 	}
 
 	@Override
