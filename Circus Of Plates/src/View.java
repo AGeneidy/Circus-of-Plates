@@ -28,35 +28,35 @@ public class View extends Applet implements Runnable {
 	protected Controler Control;
 	boolean mainMenu = true;
 	Button newGameButton, loadGameButton, importButton, onePlayerButton,
-			twoPlayersButton, exitButton, mainMenuButton, pauseButton, saveButton;
+			twoPlayersButton, exitButton, mainMenuButton, pauseButton,
+			saveButton;
 	ArrayList<Player> Players;
 	private int logo = 0;
 	int now = 0;
 	boolean gameOver = false;
-
+	SerializeDemo Serialize;
 
 	private void main() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
+
 	@Override
 	public void init() {
-
+		PlatePool a = PlatePool.getPlatePool();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		Height = dim.height - 100;
 		Width = dim.width - 100;
 		setSize(Width, Height);
 		gameWidth = Width * 930 / 1250;
 		gameHeight = Height;
-		
+
 		Players = new ArrayList<Player>();
-		
+
 		this.addKeyListener(new handleKeyBoard(this));
 		this.addMouseMotionListener(new mouseMotion(this));
 		this.addMouseListener(new mouseMotion(this));
-
+		Serialize = SerializeDemo.getSerializeDemo(this);
 		try {
 			url = getDocumentBase();
 		} catch (Exception e) {
@@ -87,7 +87,7 @@ public class View extends Applet implements Runnable {
 		Player player = abstractfactory.getPlayerOne();
 		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
 		Players.add(player);
-		
+
 		player = abstractfactory.getPlayerTwo();
 		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
 		Players.add(player);
@@ -109,29 +109,30 @@ public class View extends Applet implements Runnable {
 
 		twoPlayersButton = abstractfactory.getButton();
 		twoPlayersButton.setType("twoPlayers");
-		
+
 		mainMenuButton = abstractfactory.getButton();
 		mainMenuButton.setType("mainMenu");
 		mainMenuButton.setWidth(200);
 		mainMenuButton.setHight(86);
-		
+
 		exitButton = abstractfactory.getButton();
 		exitButton.setType("exit");
 		exitButton.setWidth(200);
 		exitButton.setHight(86);
-		
+
 		pauseButton = abstractfactory.getButton();
 		pauseButton.setType("pause");
 		pauseButton.setWidth(200);
 		pauseButton.setHight(86);
-		pauseButton.setPosition(Width - pauseButton.getWidth() - 30, Height - (pauseButton.getHeight() / 2 + 50));
-		
+		pauseButton.setPosition(Width - pauseButton.getWidth() - 30, Height
+				- (pauseButton.getHeight() / 2 + 50));
+
 		saveButton = abstractfactory.getButton();
 		saveButton.setType("save");
 		saveButton.setWidth(200);
 		saveButton.setHight(86);
-		saveButton.setPosition((Width - saveButton.getWidth())/2, Height
-				/ 2 - loadGameButton.getHight() / 2);
+		saveButton.setPosition((Width - saveButton.getWidth()) / 2, Height / 2
+				- loadGameButton.getHight() / 2);
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -150,30 +151,43 @@ public class View extends Applet implements Runnable {
 	public void run() {
 
 		// time = System.currentTimeMillis();
-		while(true){
-		timeBeforLoading = System.currentTimeMillis();
-		loadingTime = loadingTextTimer = System.currentTimeMillis()
-				- timeBeforLoading;
+		while (true) {
+			timeBeforLoading = System.currentTimeMillis();
+			loadingTime = loadingTextTimer = System.currentTimeMillis()
+					- timeBeforLoading;
+			excute();
 
-			loading();
-
-			mainMenu();
-
-			playersMenu();
-
-			addPlayers();
-			
-			play();
-			
-			pauseMenu();
-			
-			gameOverMenu();
 		}
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////
 	// //////loading/////////////////////////////////////////////////////////////////////////
 	// //////////////////////////////////////////////////////////////////////////////////////\
+
+	private void excute() {
+		// TODO Auto-generated method stub
+		switch (now) {
+		case 0:
+			loading();
+			break;
+		case 1:
+			mainMenu();
+			break;
+		case 2:
+			playersMenu();
+			addPlayers();
+			break;
+		case 3:
+			play();
+			break;
+		case 4:
+			pauseMenu();
+			break;
+		case 5:
+			gameOverMenu();
+			break;
+		}
+	}
 
 	private void loading() {
 		while (now == 0) {
@@ -201,13 +215,15 @@ public class View extends Applet implements Runnable {
 
 			mainMenuButtons();
 
-			if (newGameButton.isClicked())
+			if (newGameButton.isClicked()) {
 				now = 2; // players menu
-			else if (loadGameButton.isClicked())
+				newGameButton.setClicked(false);
+				Control.generate();
+			} else if (loadGameButton.isClicked())
 				loadGame();
 			else if (importButton.isClicked())
 				importShape();
-			else if(exitButton.isClicked())
+			else if (exitButton.isClicked())
 				System.exit(0);
 			try {
 				Thread.sleep(17);
@@ -281,12 +297,14 @@ public class View extends Applet implements Runnable {
 
 	private void importShape() {
 		// TODO Auto-generated method stub
-
+		importButton.setClicked(false);
+		Control.addNewShape();
 	}
 
 	private void loadGame() {
 		// TODO Auto-generated method stub
-
+		loadGameButton.setClicked(false);
+		Serialize.load();
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////
@@ -298,14 +316,14 @@ public class View extends Applet implements Runnable {
 			setSize(Width, Height);
 
 			playersMenuButtons();
-			
-			if(onePlayerButton.isClicked()){
+
+			if (onePlayerButton.isClicked()) {
 				addOnePlayer();
 				now = 3;
-			}else if(twoPlayersButton.isClicked()){
+			} else if (twoPlayersButton.isClicked()) {
 				addTwoPlayers();
 				now = 3;
-			}else if(mainMenuButton.isClicked()){
+			} else if (mainMenuButton.isClicked()) {
 				now = 1;
 				init();
 			}
@@ -317,52 +335,56 @@ public class View extends Applet implements Runnable {
 			repaint();
 		}
 	}
-	
 
 	private void playersMenuButtons() {
 		if (onePlayerButton.getY() == 0) // buttons position were not set
 			setPlayersMenuButtons();
-		else if (onePlayerButton.isMoving() || twoPlayersButton.isMoving() || mainMenuButton.isMoving()) { // move buttons
+		else if (onePlayerButton.isMoving() || twoPlayersButton.isMoving()
+				|| mainMenuButton.isMoving()) { // move buttons
 			movePlayersMenuButtons();
 		}
 	}
-	
 
 	private void setPlayersMenuButtons() {
 		onePlayerButton.setMoving(true);
-		onePlayerButton.setPosition(0, Height/2- (onePlayerButton.getHeight() + 30));
+		onePlayerButton.setPosition(0,
+				Height / 2 - (onePlayerButton.getHeight() + 30));
 
 		twoPlayersButton.setMoving(true);
-		twoPlayersButton.setPosition(Width - twoPlayersButton.getWidth(), Height/ 2 +30);
-		
+		twoPlayersButton.setPosition(Width - twoPlayersButton.getWidth(),
+				Height / 2 + 30);
+
 		mainMenuButton.setMoving(true);
-		mainMenuButton.setPosition(0, Height - (mainMenuButton.getHeight() / 2 + 50));
+		mainMenuButton.setPosition(0, Height
+				- (mainMenuButton.getHeight() / 2 + 50));
 	}
 
 	private void movePlayersMenuButtons() {
 		int buttonsSpeed = 20;
-		
+
 		if (onePlayerButton.isMoving()) {
 			onePlayerButton.setPosition(onePlayerButton.getX() + buttonsSpeed,
 					onePlayerButton.getY());
-			if (onePlayerButton.getX() >= Width / 2 - onePlayerButton.getWidth()/ 2)
+			if (onePlayerButton.getX() >= Width / 2
+					- onePlayerButton.getWidth() / 2)
 				onePlayerButton.setMoving(false);
 		}
 		if (twoPlayersButton.isMoving()) {
-			twoPlayersButton.setPosition(twoPlayersButton.getX() - buttonsSpeed,
+			twoPlayersButton.setPosition(
+					twoPlayersButton.getX() - buttonsSpeed,
 					twoPlayersButton.getY());
-			if (twoPlayersButton.getX() <= Width / 2 - twoPlayersButton.getWidth()
-					/ 2)
+			if (twoPlayersButton.getX() <= Width / 2
+					- twoPlayersButton.getWidth() / 2)
 				twoPlayersButton.setMoving(false);
 		}
 		if (mainMenuButton.isMoving()) {
-			mainMenuButton.setPosition(mainMenuButton.getX() + buttonsSpeed * 2,
+			mainMenuButton.setPosition(
+					mainMenuButton.getX() + buttonsSpeed * 2,
 					mainMenuButton.getY());
 			if (mainMenuButton.getX() >= Width - mainMenuButton.getWidth() - 60)
 				mainMenuButton.setMoving(false);
 		}
 	}
-
 
 	// //////////////////////////////////////////////////////////////////////////////////////
 	// ////addPlayers////////////////////////////////////////////////////////////////////////
@@ -385,39 +407,37 @@ public class View extends Applet implements Runnable {
 		gameStartTime = System.currentTimeMillis();
 		pauseButton.setClicked(false);
 		while (now == 3) {
-			
+
 			setSize(Width, Height);
-			
-			if(pauseButton.isClicked())
+
+			if (pauseButton.isClicked())
 				now = 4;
-			
-			
-			if(System.currentTimeMillis() - gameStartTime >= 3*1000){
+
+			if (System.currentTimeMillis() - gameStartTime >= 120 * 1000) {
 				gameOver = true;
 				now = 5;
 			}
-			
+
 			Control.excuteFrame();
 
-			
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+
 			repaint();
 		}
 	}
-	
+
 	// //////////////////////////////////////////////////////////////////////////////////////
 	// //////pauseMenu///////////////////////////////////////////////////////////////////////
 	// //////////////////////////////////////////////////////////////////////////////////////
 
 	private void pauseMenu() {
 		mainMenuButton.setClicked(false);
-		mainMenuButton.setPosition(Width / 2 - mainMenuButton.getWidth() / 2,  Height / 2 + mainMenuButton.getHeight() / 2
-				+ 50);
+		mainMenuButton.setPosition(Width / 2 - mainMenuButton.getWidth() / 2,
+				Height / 2 + mainMenuButton.getHeight() / 2 + 50);
 		pauseButton.setClicked(true);
 		while (now == 4) {
 			setSize(Width, Height);
@@ -426,12 +446,12 @@ public class View extends Applet implements Runnable {
 
 			if (saveButton.isClicked())
 				save();
-			else if (mainMenuButton.isClicked()){
+			else if (mainMenuButton.isClicked()) {
 				now = 1;
 				main();
 				init();
 			}
-				
+
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
@@ -441,35 +461,34 @@ public class View extends Applet implements Runnable {
 		}
 	}
 
-
 	private void save() {
 		// TODO Auto-generated method stub
-		
+		saveButton.setClicked(false);
+		Serialize.save();
 	}
 
 	private void pauseMenuButtons() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	// //////////////////////////////////////////////////////////////////////////////////////
 	// //////gameOverMenu////////////////////////////////////////////////////////////////////
 	// //////////////////////////////////////////////////////////////////////////////////////
 
-
 	private void gameOverMenu() {
 		mainMenuButton.setClicked(false);
-		mainMenuButton.setPosition(Width / 2 - mainMenuButton.getWidth() / 2,  Height / 2 + mainMenuButton.getHeight() / 2
-				+ 50);
+		mainMenuButton.setPosition(Width / 2 - mainMenuButton.getWidth() / 2,
+				Height / 2 + mainMenuButton.getHeight() / 2 + 50);
 		while (now == 5) {
 			setSize(Width, Height);
-			
-			if (mainMenuButton.isClicked()){
+
+			if (mainMenuButton.isClicked()) {
 				now = 1;
 				main();
 				init();
 			}
-				
+
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
@@ -478,7 +497,7 @@ public class View extends Applet implements Runnable {
 			repaint();
 		}
 	}
-	
+
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -504,31 +523,30 @@ public class View extends Applet implements Runnable {
 		else if (now == 5)
 			paintGameOverMenu(g);
 	}
-	
+
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////paintLoading////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
 
 	private void paintGameOverMenu(Graphics g) {
-		if(Players.size() == 1)
+		if (Players.size() == 1)
 			g.drawImage(backOverOne, (int) backX, 0, Width, Height, this);
-		else if(Players.size() == 2)
+		else if (Players.size() == 2)
 			g.drawImage(backOverTwo, (int) backX, 0, Width, Height, this);
-		
+
 		g.setColor(Color.getHSBColor(11, 11, 11));
 		Font font = new Font("Serif", Font.BOLD, 40);
 		g.setFont(font);
 
 		String s = Integer.toString(Players.get(0).getScore());
-		g.drawString(s, Width/2 + 50, Height*160/612);
-		if(Players.size() == 2){
+		g.drawString(s, Width / 2 + 50, Height * 160 / 612);
+		if (Players.size() == 2) {
 			s = Integer.toString(Players.get(1).getScore());
-			g.drawString(s, Width/2 + 50, Height*320/612);
+			g.drawString(s, Width / 2 + 50, Height * 320 / 612);
 		}
-		
+
 		mainMenuButton.paint(g, this, url);
-		
-		
+
 	}
 
 	private void paintLoading(Graphics g) {
@@ -545,7 +563,7 @@ public class View extends Applet implements Runnable {
 		else if (loadingTextTimer2 >= 2000)
 			loadingTextTimer = System.currentTimeMillis();
 	}
-	
+
 	private void paintLogo(Graphics g) {
 		int size = 400;
 		int x = Width / 2 - 200;
@@ -600,56 +618,57 @@ public class View extends Applet implements Runnable {
 			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
 		}
 	}
-	
+
 	// /////////////////////////////////////////////////////////////////////////////////
 	// ///////paintMainMenu/////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
-	
+
 	private void paintMainMenu(Graphics g) {
 		g.drawImage(backMenu, (int) backX, 0, Width, Height, this);
-		if(newGameButton.getY()!=0){
+		if (newGameButton.getY() != 0) {
 			newGameButton.paint(g, this, url);
 			loadGameButton.paint(g, this, url);
 			importButton.paint(g, this, url);
 			exitButton.paint(g, this, url);
 		}
 	}
-	
+
 	// /////////////////////////////////////////////////////////////////////////////////
 	// ////paintPlayersMenu/////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
-	
+
 	private void paintPlayersMenu(Graphics g) {
 		g.drawImage(backMenu, (int) backX, 0, Width, Height, this);
-		if(onePlayerButton.getY()!=0){
+		if (onePlayerButton.getY() != 0) {
 			onePlayerButton.paint(g, this, url);
 			twoPlayersButton.paint(g, this, url);
 			mainMenuButton.paint(g, this, url);
 		}
 	}
-	
+
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////paintGame///////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
 
 	private void paintGame(Graphics g) {
-		if(Players.size() == 1)
+		if (Players.size() == 1)
 			g.drawImage(back1, (int) backX, 0, Width, Height, this);
-		else if(Players.size() == 2)
+		else if (Players.size() == 2)
 			g.drawImage(back2, (int) backX, 0, Width, Height, this);
-		
+
 		g.setColor(Color.getHSBColor(11, 11, 11));
 		Font font = new Font("Serif", Font.BOLD, 40);
 		g.setFont(font);
-		
-		String s = Long.toString(120 - (System.currentTimeMillis() - gameStartTime)/1000);
-		g.drawString(s, Width-150,(int) Height*110/612);
+
+		String s = Long
+				.toString(120 - (System.currentTimeMillis() - gameStartTime) / 1000);
+		g.drawString(s, Width - 150, (int) Height * 110 / 612);
 
 		s = Integer.toString(Players.get(0).getScore());
-		g.drawString(s, Width-150, Height*290/612);
-		if(Players.size() == 2){
+		g.drawString(s, Width - 150, Height * 290 / 612);
+		if (Players.size() == 2) {
 			s = Integer.toString(Players.get(1).getScore());
-			g.drawString(s, Width-150, Height*420/612);
+			g.drawString(s, Width - 150, Height * 420 / 612);
 		}
 		plateIterator = PlateIterator.getPlateIterator();
 		while (plateIterator.hasnext()) {
@@ -663,19 +682,18 @@ public class View extends Applet implements Runnable {
 
 		pauseButton.paint(g, this, url);
 	}
-	
+
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////paintPauseMenu//////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
-	
+
 	private void paintPauseMenu(Graphics g) {
 		g.drawImage(backPause, (int) backX, 0, Width, Height, this);
-		if(saveButton.getY()!=0){
+		if (saveButton.getY() != 0) {
 			saveButton.paint(g, this, url);
 			mainMenuButton.paint(g, this, url);
 		}
 	}
-
 
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////

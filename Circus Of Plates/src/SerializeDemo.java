@@ -4,16 +4,26 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class SerializeDemo {
-	View a;
+	private View a;
+	private static SerializeDemo b;
 
-	public SerializeDemo(View Boda) {
+	private SerializeDemo(View Boda) {
 		// TODO Auto-generated constructor stub
 		a = Boda;
 	}
 
+	public static SerializeDemo getSerializeDemo(View Boda) {
+		if (b != null)
+			return b;
+		else {
+			return b = new SerializeDemo(Boda);
+		}
+	}
+
 	public void save() {
 		try {
-			String name = JOptionPane.showInputDialog(null, "Enter your full name: ");
+			String name = JOptionPane.showInputDialog(null,
+					"Enter your full name: ");
 			File file = new File("E:\\" + name + ".ser");
 			if (!file.exists()) {
 				file.createNewFile();
@@ -34,10 +44,11 @@ public class SerializeDemo {
 
 	public void load() {
 		try {
-			String name = JOptionPane.showInputDialog(null, "Enter your full name: ");
+			String name = JOptionPane.showInputDialog(null,
+					"Enter your full name: ");
 			File file = new File("E:\\" + name + ".ser");
 			if (!file.exists()) {
-				file.createNewFile();
+				return;
 			}
 			FileInputStream fileIn = new FileInputStream(file);
 			ObjectInputStream in = new ObjectInputStream(fileIn);

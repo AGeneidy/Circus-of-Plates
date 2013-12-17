@@ -8,15 +8,15 @@ public class PlatePool implements Container, java.io.Serializable {
 	AbstractFactory plateFactory;
 
 	private PlatePool() {
-		inUse = new ArrayList<Plate>();
-		available = new ArrayList<Plate>();
 		plateFactory = FactoryProducer.getFactory("PLATE");
-		genreate();
+//		genreate();
 	}
 
-	private void genreate() {
+	protected void genreate() {
 		// TODO Auto-generated method stub
 		Plate q;
+		inUse = new ArrayList<Plate>();
+		available = new ArrayList<Plate>();
 		for (int i = 0; i < 1000; i++) {
 			q = plateFactory.getRandomPlate();
 			q.setID(i);
@@ -63,6 +63,12 @@ public class PlatePool implements Container, java.io.Serializable {
 
 	public static void setPool(PlatePool p) {
 		pool = p;
+	}
+
+	public void getNewSape() {
+		// TODO Auto-generated method stub
+		pool.getNewSape();
+		
 	}
 
 }

@@ -146,6 +146,18 @@ public class Controler {
 			falling();
 	}
 
+	public void addNewShape() {
+		// TODO Auto-generated method stub
+		platePool.getNewSape();
+		
+	}
+
+	public void generate() {
+		// TODO Auto-generated method stub
+		platePool.genreate();
+		
+	}
+
 //	public ArrayList<Plate> getRightHandPlatesOne() {
 //		// TODO Auto-generated method stub
 //
