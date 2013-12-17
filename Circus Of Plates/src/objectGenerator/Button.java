@@ -133,7 +133,19 @@ public class Button {
 			if (mouseOnButton)
 				return "images/twoPlayersButton2.png";
 			return "images/twoPlayersButton1.png";
+			
+		case "mainMenu":
+			if (mouseOnButton)
+				return "images/mainMenuButton2.png";
+			return "images/mainMenuButton1.png";
+			
+		case "pause":
+			if (mouseOnButton)
+				return "images/pauseButton2.png";
+			return "images/pauseButton1.png";
 		}
+		
+		
 		return null;
 	}
 }

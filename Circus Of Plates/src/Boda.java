@@ -1,5 +1,7 @@
 import java.applet.Applet;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -16,7 +18,7 @@ import objectGenerator.Player;
 public class Boda extends Applet implements Runnable {
 
 	protected long time, startTime, timeBeforLoading, loadingTime,
-			loadingTextTimer, loadingTextTimer2;
+			loadingTextTimer, loadingTextTimer2, gameStartTime, timeRemains;
 	private PlateIterator plateIterator;
 	private Image i;
 	private Graphics doubleG;
@@ -29,11 +31,11 @@ public class Boda extends Applet implements Runnable {
 	int gameWidth, gameHeight;
 	private double backX, backDx;
 	URL url;
-	Image back1, back;
+	Image backMenu, back1, back2;
 	private Controler Control;
 	boolean mainMenu = true;
 	Button newGameButton, loadGameButton, importButton, onePlayerButton,
-			twoPlayersButton, exitButton;
+			twoPlayersButton, exitButton, mainMenuButton, pauseButton;
 	ArrayList<Player> Players;
 	private int logo = 0;
 	int now = 0;
@@ -47,7 +49,9 @@ public class Boda extends Applet implements Runnable {
 		setSize(Width, Height);
 		gameWidth = Width * 930 / 1250;
 		gameHeight = Height;
+		
 		Players = new ArrayList<Player>();
+		
 		this.addKeyListener(new handleKeyBoard(this));
 		this.addMouseMotionListener(new mouseMotion(this));
 		this.addMouseListener(new mouseMotion(this));
@@ -57,10 +61,10 @@ public class Boda extends Applet implements Runnable {
 		} catch (Exception e) {
 		}
 
-		back = getImage(url, "images/background.png");
-		back1 = getImage(url, "images/back1.jpg");
+		back1 = getImage(url, "images/background1.png");
+		back2 = getImage(url, "images/background2.png");
+		backMenu = getImage(url, "images/back1.jpg");
 
-		abstractfactory = FactoryProducer.getFactory("BUTTON");
 		getButtons();
 	}
 
@@ -71,7 +75,6 @@ public class Boda extends Applet implements Runnable {
 		Player player = abstractfactory.getPlayerOne();
 		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
 		Players.add(player);
-
 	}
 
 	public void addTwoPlayers() {
@@ -80,12 +83,14 @@ public class Boda extends Applet implements Runnable {
 		Player player = abstractfactory.getPlayerOne();
 		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
 		Players.add(player);
+		
 		player = abstractfactory.getPlayerTwo();
 		player.setWindowattri(gameWidth, gameHeight); // <<<<<<<<<<<<<<<<<<<<<<
 		Players.add(player);
 	}
 
 	private void getButtons() {
+		abstractfactory = FactoryProducer.getFactory("BUTTON");
 		newGameButton = abstractfactory.getButton();
 		newGameButton.setType("newGame");
 
@@ -100,11 +105,21 @@ public class Boda extends Applet implements Runnable {
 
 		twoPlayersButton = abstractfactory.getButton();
 		twoPlayersButton.setType("twoPlayers");
-
+		
+		mainMenuButton = abstractfactory.getButton();
+		mainMenuButton.setType("mainMenu");
+		mainMenuButton.setWidth(200);
+		mainMenuButton.setHight(86);
+		
 		exitButton = abstractfactory.getButton();
 		exitButton.setType("exit");
 		exitButton.setWidth(200);
 		exitButton.setHight(86);
+		
+		pauseButton = abstractfactory.getButton();
+		pauseButton.setType("pause");
+		pauseButton.setWidth(200);
+		pauseButton.setHight(86);
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -123,21 +138,21 @@ public class Boda extends Applet implements Runnable {
 	public void run() {
 
 		// time = System.currentTimeMillis();
-
+		while(true){
 		timeBeforLoading = System.currentTimeMillis();
 		loadingTime = loadingTextTimer = System.currentTimeMillis()
 				- timeBeforLoading;
 
-		loading();
+			loading();
 
-		mainMenu();
+			mainMenu();
 
-		playersMenu();
+			playersMenu();
 
-		addPlayers();
-
-		play();
-
+			addPlayers();
+			
+			play();
+		}
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////
@@ -149,7 +164,6 @@ public class Boda extends Applet implements Runnable {
 			loadingTime = System.currentTimeMillis() - timeBeforLoading;
 			loadingTextTimer2 = System.currentTimeMillis() - loadingTextTimer;
 			setSize(Width, Height);
-			Control.excuteFrame();
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
@@ -177,8 +191,8 @@ public class Boda extends Applet implements Runnable {
 				loadGame();
 			else if (importButton.isClicked())
 				importShape();
-			else if (exitButton.isClicked());
-
+			else if(exitButton.isClicked())
+				System.exit(0);
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
@@ -275,8 +289,10 @@ public class Boda extends Applet implements Runnable {
 			}else if(twoPlayersButton.isClicked()){
 				addTwoPlayers();
 				now = 3;
+			}else if(mainMenuButton.isClicked()){
+				now = 1;
+				init();
 			}
-			
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
@@ -290,7 +306,7 @@ public class Boda extends Applet implements Runnable {
 	private void playersMenuButtons() {
 		if (onePlayerButton.getY() == 0) // buttons position were not set
 			setPlayersMenuButtons();
-		else if (onePlayerButton.isMoving() || twoPlayersButton.isMoving() || exitButton.isMoving()) { // move buttons
+		else if (onePlayerButton.isMoving() || twoPlayersButton.isMoving() || mainMenuButton.isMoving()) { // move buttons
 			movePlayersMenuButtons();
 		}
 	}
@@ -302,6 +318,9 @@ public class Boda extends Applet implements Runnable {
 
 		twoPlayersButton.setMoving(true);
 		twoPlayersButton.setPosition(Width - twoPlayersButton.getWidth(), Height/ 2 +30);
+		
+		mainMenuButton.setMoving(true);
+		mainMenuButton.setPosition(0, Height - (mainMenuButton.getHeight() / 2 + 50));
 	}
 
 	private void movePlayersMenuButtons() {
@@ -319,7 +338,13 @@ public class Boda extends Applet implements Runnable {
 			if (twoPlayersButton.getX() <= Width / 2 - twoPlayersButton.getWidth()
 					/ 2)
 				twoPlayersButton.setMoving(false);
-		}		
+		}
+		if (mainMenuButton.isMoving()) {
+			mainMenuButton.setPosition(mainMenuButton.getX() + buttonsSpeed * 2,
+					mainMenuButton.getY());
+			if (mainMenuButton.getX() >= Width - mainMenuButton.getWidth() - 60)
+				mainMenuButton.setMoving(false);
+		}
 	}
 
 
@@ -341,14 +366,22 @@ public class Boda extends Applet implements Runnable {
 	// //////////////////////////////////////////////////////////////////////////////////////
 
 	private void play() {
-		while (true) {
+		gameStartTime = System.currentTimeMillis();
+		while (now == 3) {
+			
 			setSize(Width, Height);
+			
+			if(pauseButton.isClicked())
+				now = 4;
+			
 			Control.excuteFrame();
+			
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
 			repaint();
 		}
 	}
@@ -382,7 +415,7 @@ public class Boda extends Applet implements Runnable {
 	// /////////////////////////////////////////////////////////////////////////////////
 
 	private void paintLoading(Graphics g) {
-		g.drawImage(back1, (int) backX, 0, Width, Height, this);
+		g.drawImage(backMenu, (int) backX, 0, Width, Height, this);
 		paintLogo(g);
 		if (loadingTextTimer2 <= 500)
 			paintLoadingText(g, 1);
@@ -456,11 +489,13 @@ public class Boda extends Applet implements Runnable {
 	// /////////////////////////////////////////////////////////////////////////////////
 	
 	private void paintMainMenu(Graphics g) {
-		g.drawImage(back1, (int) backX, 0, Width, Height, this);
-		newGameButton.paint(g, this, url);
-		loadGameButton.paint(g, this, url);
-		importButton.paint(g, this, url);
-		exitButton.paint(g, this, url);
+		g.drawImage(backMenu, (int) backX, 0, Width, Height, this);
+		if(newGameButton.getY()!=0){
+			newGameButton.paint(g, this, url);
+			loadGameButton.paint(g, this, url);
+			importButton.paint(g, this, url);
+			exitButton.paint(g, this, url);
+		}
 	}
 	
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -468,10 +503,12 @@ public class Boda extends Applet implements Runnable {
 	// /////////////////////////////////////////////////////////////////////////////////
 	
 	private void paintPlayersMenu(Graphics g) {
-		g.drawImage(back1, (int) backX, 0, Width, Height, this);
-		onePlayerButton.paint(g, this, url);
-		twoPlayersButton.paint(g, this, url);
-		exitButton.paint(g, this, url);		
+		g.drawImage(backMenu, (int) backX, 0, Width, Height, this);
+		if(onePlayerButton.getY()!=0){
+			onePlayerButton.paint(g, this, url);
+			twoPlayersButton.paint(g, this, url);
+			mainMenuButton.paint(g, this, url);
+		}
 	}
 	
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -479,8 +516,24 @@ public class Boda extends Applet implements Runnable {
 	// /////////////////////////////////////////////////////////////////////////////////
 
 	private void paintGame(Graphics g) {
-		g.drawImage(back, (int) backX, 0, Width, Height, this);
+		if(Players.size() == 1)
+			g.drawImage(back1, (int) backX, 0, Width, Height, this);
+		else if(Players.size() == 2)
+			g.drawImage(back2, (int) backX, 0, Width, Height, this);
+		
+		g.setColor(Color.getHSBColor(11, 11, 11));
+		Font font = new Font("Serif", Font.BOLD, 40);
+		g.setFont(font);
+		
+		String s = Long.toString(120 - (System.currentTimeMillis() - gameStartTime)/1000);
+		g.drawString(s, Width-150,(int) Height*110/612);
 
+		s = Integer.toString(Players.get(0).getScore());
+		g.drawString(s, Width-150, Height*290/612);
+		if(Players.size() == 2){
+			s = Integer.toString(Players.get(1).getScore());
+			g.drawString(s, Width-150, Height*420/612);
+		}
 		plateIterator = PlateIterator.getPlateIterator();
 		while (plateIterator.hasnext()) {
 			plate = plateIterator.next();

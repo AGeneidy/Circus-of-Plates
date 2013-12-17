@@ -22,7 +22,7 @@ public class Controler {
 	private Plate plate;
 	private int rowsNo = 3;
 	Boda view;
-	private int timer;
+	long timer, gameTimer, gameStartTime;
 
 	public Controler(Boda boda) {
 		view = boda;

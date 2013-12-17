@@ -21,6 +21,14 @@ public class Player implements java.io.Serializable {
 	private int windowHeight;
 	private int Score;
 
+	public int getScore() {
+		return Score;
+	}
+
+	public void setScore(int score) {
+		Score = score;
+	}
+
 	protected Player() {
 		height = 141;
 		// TODO Auto-generated constructor stub

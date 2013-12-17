@@ -31,10 +31,11 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 		} else if(view.now == 2){
 			checkOnButton(view.onePlayerButton, e);
 			checkOnButton(view.twoPlayersButton, e);
-			checkOnButton(view.exitButton, e);
+			checkOnButton(view.mainMenuButton, e);
 			
 		}else if(view.now == 3)
 			view.Players.get(0).mouseMove(e.getX());
+			checkOnButton(view.pauseButton, e);
 	}
 	
 	
@@ -55,7 +56,9 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 		}else if(view.now == 2){
 			checkClicked(view.onePlayerButton,e); // add 2 players
 			checkClicked(view.twoPlayersButton,e); // exit
-			checkClicked(view.exitButton,e); // exit
+			checkClicked(view.mainMenuButton,e); // exit
+		}else if(view.now == 3){
+			checkClicked(view.pauseButton,e); // exit
 		}
 	}
 	
