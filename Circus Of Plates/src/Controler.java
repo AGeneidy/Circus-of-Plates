@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Controler {
 
-	private PlatePool platePool;
+	protected PlatePool platePool;
 	private PlateIterator plateIterator;
 	private double gravity = 1;
 	private double dt = .2;

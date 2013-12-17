@@ -25,7 +25,7 @@ public class Boda extends Applet implements Runnable {
 	private double backX, backDx;
 	URL url;
 	Image backMenu, back1, back2;
-	private Controler Control;
+	protected Controler Control;
 	boolean mainMenu = true;
 	Button newGameButton, loadGameButton, importButton, onePlayerButton,
 			twoPlayersButton, exitButton, mainMenuButton, pauseButton;

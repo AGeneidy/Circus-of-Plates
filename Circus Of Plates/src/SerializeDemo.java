@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -22,6 +21,7 @@ public class SerializeDemo {
 			out.writeObject(i);
 			for (int k = 0; k < i; k++)
 				out.writeObject(a.Players.get(k));
+			out.writeObject(PlatePool.getPlatePool());
 			out.close();
 			fileOut.close();
 			System.out.printf("Serialized data is saved in /tmp/employee.ser");
@@ -43,6 +43,7 @@ public class SerializeDemo {
 				int i = (int) in.readObject();
 				for (int k = 0; k < i; k++)
 					a.Players.add((Player) in.readObject());
+				PlatePool.setPool((PlatePool) in.readObject());
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -1,8 +1,7 @@
 
-
 import java.util.ArrayList;
 
-public class PlatePool implements Container {
+public class PlatePool implements Container, java.io.Serializable {
 	private static PlatePool pool;
 	private ArrayList<Plate> inUse;
 	private ArrayList<Plate> available;
@@ -60,6 +59,10 @@ public class PlatePool implements Container {
 	public ArrayList<Plate> getIterator() {
 		// TODO Auto-generated method stub
 		return inUse;
+	}
+
+	public static void setPool(PlatePool p) {
+		pool = p;
 	}
 
 }
