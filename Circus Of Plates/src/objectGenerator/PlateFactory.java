@@ -12,20 +12,20 @@ public class PlateFactory extends AbstractFactory {
 	private DynamicLinkage link;
 
 	private PlateFactory() {
-		System.out.println(getClass().getClassLoader().getResource("")
-				.toString());
-		link = new DynamicLinkage();
-		PlateChooser = new ArrayList<Class<?>>();
-		String u = getClass().getResource("").toString().replace("%20", " ");
-		try {
-			PlateChooser.add(link.loadClass(new URL(u), "OvalPlate"));
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// PlateChooser.add(link.loadClass(getClass().getResource(""),
-		// "OvalPlate"));
-		System.out.println(PlateChooser.size());
+//		System.out.println(getClass().getClassLoader().getResource("")
+//				.toString());
+//		link = new DynamicLinkage();
+//		PlateChooser = new ArrayList<Class<?>>();
+//		String u = getClass().getResource("").toString().replace("%20", " ");
+//		try {
+//			PlateChooser.add(link.loadClass(new URL(u), "OvalPlate"));
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		// PlateChooser.add(link.loadClass(getClass().getResource(""),
+//		// "OvalPlate"));
+//		System.out.println(PlateChooser.size());
 	}
 
 	protected static PlateFactory getPlateFactory() {
@@ -38,16 +38,16 @@ public class PlateFactory extends AbstractFactory {
 
 	@Override
 	public Plate getRandomPlate() {
-		int i = new Random().nextInt(500) % PlateChooser.size();
-		try {
-			return (Plate) PlateChooser.get(i).newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+//		int i = new Random().nextInt(500) % PlateChooser.size();
+//		try {
+//			return (Plate) PlateChooser.get(i).newInstance();
+//		} catch (InstantiationException | IllegalAccessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return null;
+//		}
 		// }
-		// return new OvalPlate();
+		 return new OvalPlate();
 	}
 
 	@Override

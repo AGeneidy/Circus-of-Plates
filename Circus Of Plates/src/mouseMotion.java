@@ -27,8 +27,14 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 			checkOnButton(view.loadGameButton, e);
 			checkOnButton(view.importButton, e);
 			checkOnButton(view.exitButton, e);
-		} else;
-//			view.Players.get(0).mouseMove(e.getX());
+			
+		} else if(view.now == 2){
+			checkOnButton(view.onePlayerButton, e);
+			checkOnButton(view.twoPlayersButton, e);
+			checkOnButton(view.exitButton, e);
+			
+		}else if(view.now == 3)
+			view.Players.get(0).mouseMove(e.getX());
 	}
 	
 	
@@ -41,10 +47,16 @@ public class mouseMotion implements MouseMotionListener, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		checkClicked(view.newGameButton,e); //add one player
-		checkClicked(view.loadGameButton,e); // add 2 players
-		checkClicked(view.importButton,e); // add 2 players
-		checkClicked(view.exitButton,e); // exit
+		if(view.now == 1){
+			checkClicked(view.newGameButton,e); //add one player
+			checkClicked(view.loadGameButton,e); // add 2 players
+			checkClicked(view.importButton,e); // add 2 players
+			checkClicked(view.exitButton,e); // exit
+		}else if(view.now == 2){
+			checkClicked(view.onePlayerButton,e); // add 2 players
+			checkClicked(view.twoPlayersButton,e); // exit
+			checkClicked(view.exitButton,e); // exit
+		}
 	}
 	
 	private void checkClicked(Button b, MouseEvent e){

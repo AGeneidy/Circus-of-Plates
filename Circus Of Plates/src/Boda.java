@@ -15,7 +15,8 @@ import objectGenerator.Player;
 
 public class Boda extends Applet implements Runnable {
 
-	protected long time, startTime, timeBeforLoading, loadingTime, loadingTextTimer, loadingTextTimer2;
+	protected long time, startTime, timeBeforLoading, loadingTime,
+			loadingTextTimer, loadingTextTimer2;
 	private PlateIterator plateIterator;
 	private Image i;
 	private Graphics doubleG;
@@ -31,7 +32,8 @@ public class Boda extends Applet implements Runnable {
 	Image back1, back;
 	private Controler Control;
 	boolean mainMenu = true;
-	Button newGameButton,loadGameButton,importButton,onePlayerButton,twoPlayersButton,exitButton;
+	Button newGameButton, loadGameButton, importButton, onePlayerButton,
+			twoPlayersButton, exitButton;
 	ArrayList<Player> Players;
 	private int logo = 0;
 	int now = 0;
@@ -89,9 +91,15 @@ public class Boda extends Applet implements Runnable {
 
 		loadGameButton = abstractfactory.getButton();
 		loadGameButton.setType("loadGame");
-		
+
 		importButton = abstractfactory.getButton();
 		importButton.setType("import");
+
+		onePlayerButton = abstractfactory.getButton();
+		onePlayerButton.setType("onePlayer");
+
+		twoPlayersButton = abstractfactory.getButton();
+		twoPlayersButton.setType("twoPlayers");
 
 		exitButton = abstractfactory.getButton();
 		exitButton.setType("exit");
@@ -100,7 +108,7 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////
-	// /////////////////////////////////////////////////////////////////////////////////
+	// /////Start///////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
 
 	@Override
@@ -114,19 +122,27 @@ public class Boda extends Applet implements Runnable {
 	@Override
 	public void run() {
 
-//		time = System.currentTimeMillis();
-		
+		// time = System.currentTimeMillis();
+
 		timeBeforLoading = System.currentTimeMillis();
-		loadingTime =loadingTextTimer = System.currentTimeMillis() - timeBeforLoading;
+		loadingTime = loadingTextTimer = System.currentTimeMillis()
+				- timeBeforLoading;
+
 		loading();
-		
+
 		mainMenu();
-		
+
+		playersMenu();
+
 		addPlayers();
-		
+
 		play();
 
 	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////
+	// //////loading/////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////
 
 	private void loading() {
 		while (now == 0) {
@@ -145,43 +161,24 @@ public class Boda extends Applet implements Runnable {
 		}
 	}
 
+	// //////////////////////////////////////////////////////////////////////////////////////
+	// ////mainMenu//////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////
+
 	private void mainMenu() {
 		while (now == 1) {
 			setSize(Width, Height);
-			
+
 			mainMenuButtons();
-			
-			if(newGameButton.isClicked());
-				
-			else if(loadGameButton.isClicked())
+
+			if (newGameButton.isClicked())
+				now = 2; // players menu
+			else if (loadGameButton.isClicked())
 				loadGame();
-			else if(importButton.isClicked())
+			else if (importButton.isClicked())
 				importShape();
-			else if(exitButton.isClicked());
-				
-			try {
-				Thread.sleep(17);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			repaint();
-		}
-	}
-	
-	private void importShape() {
-		// TODO Auto-generated method stub
-		
-	}
+			else if (exitButton.isClicked());
 
-	private void loadGame() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void play(){
-		while (true) {
-			setSize(Width, Height);
-			Control.excuteFrame();
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
@@ -194,10 +191,10 @@ public class Boda extends Applet implements Runnable {
 	private void mainMenuButtons() {
 		if (exitButton.getY() == 0) // buttons position were not set
 			setMainMenuButtons();
-		else if (newGameButton.isMoving() || loadGameButton.isMoving() || importButton.isMoving()
-				|| exitButton.isMoving()) { // move buttons
+		else if (newGameButton.isMoving() || loadGameButton.isMoving()
+				|| importButton.isMoving() || exitButton.isMoving()) { // move
+																		// buttons
 			moveMainMenuButtons();
-		} else {
 		}
 	}
 
@@ -205,23 +202,27 @@ public class Boda extends Applet implements Runnable {
 		int buttonsSpeed = 20;
 
 		if (newGameButton.isMoving()) {
-			newGameButton.setPosition(newGameButton.getX() + buttonsSpeed, newGameButton.getY());
-			if (newGameButton.getX() >= Width / 2 - newGameButton.getWidth() / 2)
+			newGameButton.setPosition(newGameButton.getX() + buttonsSpeed,
+					newGameButton.getY());
+			if (newGameButton.getX() >= Width / 2 - newGameButton.getWidth()
+					/ 2)
 				newGameButton.setMoving(false);
 		}
 		if (loadGameButton.isMoving()) {
 			loadGameButton.setPosition(loadGameButton.getX() - buttonsSpeed,
 					loadGameButton.getY());
-			if (loadGameButton.getX() <= Width / 2 - loadGameButton.getWidth() / 2)
+			if (loadGameButton.getX() <= Width / 2 - loadGameButton.getWidth()
+					/ 2)
 				loadGameButton.setMoving(false);
 		}
-		
+
 		if (importButton.isMoving()) {
-			importButton.setPosition(importButton.getX() + buttonsSpeed, importButton.getY());
+			importButton.setPosition(importButton.getX() + buttonsSpeed,
+					importButton.getY());
 			if (importButton.getX() >= Width / 2 - importButton.getWidth() / 2)
 				importButton.setMoving(false);
 		}
-		
+
 		if (exitButton.isMoving()) {
 			exitButton.setPosition(exitButton.getX() + buttonsSpeed * 2,
 					exitButton.getY());
@@ -232,18 +233,99 @@ public class Boda extends Applet implements Runnable {
 
 	private void setMainMenuButtons() {
 		newGameButton.setMoving(true);
-		newGameButton.setPosition(0, Height / 2 - (newGameButton.getHeight()*3/2 + 50));
+		newGameButton.setPosition(0, Height / 2
+				- (newGameButton.getHeight() * 3 / 2 + 50));
 
 		loadGameButton.setMoving(true);
-		loadGameButton.setPosition(Width - loadGameButton.getWidth(), Height / 2 - loadGameButton.getHight()/2);
-		
+		loadGameButton.setPosition(Width - loadGameButton.getWidth(), Height
+				/ 2 - loadGameButton.getHight() / 2);
+
 		importButton.setMoving(true);
-		importButton.setPosition(0, Height / 2 + loadGameButton.getHeight()/2 + 50);
+		importButton.setPosition(0, Height / 2 + loadGameButton.getHeight() / 2
+				+ 50);
 
 		exitButton.setMoving(true);
-		exitButton.setPosition(0, Height - (exitButton.getHeight()/2 + 50));
+		exitButton.setPosition(0, Height - (exitButton.getHeight() / 2 + 50));
 
 	}
+
+	private void importShape() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void loadGame() {
+		// TODO Auto-generated method stub
+
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////
+	// //////playersMenu/////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////
+
+	private void playersMenu() {
+		while (now == 2) {
+			setSize(Width, Height);
+
+			playersMenuButtons();
+			
+			if(onePlayerButton.isClicked()){
+				addOnePlayer();
+				now = 3;
+			}else if(twoPlayersButton.isClicked()){
+				addTwoPlayers();
+				now = 3;
+			}
+			
+			try {
+				Thread.sleep(17);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			repaint();
+		}
+	}
+	
+
+	private void playersMenuButtons() {
+		if (onePlayerButton.getY() == 0) // buttons position were not set
+			setPlayersMenuButtons();
+		else if (onePlayerButton.isMoving() || twoPlayersButton.isMoving() || exitButton.isMoving()) { // move buttons
+			movePlayersMenuButtons();
+		}
+	}
+	
+
+	private void setPlayersMenuButtons() {
+		onePlayerButton.setMoving(true);
+		onePlayerButton.setPosition(0, Height/2- (onePlayerButton.getHeight() + 30));
+
+		twoPlayersButton.setMoving(true);
+		twoPlayersButton.setPosition(Width - twoPlayersButton.getWidth(), Height/ 2 +30);
+	}
+
+	private void movePlayersMenuButtons() {
+		int buttonsSpeed = 20;
+		
+		if (onePlayerButton.isMoving()) {
+			onePlayerButton.setPosition(onePlayerButton.getX() + buttonsSpeed,
+					onePlayerButton.getY());
+			if (onePlayerButton.getX() >= Width / 2 - onePlayerButton.getWidth()/ 2)
+				onePlayerButton.setMoving(false);
+		}
+		if (twoPlayersButton.isMoving()) {
+			twoPlayersButton.setPosition(twoPlayersButton.getX() - buttonsSpeed,
+					twoPlayersButton.getY());
+			if (twoPlayersButton.getX() <= Width / 2 - twoPlayersButton.getWidth()
+					/ 2)
+				twoPlayersButton.setMoving(false);
+		}		
+	}
+
+
+	// //////////////////////////////////////////////////////////////////////////////////////
+	// ////addPlayers////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////
 
 	private void addPlayers() {
 		// TODO Auto-generated method stub
@@ -254,43 +336,66 @@ public class Boda extends Applet implements Runnable {
 		}
 	}
 
+	// //////////////////////////////////////////////////////////////////////////////////////
+	// //////play////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////
+
+	private void play() {
+		while (true) {
+			setSize(Width, Height);
+			Control.excuteFrame();
+			try {
+				Thread.sleep(17);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			repaint();
+		}
+	}
+	
+	
 	// /////////////////////////////////////////////////////////////////////////////////
-	// //////////////Painting
-	// Methods///////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+	// //////////////Painting///////////////////////////////////////////////////////////
+	// //////////////Methods////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+
 
 	@Override
 	public void paint(Graphics g) {
-		if(now == 0)
+		if (now == 0)
 			paintLoading(g);
-		else if(now == 1)
+		else if (now == 1)
 			paintMainMenu(g);
-		// paintGame(g);
+		else if (now == 2)
+			paintPlayersMenu(g);
+		else if (now == 3)
+			paintGame(g);
 	}
 	
-	private void paintLoading(Graphics g){
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////paintLoading////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+
+	private void paintLoading(Graphics g) {
 		g.drawImage(back1, (int) backX, 0, Width, Height, this);
 		paintLogo(g);
-		if(loadingTextTimer2<=500)
-			paintLoadingText(g,1);
-		else if (loadingTextTimer2<=1000)
+		if (loadingTextTimer2 <= 500)
+			paintLoadingText(g, 1);
+		else if (loadingTextTimer2 <= 1000)
 			paintLoadingText(g, 2);
-		else if (loadingTextTimer2<=1500)
+		else if (loadingTextTimer2 <= 1500)
 			paintLoadingText(g, 3);
-		else if (loadingTextTimer2<=2000)
+		else if (loadingTextTimer2 <= 2000)
 			paintLoadingText(g, 4);
-		else if (loadingTextTimer2>=2000)
+		else if (loadingTextTimer2 >= 2000)
 			loadingTextTimer = System.currentTimeMillis();
 	}
 	
-	private void paintMainMenu(Graphics g) {
-		g.drawImage(back1, (int) backX, 0, Width, Height, this);
-		newGameButton.paint(g, this, url);
-		loadGameButton.paint(g, this, url);
-		importButton.paint(g, this, url);
-		exitButton.paint(g, this, url);
-	}
-
 	private void paintLogo(Graphics g) {
 		int size = 400;
 		int x = Width / 2 - 200;
@@ -345,6 +450,33 @@ public class Boda extends Applet implements Runnable {
 			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
 		}
 	}
+	
+	// /////////////////////////////////////////////////////////////////////////////////
+	// ///////paintMainMenu/////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+	
+	private void paintMainMenu(Graphics g) {
+		g.drawImage(back1, (int) backX, 0, Width, Height, this);
+		newGameButton.paint(g, this, url);
+		loadGameButton.paint(g, this, url);
+		importButton.paint(g, this, url);
+		exitButton.paint(g, this, url);
+	}
+	
+	// /////////////////////////////////////////////////////////////////////////////////
+	// ////paintPlayersMenu/////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
+	
+	private void paintPlayersMenu(Graphics g) {
+		g.drawImage(back1, (int) backX, 0, Width, Height, this);
+		onePlayerButton.paint(g, this, url);
+		twoPlayersButton.paint(g, this, url);
+		exitButton.paint(g, this, url);		
+	}
+	
+	// /////////////////////////////////////////////////////////////////////////////////
+	// /////paintGame///////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////////////////////////
 
 	private void paintGame(Graphics g) {
 		g.drawImage(back, (int) backX, 0, Width, Height, this);
@@ -361,7 +493,6 @@ public class Boda extends Applet implements Runnable {
 
 		exitButton.paint(g, this, url);
 	}
-
 
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////

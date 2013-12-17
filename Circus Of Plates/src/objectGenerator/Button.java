@@ -123,32 +123,17 @@ public class Button {
 			if (mouseOnButton)
 				return "images/importButton2.png";
 			return "images/importButton1.png";
+			
+		case "onePlayer":
+			if (mouseOnButton)
+				return "images/onePlayerButton2.png";
+			return "images/onePlayerButton1.png";
+			
+		case "twoPlayers":
+			if (mouseOnButton)
+				return "images/twoPlayersButton2.png";
+			return "images/twoPlayersButton1.png";
 		}
-		
-		
-//		if (type == 1) { // onePlayerButton
-//			if (mouseOnButton)
-//				return "images/onePlayerButton2.png";
-//			return "images/onePlayerButton1.png";
-//		} else if (type == 2) { // twoPlayersButton
-//			if (mouseOnButton)
-//				return "images/twoPlayersButton2.png";
-//			return "images/twoPlayersButton1.png";
-//		} else if (type == 3) { // exitButton
-//			if (mouseOnButton)
-//				return "images/exit2.png";
-//			return "images/exit1.png";
-//
-//		} else if (type == 4) { // saveButton
-//			if (mouseOnButton)
-//				return "images/button.png";
-//			return "images/button.png";
-//
-//		} else if (type == 5) { // loadButton
-//			if (mouseOnButton)
-//				return "images/button.png";
-//			return "images/button.png";
-//		}
 		return null;
 	}
 }
