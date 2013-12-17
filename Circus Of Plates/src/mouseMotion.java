@@ -3,10 +3,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class mouseMotion implements MouseMotionListener, MouseListener {
-	Boda view;
+	View view;
 	SerializeDemo fileLoader;
 
-	public mouseMotion(Boda view) {
+	public mouseMotion(View view) {
 		this.view = view;
 		fileLoader = new SerializeDemo(view);
 		int k = 0;

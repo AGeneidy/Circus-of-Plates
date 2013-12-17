@@ -15,10 +15,10 @@ public class Controler {
 	private double dx;
 	private Plate plate;
 	private int rowsNo = 3;
-	Boda view;
+	View view;
 	long timer, gameTimer, gameStartTime;
 
-	public Controler(Boda boda) {
+	public Controler(View boda) {
 		view = boda;
 		initialDx = 1;
 		initialDy = 0;

@@ -2,9 +2,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class SerializeDemo {
-	Boda a;
+	View a;
 
-	public SerializeDemo(Boda Boda) {
+	public SerializeDemo(View Boda) {
 		// TODO Auto-generated constructor stub
 		a = Boda;
 	}

@@ -8,7 +8,7 @@ import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Boda extends Applet implements Runnable {
+public class View extends Applet implements Runnable {
 
 	protected long time, startTime, timeBeforLoading, loadingTime,
 			loadingTextTimer, loadingTextTimer2, gameStartTime, timeRemains;

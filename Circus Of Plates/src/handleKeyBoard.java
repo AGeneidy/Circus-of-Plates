@@ -3,9 +3,9 @@ import java.awt.event.KeyListener;
 
 public class handleKeyBoard implements KeyListener {
 	private int moveSpeed = 20;
-	private Boda view;
+	private View view;
 
-	public handleKeyBoard(Boda view) {
+	public handleKeyBoard(View view) {
 		this.view = view;
 	}
 
