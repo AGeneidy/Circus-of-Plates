@@ -15,7 +15,7 @@ import objectGenerator.Player;
 
 public class Boda extends Applet implements Runnable {
 
-	protected long time;
+	protected long time, startTime, timeBeforLoading, loadingTime, loadingTextTimer, loadingTextTimer2;
 	private PlateIterator plateIterator;
 	private Image i;
 	private Graphics doubleG;
@@ -31,11 +31,10 @@ public class Boda extends Applet implements Runnable {
 	Image back1, back;
 	private Controler Control;
 	boolean mainMenu = true;
-	Button onePlayerButton, twoPlayersButton, exitButton, saveButton,
-			loadButton;
+	Button newGameButton,loadGameButton,importButton,onePlayerButton,twoPlayersButton,exitButton;
 	ArrayList<Player> Players;
-	private int logo = 0, loading = 1;
-	private int now = 0;
+	private int logo = 0;
+	int now = 0;
 
 	@Override
 	public void init() {
@@ -85,25 +84,19 @@ public class Boda extends Applet implements Runnable {
 	}
 
 	private void getButtons() {
-		onePlayerButton = abstractfactory.getButton();
-		onePlayerButton.setType(1);
+		newGameButton = abstractfactory.getButton();
+		newGameButton.setType("newGame");
 
-		twoPlayersButton = abstractfactory.getButton();
-		twoPlayersButton.setType(2);
+		loadGameButton = abstractfactory.getButton();
+		loadGameButton.setType("loadGame");
+		
+		importButton = abstractfactory.getButton();
+		importButton.setType("import");
 
 		exitButton = abstractfactory.getButton();
-		exitButton.setType(3);
+		exitButton.setType("exit");
 		exitButton.setWidth(200);
 		exitButton.setHight(86);
-
-		saveButton = abstractfactory.getButton();
-		saveButton.setType(4);
-		saveButton.setPosition(gameWidth + 10, gameHeight - 200);
-
-		loadButton = abstractfactory.getButton();
-		loadButton.setType(5);
-		loadButton.setPosition(gameWidth + 10, gameHeight - 400);
-
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////
@@ -120,12 +113,52 @@ public class Boda extends Applet implements Runnable {
 
 	@Override
 	public void run() {
-		time = System.currentTimeMillis();
 
-		while (now == 0 || now ==1) {
+//		time = System.currentTimeMillis();
+		
+		timeBeforLoading = System.currentTimeMillis();
+		loadingTime =loadingTextTimer = System.currentTimeMillis() - timeBeforLoading;
+		loading();
+		
+		mainMenu();
+		
+		addPlayers();
+		
+		play();
+
+	}
+
+	private void loading() {
+		while (now == 0) {
+			loadingTime = System.currentTimeMillis() - timeBeforLoading;
+			loadingTextTimer2 = System.currentTimeMillis() - loadingTextTimer;
 			setSize(Width, Height);
-			if(now == 1)
-			mainMenu();
+			Control.excuteFrame();
+			try {
+				Thread.sleep(17);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (loadingTime >= 2000)
+				now = 1;
+			repaint();
+		}
+	}
+
+	private void mainMenu() {
+		while (now == 1) {
+			setSize(Width, Height);
+			
+			mainMenuButtons();
+			
+			if(newGameButton.isClicked());
+				
+			else if(loadGameButton.isClicked())
+				loadGame();
+			else if(importButton.isClicked())
+				importShape();
+			else if(exitButton.isClicked());
+				
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
@@ -133,7 +166,19 @@ public class Boda extends Applet implements Runnable {
 			}
 			repaint();
 		}
-		addPlayers();
+	}
+	
+	private void importShape() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void loadGame() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void play(){
 		while (true) {
 			setSize(Width, Height);
 			Control.excuteFrame();
@@ -146,6 +191,60 @@ public class Boda extends Applet implements Runnable {
 		}
 	}
 
+	private void mainMenuButtons() {
+		if (exitButton.getY() == 0) // buttons position were not set
+			setMainMenuButtons();
+		else if (newGameButton.isMoving() || loadGameButton.isMoving() || importButton.isMoving()
+				|| exitButton.isMoving()) { // move buttons
+			moveMainMenuButtons();
+		} else {
+		}
+	}
+
+	private void moveMainMenuButtons() {
+		int buttonsSpeed = 20;
+
+		if (newGameButton.isMoving()) {
+			newGameButton.setPosition(newGameButton.getX() + buttonsSpeed, newGameButton.getY());
+			if (newGameButton.getX() >= Width / 2 - newGameButton.getWidth() / 2)
+				newGameButton.setMoving(false);
+		}
+		if (loadGameButton.isMoving()) {
+			loadGameButton.setPosition(loadGameButton.getX() - buttonsSpeed,
+					loadGameButton.getY());
+			if (loadGameButton.getX() <= Width / 2 - loadGameButton.getWidth() / 2)
+				loadGameButton.setMoving(false);
+		}
+		
+		if (importButton.isMoving()) {
+			importButton.setPosition(importButton.getX() + buttonsSpeed, importButton.getY());
+			if (importButton.getX() >= Width / 2 - importButton.getWidth() / 2)
+				importButton.setMoving(false);
+		}
+		
+		if (exitButton.isMoving()) {
+			exitButton.setPosition(exitButton.getX() + buttonsSpeed * 2,
+					exitButton.getY());
+			if (exitButton.getX() >= Width - exitButton.getWidth() - 60)
+				exitButton.setMoving(false);
+		}
+	}
+
+	private void setMainMenuButtons() {
+		newGameButton.setMoving(true);
+		newGameButton.setPosition(0, Height / 2 - (newGameButton.getHeight()*3/2 + 50));
+
+		loadGameButton.setMoving(true);
+		loadGameButton.setPosition(Width - loadGameButton.getWidth(), Height / 2 - loadGameButton.getHight()/2);
+		
+		importButton.setMoving(true);
+		importButton.setPosition(0, Height / 2 + loadGameButton.getHeight()/2 + 50);
+
+		exitButton.setMoving(true);
+		exitButton.setPosition(0, Height - (exitButton.getHeight()/2 + 50));
+
+	}
+
 	private void addPlayers() {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < Players.size(); i++) {
@@ -155,77 +254,46 @@ public class Boda extends Applet implements Runnable {
 		}
 	}
 
-	private void mainMenu() {
-		if (exitButton.getY() == 0) // buttons position were not set
-			setButtons();
-		else if (onePlayerButton.isMoving() || twoPlayersButton.isMoving()
-				|| exitButton.isMoving()) { // move buttons
-			moveButtons();
-		} else {
-		}
-	}
-
-	private void moveButtons() {
-		int buttonsSpeed = 20;
-
-		if (onePlayerButton.isMoving()) {
-			onePlayerButton.setPosition(onePlayerButton.getX() + buttonsSpeed,
-					onePlayerButton.getY());
-			if (onePlayerButton.getX() >= Width / 2
-					- onePlayerButton.getWidth() / 2)
-				onePlayerButton.setMoving(false);
-		}
-		if (twoPlayersButton.isMoving()) {
-			twoPlayersButton.setPosition(
-					twoPlayersButton.getX() - buttonsSpeed,
-					twoPlayersButton.getY());
-			if (twoPlayersButton.getX() <= Width / 2
-					- twoPlayersButton.getWidth() / 2)
-				twoPlayersButton.setMoving(false);
-		}
-		if (exitButton.isMoving()) {
-			exitButton.setPosition(exitButton.getX() + buttonsSpeed * 2,
-					exitButton.getY());
-			if (exitButton.getX() >= Width - exitButton.getWidth() - 60)
-				exitButton.setMoving(false);
-		}
-	}
-
-	private void setButtons() {
-		onePlayerButton.setMoving(true);
-		onePlayerButton.setPosition(0,
-				Height / 2 - (onePlayerButton.getHeight() + 30));
-
-		twoPlayersButton.setMoving(true);
-		twoPlayersButton.setPosition(Width - twoPlayersButton.getWidth(),
-				Height / 2 + 30);
-
-		exitButton.setMoving(true);
-		exitButton.setPosition(0, Height - (exitButton.getHeight() + 30));
-
-	}
-
 	// /////////////////////////////////////////////////////////////////////////////////
-	// //////////////Painting Methods///////////////////////////////////////////////////
+	// //////////////Painting
+	// Methods///////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////
 
+	@Override
+	public void paint(Graphics g) {
+		if(now == 0)
+			paintLoading(g);
+		else if(now == 1)
+			paintMainMenu(g);
+		// paintGame(g);
+	}
+	
+	private void paintLoading(Graphics g){
+		g.drawImage(back1, (int) backX, 0, Width, Height, this);
+		paintLogo(g);
+		if(loadingTextTimer2<=500)
+			paintLoadingText(g,1);
+		else if (loadingTextTimer2<=1000)
+			paintLoadingText(g, 2);
+		else if (loadingTextTimer2<=1500)
+			paintLoadingText(g, 3);
+		else if (loadingTextTimer2<=2000)
+			paintLoadingText(g, 4);
+		else if (loadingTextTimer2>=2000)
+			loadingTextTimer = System.currentTimeMillis();
+	}
+	
 	private void paintMainMenu(Graphics g) {
 		g.drawImage(back1, (int) backX, 0, Width, Height, this);
-		
-		if(now == 0){ //loading
-			paintLogo(g);
-			paintLoading(g);
-		}else if(now == 1){ //main menu
-			onePlayerButton.paint(g, this, url);
-			twoPlayersButton.paint(g, this, url);
-			exitButton.paint(g, this, url);
-		}
-	
+		newGameButton.paint(g, this, url);
+		loadGameButton.paint(g, this, url);
+		importButton.paint(g, this, url);
+		exitButton.paint(g, this, url);
 	}
-	
+
 	private void paintLogo(Graphics g) {
 		int size = 400;
-		int x = Width/2 -200;
+		int x = Width / 2 - 200;
 		int y = 100;
 		if (logo == 0 || logo == 1) {
 			Image playerImg = getImage(url, "images/logo1.png");
@@ -258,30 +326,23 @@ public class Boda extends Applet implements Runnable {
 		}
 	}
 
-	private void paintLoading(Graphics g) {
+	private void paintLoadingText(Graphics g, int image) {
 		int sizeX = 150;
 		int sizeY = 50;
-		int x = Width/2 - 75;
+		int x = Width / 2 - 75;
 		int y = 500;
-		if (loading >= 1 && loading < 21) {
+		if (image == 1) {
 			Image playerImg = getImage(url, "images/loading1.png");
 			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
-			loading++;
-		} else if (loading >= 21 && loading < 41) {
+		} else if (image == 2) {
 			Image playerImg = getImage(url, "images/loading2.png");
 			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
-			loading++;
-		} else if (loading >= 41 && loading < 61) {
+		} else if (image == 3) {
 			Image playerImg = getImage(url, "images/loading3.png");
 			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
-			loading++;
-		} else if (loading >= 61 && loading < 81) {
+		} else if (image == 4) {
 			Image playerImg = getImage(url, "images/loading4.png");
 			g.drawImage(playerImg, x, y, sizeX, sizeY, this);
-			if (loading >= 31 && loading < 80)
-				loading++;
-			else
-				loading = 1;
 		}
 	}
 
@@ -297,20 +358,10 @@ public class Boda extends Applet implements Runnable {
 		}
 		for (Player a : Players)
 			a.paint(g, this, url);
-		// if (twoPlayers)
-		// player2.paint(g, this, url);
+
 		exitButton.paint(g, this, url);
-		saveButton.paint(g, this, url);
-		loadButton.paint(g, this, url);
-
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		paintMainMenu(g);
-//		paintGame(g);
-
-	}
 
 	// /////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////////////////////////////////////////////////////////////

@@ -31,7 +31,7 @@ public class Button {
 		this.width = width;
 	}
 
-	private int type;
+	private String type;
 	private int x, y;
 
 	public Button() {
@@ -89,7 +89,7 @@ public class Button {
 		this.moving = moving;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
@@ -102,29 +102,53 @@ public class Button {
 	}
 
 	private String getImagePath() {
-		if (type == 1) { // onePlayerButton
+		
+		switch(type){
+		
+		case "newGame":
 			if (mouseOnButton)
-				return "images/onePlayerButton2.png";
-			return "images/onePlayerButton1.png";
-		} else if (type == 2) { // twoPlayersButton
+				return "images/newGameButton2.png";
+			return "images/newGameButton1.png";
+		
+		case "loadGame":
 			if (mouseOnButton)
-				return "images/twoPlayersButton2.png";
-			return "images/twoPlayersButton1.png";
-		} else if (type == 3) { // exitButton
+				return "images/loadGameButton2.png";
+			return "images/loadGameButton1.png";
+		case "exit":
 			if (mouseOnButton)
 				return "images/exit2.png";
 			return "images/exit1.png";
-
-		} else if (type == 4) { // saveButton
+			
+		case "import":
 			if (mouseOnButton)
-				return "images/button.png";
-			return "images/button.png";
-
-		} else if (type == 5) { // loadButton
-			if (mouseOnButton)
-				return "images/button.png";
-			return "images/button.png";
+				return "images/importButton2.png";
+			return "images/importButton1.png";
 		}
+		
+		
+//		if (type == 1) { // onePlayerButton
+//			if (mouseOnButton)
+//				return "images/onePlayerButton2.png";
+//			return "images/onePlayerButton1.png";
+//		} else if (type == 2) { // twoPlayersButton
+//			if (mouseOnButton)
+//				return "images/twoPlayersButton2.png";
+//			return "images/twoPlayersButton1.png";
+//		} else if (type == 3) { // exitButton
+//			if (mouseOnButton)
+//				return "images/exit2.png";
+//			return "images/exit1.png";
+//
+//		} else if (type == 4) { // saveButton
+//			if (mouseOnButton)
+//				return "images/button.png";
+//			return "images/button.png";
+//
+//		} else if (type == 5) { // loadButton
+//			if (mouseOnButton)
+//				return "images/button.png";
+//			return "images/button.png";
+//		}
 		return null;
 	}
 }
