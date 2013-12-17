@@ -2,8 +2,6 @@
 import java.io.*;
 import java.util.ArrayList;
 
-import objectGenerator.Player;
-
 public class SerializeDemo {
 	Boda a;
 

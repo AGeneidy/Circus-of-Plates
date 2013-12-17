@@ -1,4 +1,4 @@
-package objectGenerator;
+
 
 public class FactoryProducer {
 	

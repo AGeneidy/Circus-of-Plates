@@ -1,4 +1,4 @@
-package objectGenerator;
+
 
 public class PlayerFactory extends AbstractFactory {
 	private static PlayerFactory playerFactory;

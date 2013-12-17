@@ -1,4 +1,4 @@
-package objectGenerator;
+
 
 public class state implements java.io.Serializable {
 	private String state;

@@ -1,4 +1,4 @@
-package objectGenerator;
+
 
 public abstract class AbstractFactory {
 	public abstract Plate getRandomPlate();

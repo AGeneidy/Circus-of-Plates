@@ -1,4 +1,4 @@
-package objectGenerator;
+
 
 public class ButtonFactory extends AbstractFactory {
 	private static ButtonFactory buttonfactory;

@@ -4,12 +4,6 @@ import java.awt.Point;
 import java.net.URL;
 import java.util.ArrayList;
 
-import objectGenerator.AbstractFactory;
-import objectGenerator.Plate;
-import objectGenerator.PlateIterator;
-import objectGenerator.PlatePool;
-import objectGenerator.Player;
-
 public class Controler {
 
 	private PlatePool platePool;

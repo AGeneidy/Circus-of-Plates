@@ -8,13 +8,6 @@ import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ArrayList;
 
-import objectGenerator.AbstractFactory;
-import objectGenerator.Button;
-import objectGenerator.FactoryProducer;
-import objectGenerator.Plate;
-import objectGenerator.PlateIterator;
-import objectGenerator.Player;
-
 public class Boda extends Applet implements Runnable {
 
 	protected long time, startTime, timeBeforLoading, loadingTime,
